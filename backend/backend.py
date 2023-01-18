@@ -15,7 +15,7 @@ app.secret_key = 'secret key'
 app.config['MYSQL_HOST'] = 'frcteam195testinstance.cmdlvflptajw.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'Harish'  # Password for AWS
+app.config['MYSQL_PASSWORD'] = 'RapidReact2022'  # Password for AWS
 #app.config['MYSQL_PASSWORD'] = 'team195'  # Password for Pi
 app.config['MYSQL_DB'] = 'team195_scouting'
 
