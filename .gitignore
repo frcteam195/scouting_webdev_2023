@@ -36,6 +36,7 @@ node_env
 npm-debug.log
 testem.log
 /typings
+.venv/*
 
 # e2e
 /e2e/*.js
@@ -83,6 +84,7 @@ wsgi-api/.idea
 npm-debug.log
 testem.log
 /typings
+/backend/config.ini
 
 # e2e
 /e2e/*.js
