@@ -5,19 +5,21 @@ from flask_mysqldb import MySQL
 from flask_cors import CORS
 import MySQLdb.cursors
 from json import dumps
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 app=Flask(__name__)
 CORS(app)
 
 app.secret_key = 'secret key'
- 
-#app.config['MYSQL_HOST'] = '10.0.20.195'
-app.config['MYSQL_HOST'] = 'frcteam195testinstance.cmdlvflptajw.us-east-1.rds.amazonaws.com'
-app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'RapidReact2022'  # Password for AWS
-#app.config['MYSQL_PASSWORD'] = 'team195'  # Password for Pi
-app.config['MYSQL_DB'] = 'team195_scouting'
+
+app.config['MYSQL_HOST'] = config['mysqlDB']['host']
+app.config['MYSQL_PORT'] = int(config['mysqlDB']['port'])
+app.config['MYSQL_USER'] = config['mysqlDB']['user']
+app.config['MYSQL_PASSWORD'] = config['mysqlDB']['pass']
+app.config['MYSQL_DB'] = config['mysqlDB']['db']
 
 mysql = MySQL(app)
 
