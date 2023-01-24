@@ -1,125 +1,125 @@
 export class CEA {
-    Team: string;
+    team: string;
     AnalysisType: string;
-    AnalysisTypeID: Number;
-    EventID: Number;
-    Match1Display: String;
-    Match1Format: Number;
-    Match1Value: Number;
-    Match2Display: String;
-    Match2Format: Number;
-    Match2Value: Number;
-    Match3Display: String;
-    Match3Format: Number;
-    Match3Value: Number;
-    Match4Display: String;
-    Match4Format: Number;
-    Match4Value: Number;
-    Match5Display: String;
-    Match5Format: Number;
-    Match5Value: Number;
-    Match6Display: String;
-    Match6Format: Number;
-    Match6Value: Number;
-    Match7Display: String;
-    Match7Format: Number;
-    Match7Value: Number;
-    Match8Display: String;
-    Match8Format: Number;
-    Match8Value: Number;
-    Match9Display: String;
-    Match9Format: Number;
-    Match9Value: Number;
-    Match10Display: String;
-    Match10Format: Number;
-    Match10Value: Number;
-    Match11Display: String;
-    Match11Format: Number;
-    Match11Value: Number;
-    Match12Display: String;
-    Match12Format: Number;
-    Match12Value: Number;
-    Summary1Display: String;
-    Summary1Format: Number;
-    Summary1Value: Number;
-    Summary2Display: String;
-    Summary2Format: Number;
-    Summary2Value: Number;
-    Summary3Display: String;
-    Summary3Format: Number;
-    Summary3Value: Number;
-    Summary4Display: String;
-    Summary4Format: Number;
-    Summary4Value: Number;
-    Maximum: Number;
-    Minimum: Number;
-    Percent: Number;
+    analysisTypeID: Number;
+    eventID: Number;
+    M1D: String;
+    M1F: Number;
+    M1V: Number;
+    M2D: String;
+    M2F: Number;
+    M2V: Number;
+    M3D: String;
+    M3F: Number;
+    M3V: Number;
+    M4D: String;
+    M4F: Number;
+    M4V: Number;
+    M5D: String;
+    M5F: Number;
+    M5V: Number;
+    M6D: String;
+    M6F: Number;
+    M6V: Number;
+    M7D: String;
+    M7F: Number;
+    M7V: Number;
+    M8D: String;
+    M8F: Number;
+    M8V: Number;
+    M9D: String;
+    M9F: Number;
+    M9V: Number;
+    M10D: String;
+    M10F: Number;
+    M10V: Number;
+    M11D: String;
+    M11F: Number;
+    M11V: Number;
+    M12D: String;
+    M12F: Number;
+    M12V: Number;
+    S1D: String;
+    S1F: Number;
+    S1V: Number;
+    S2D: String;
+    S2F: Number;
+    S2V: Number;
+    S3D: String;
+    S3F: Number;
+    S3V: Number;
+    S4D: String;
+    S4F: Number;
+    S4V: Number;
+    Max: Number;
+    Min: Number;
+    Per: Number;
 
-    constructor(Team: string,AnalysisType: string,AnalysisTypeID: Number,EventID: Number,Match1Display: String,Match1Format: Number,
-        Match1Value: Number,Match2Display: String,Match2Format: Number,Match2Value: Number,Match3Display: String,Match3Format: Number,
-        Match3Value: Number,Match4Display: String,Match4Format: Number,Match4Value: Number,Match5Display: String,Match5Format: Number,
-        Match5Value: Number,Match6Display: String,Match6Format: Number,Match6Value: Number,Match7Display: String,Match7Format: Number,
-        Match7Value: Number,Match8Display: String,Match8Format: Number,Match8Value: Number,Match9Display: String,Match9Format: Number,
-        Match9Value: Number,Match10Display: String,Match10Format: Number,Match10Value: Number,Match11Display: String,Match11Format: Number,
-        Match11Value: Number,Match12Display: String,Match12Format: Number,Match12Value: Number,Summary1Display: String,Summary1Format: Number,
-        Summary1Value: Number,Summary2Display: String,Summary2Format: Number,Summary2Value: Number,Summary3Display: String,Summary3Format: Number,
-        Summary3Value: Number,Summary4Display: String,Summary4Format: Number,Summary4Value: Number,Maximum: Number,Minimum: Number,Percent: Number){
+    constructor(team: string,AnalysisType: string,analysisTypeID: Number,eventID: Number,M1D: String,M1F: Number,
+        M1V: Number,M2D: String,M2F: Number,M2V: Number,M3D: String,M3F: Number,
+        M3V: Number,M4D: String,M4F: Number,M4V: Number,M5D: String,M5F: Number,
+        M5V: Number,M6D: String,M6F: Number,M6V: Number,M7D: String,M7F: Number,
+        M7V: Number,M8D: String,M8F: Number,M8V: Number,M9D: String,M9F: Number,
+        M9V: Number,M10D: String,M10F: Number,M10V: Number,M11D: String,M11F: Number,
+        M11V: Number,M12D: String,M12F: Number,M12V: Number,S1D: String,S1F: Number,
+        S1V: Number,S2D: String,S2F: Number,S2V: Number,S3D: String,S3F: Number,
+        S3V: Number,S4D: String,S4F: Number,S4V: Number,Max: Number,Min: Number,Per: Number){
 
-        this.Team=Team;
+        this.team=team;
         this.AnalysisType=AnalysisType;
-        this.AnalysisTypeID=AnalysisTypeID;
-        this.EventID=EventID;
-        this.Match1Display=Match1Display;
-        this.Match1Format=Match1Format;
-        this.Match1Value=Match1Value;
-        this.Match2Display=Match2Display;
-        this.Match2Format=Match2Format;
-        this.Match2Value=Match2Value;
-        this.Match3Display=Match3Display;
-        this.Match3Format=Match3Format;
-        this.Match3Value=Match3Value;
-        this.Match4Display=Match4Display;
-        this.Match4Format=Match4Format;
-        this.Match4Value=Match4Value;
-        this.Match5Display=Match5Display;
-        this.Match5Format=Match5Format;
-        this.Match5Value=Match5Value;
-        this.Match6Display=Match6Display;
-        this.Match6Format=Match6Format;
-        this.Match6Value=Match6Value;
-        this.Match7Display=Match7Display;
-        this.Match7Format=Match7Format;
-        this.Match7Value=Match7Value;
-        this.Match8Display=Match8Display;
-        this.Match8Format=Match8Format;
-        this.Match8Value=Match8Value;
-        this.Match9Display=Match9Display;
-        this.Match9Format=Match9Format;
-        this.Match9Value=Match9Value;
-        this.Match10Display=Match10Display;
-        this.Match10Format=Match10Format;
-        this.Match10Value=Match10Value;
-        this.Match11Display=Match11Display;
-        this.Match11Format=Match11Format;
-        this.Match11Value=Match11Value;
-        this.Match12Display=Match12Display;
-        this.Match12Format=Match12Format;
-        this.Match12Value=Match12Value;
-        this.Summary1Display=Summary1Display;
-        this.Summary1Format=Summary1Format;
-        this.Summary1Value=Summary1Value;
-        this.Summary2Display=Summary2Display;
-        this.Summary2Format=Summary2Format;
-        this.Summary2Value=Summary2Value;
-        this.Summary3Display=Summary3Display;
-        this.Summary3Format=Summary3Format;
-        this.Summary3Value=Summary3Value;
-        this.Summary4Display=Summary4Display;
-        this.Summary4Format=Summary4Format;
-        this.Summary4Value=Summary4Value;
-        this.Maximum=Maximum;
-        this.Minimum=Minimum;
-        this.Percent=Percent;
+        this.analysisTypeID=analysisTypeID;
+        this.eventID=eventID;
+        this.M1D=M1D;
+        this.M1F=M1F;
+        this.M1V=M1V;
+        this.M2D=M2D;
+        this.M2F=M2F;
+        this.M2V=M2V;
+        this.M3D=M3D;
+        this.M3F=M3F;
+        this.M3V=M3V;
+        this.M4D=M4D;
+        this.M4F=M4F;
+        this.M4V=M4V;
+        this.M5D=M5D;
+        this.M5F=M5F;
+        this.M5V=M5V;
+        this.M6D=M6D;
+        this.M6F=M6F;
+        this.M6V=M6V;
+        this.M7D=M7D;
+        this.M7F=M7F;
+        this.M7V=M7V;
+        this.M8D=M8D;
+        this.M8F=M8F;
+        this.M8V=M8V;
+        this.M9D=M9D;
+        this.M9F=M9F;
+        this.M9V=M9V;
+        this.M10D=M10D;
+        this.M10F=M10F;
+        this.M10V=M10V;
+        this.M11D=M11D;
+        this.M11F=M11F;
+        this.M11V=M11V;
+        this.M12D=M12D;
+        this.M12F=M12F;
+        this.M12V=M12V;
+        this.S1D=S1D;
+        this.S1F=S1F;
+        this.S1V=S1V;
+        this.S2D=S2D;
+        this.S2F=S2F;
+        this.S2V=S2V;
+        this.S3D=S3D;
+        this.S3F=S3F;
+        this.S3V=S3V;
+        this.S4D=S4D;
+        this.S4F=S4F;
+        this.S4V=S4V;
+        this.Max=Max;
+        this.Min=Min;
+        this.Per=Per;
         
     }
   }
