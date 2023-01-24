@@ -2,14 +2,23 @@ export class Types {
     AnalysisTypeID: number;
     AnalysisType: string;
     SortOrder: number;
-    Description: string;
+    teamPickerOrder: number;
+    matchReportOrder: number;
+    snapShotOrder: number;
+    Summary: string;
 
 constructor(AnalysisTypeID: number,
     AnalysisType: string,
     SortOrder: number,
-    Description: string ){
+    teamPickerOrder: number,
+    matchReportOrder: number,
+    snapShotOrder: number,
+    Summary: string ){
     this.AnalysisTypeID=AnalysisTypeID;
     this.AnalysisType=AnalysisType;
     this.SortOrder=SortOrder;
-    this.Description=Description;
+    this.teamPickerOrder=teamPickerOrder;
+    this.matchReportOrder=matchReportOrder;
+    this.snapShotOrder=snapShotOrder;
+    this.Summary=Summary;
 }}

@@ -36,8 +36,8 @@ def hello2():
 def get_analysis():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT cea.*, at.AnalysisType "
-                "FROM CurrentEventAnalysis cea, AnalysisTypes at "
-                "WHERE cea.AnalysisTypeID = at.AnalysisTypeID order by SortOrder;")
+                "FROM CEanalysis cea, analysisTypes at "
+                "WHERE cea.AnalysisTypeID = at.id order by analysisTypeID;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
@@ -87,10 +87,10 @@ def get_teams():
 @app.route("/matches/", methods =['GET', 'POST'])
 def get_matches():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT m.MatchNo, m.RedTeam1, m.RedTeam2, m.RedTeam3, m.BlueTeam1, m.BlueTeam2, m.BlueTeam3 "
-                "FROM Matches m, Events e "
-                "WHERE e.EventID = m.EventID "
-                "AND e.CurrentEvent = 1;")
+    cursor.execute("SELECT m.MatchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+                "FROM matches m, events e "
+                "WHERE e.id = m.eventID "
+                "AND e.currentEvent = 1;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
