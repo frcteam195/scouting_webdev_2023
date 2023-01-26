@@ -1,6 +1,6 @@
-import { ApiService, CEA, Final24 } from './../../services/api.service';
+import { ApiService, Final24 } from './../../services/api.service';
 import { Component, OnInit, Input } from '@angular/core';
-
+import { CEA } from '../../CEA'
 
 @Component({
   selector: 'app-team-graph',
@@ -70,12 +70,12 @@ export class TeamGraphComponent implements OnInit {
       let rcount = 0;
       let xValueList = [1,2,3,4,5,6,7,8,9,10,11,12];
       for (const cea of this.apiAnalysis){
-        if (cea.AnalysisTypeID == this.analysisTypeID) {
+        if (cea.analysisTypeID == this.analysisTypeID) {
           rcount = 0;   // set count to 0
           this.fFlag = "N";
           for (const team of this.teamList) {
 
-            if (cea.Team == team.Team) {
+            if (cea.team == team.Team) {
               if (this.filter == 0) {
                 rcount = rcount+1;// increment count
                 //team.Team = "";
@@ -90,22 +90,22 @@ export class TeamGraphComponent implements OnInit {
           // if count is still 0, write record if filter value is off
           // if fFlag is Y, write record if filter value is on
           if ((rcount == 0 && this.filter == 0) || (this.fFlag == "Y" && this.filter == 1)) {
-            this.team = cea.Team;
+            this.team = cea.team;
 
-            yValueList.push(cea.Match1Value);
-            yValueList.push(cea.Match2Value);
-            yValueList.push(cea.Match3Value);
-            yValueList.push(cea.Match4Value);
-            yValueList.push(cea.Match5Value);
-            yValueList.push(cea.Match6Value);
-            yValueList.push(cea.Match7Value);
-            yValueList.push(cea.Match8Value);
-            yValueList.push(cea.Match9Value);
-            yValueList.push(cea.Match10Value);
-            yValueList.push(cea.Match11Value);
-            yValueList.push(cea.Match12Value);
+            yValueList.push(cea.M1V);
+            yValueList.push(cea.M2V);
+            yValueList.push(cea.M3V);
+            yValueList.push(cea.M4V);
+            yValueList.push(cea.M5V);
+            yValueList.push(cea.M6V);
+            yValueList.push(cea.M7V);
+            yValueList.push(cea.M8V);
+            yValueList.push(cea.M9V);
+            yValueList.push(cea.M10V);
+            yValueList.push(cea.M11V);
+            yValueList.push(cea.M12V);
 
-            this.analysisType = cea.AnalysisType;
+            this.analysisType = cea.analysisType;
 
             this.graphData.push({
               x: xValueList,

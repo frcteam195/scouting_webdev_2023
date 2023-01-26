@@ -1,7 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { NumberValueAccessor } from '@angular/forms';
-import { CEA } from 'src/app/CEA';
+import { CEA } from '../../CEA';
 import { ApiService, Final24 } from 'src/app/services/api.service';
 
 @Component({
@@ -94,7 +94,7 @@ export class AnalysisGraphComponent implements OnInit {
       this.apiAnalysis_filter = [];
       for (const cea of this.apiAnalysis)
       {
-        if (cea.AnalysisTypeID == this.analysisTypeID) 
+        if (cea.analysisTypeID == this.analysisTypeID) 
         {
           
           let yValueList = [];
@@ -106,11 +106,11 @@ export class AnalysisGraphComponent implements OnInit {
           }
          
 
-          this.team = cea.Team;
-          this.analysisType = cea.AnalysisType;
+          this.team = cea.team;
+          this.analysisType = cea.analysisType;
           
 
-          if ((this.teamList.find(item => item.Team === cea.Team)) || (this.selectedTeam == cea.Team)) {
+          if ((this.teamList.find(item => item.Team === cea.team)) || (this.selectedTeam == cea.team)) {
             if (this.filter == 1) {
               color = '#0000FF';
             } else {
@@ -125,15 +125,15 @@ export class AnalysisGraphComponent implements OnInit {
           if (this.graphSize == 1) {
             xValueList.push(this.analysisType);
           } else {
-            xValueList.push(cea.Team);
+            xValueList.push(cea.team);
           }
 
           if (this.maj == 1) {
-            yValueList.push(cea.Summary2Value);
+            yValueList.push(cea.S2V);
             this.MeanMedian = " Median";
           }
           if (this.maj == 2){
-            yValueList.push(cea.Summary1Value);
+            yValueList.push(cea.S1V);
             this.MeanMedian = " Mean";
           }
 
