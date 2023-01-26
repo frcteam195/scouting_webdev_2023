@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService, CEA } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Types } from 'src/app/types';
+import { CEA } from '../../CEA';
 
 @Component({
   selector: 'app-analysis-table',
@@ -91,10 +92,10 @@ export class AnalysisTableComponent implements OnInit {
       var url;
       let rcount = 0;
       for (const cea of this.apiAnalysis){
-        if (cea.Team == this.selectedTeam) {
-          if (analysisTypes.includes(cea.AnalysisTypeID)) {
+        if (cea.team == this.selectedTeam) {
+          if (analysisTypes.includes(cea.analysisTypeID)) {
             
-            if (cea.AnalysisTypeID == 70 ) {
+            if (cea.analysisTypeID == 70 ) {
              //messageText = "<a href='http://www.google.com'>Open Google</a>"
              //this.url = "<a href='http://www.google.com'>Open Google</a>";
              //url = "<a href='C:/ck/video/"+cea.Match1Display+".mp4'>"+cea.Match1Display+"</a>";

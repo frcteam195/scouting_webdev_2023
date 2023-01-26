@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { SelectorMatcher } from '@angular/compiler';
 import {Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
-import { ApiService, CEA, Final24} from '../../services/api.service'
+import { ApiService, Final24} from '../../services/api.service'
 import { Types } from 'src/app/types';
+import { CEA } from '../../CEA' ;
 
 
 @Component({
@@ -109,12 +110,12 @@ export class TeamTableComponent implements OnInit, OnChanges {
 
       let rcount = 0;
       for (const cea of this.apiAnalysis){
-        if (cea.AnalysisTypeID == this.analysisTypeID) {
+        if (cea.analysisTypeID == this.analysisTypeID) {
           rcount = 0;   // set count to 0
           this.fFlag = "N";
           for (const team of this.teamList) {
             //console.log("cea.Team: [" + cea.Team + "] Team: [" + team.Team + "]");
-            if (cea.Team == team.Team) {
+            if (cea.team == team.Team) {
               if (this.filter == 0) {
                 rcount = rcount+1;// increment count
                 //team.Team = "";
@@ -136,30 +137,31 @@ export class TeamTableComponent implements OnInit, OnChanges {
       // Sort Logic
       if (this.sort == 1)  {
         if (this.analysisTypeID == 80) {
-          this.apiAnalysis_filter.sort((a, b) => a.Summary2Value - b.Summary2Value);
+          this.apiAnalysis_filter.sort((a, b) => a.S2V - b.S2V);
         } else {
-          this.apiAnalysis_filter.sort((a, b) => b.Summary2Value - a.Summary2Value);
+          this.apiAnalysis_filter.sort((a, b) => b.S2V - a.S2V);
         }
       } else if (this.sort == 3) {
         //this.apiAnalysis_filter.sort((a, b) => (a.Team > b.Team) ? 1 : -1);
-        this.apiAnalysis_filter.sort((a, b) => b.Summary1Value - a.Summary1Value);
+        this.apiAnalysis_filter.sort((a, b) => b.S1V - a.S1V);
         
       } else {
         //this.apiAnalysis_filter.sort((a, b) => (a.Team > b.Team) ? 1 : -1);
-        this.apiAnalysis_filter.sort((a, b) => Number(a.Team) - Number(b.Team));
+        this.apiAnalysis_filter.sort((a, b) => Number(a.team) - Number(b.team));
       }
 
 
       // Lookup AnalysisType for Title and Description
       for (const type of this.apiTypes) {
         if (type.AnalysisTypeID == this.analysisTypeID) {
-          if (type.Description != null) {
-            this.title = type.AnalysisType + " (" + type.Description + ")";
+          if (type.Summary != null) {
+            this.title = type.AnalysisType + " (" + type.Summary + ")";
           } else {
             this.title = type.AnalysisType;
           }
           
           break; 
+
         } 
       }
 
