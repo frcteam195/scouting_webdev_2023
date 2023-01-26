@@ -1,30 +1,18 @@
-export class level2 {
-    eventID: number;
-    matchID: number;
+export class Level2 {
     matchNum: number;
-    ScouterID: number;
     scoutingStatus: number;
-    synced2MS: number;
     team: string;
-    teamMatchNum: number;
-    allianceStationID: number;
+    commentOff: string;
+    commentDef: string;
 
-constructor(eventID: number,
-    matchID: number,
-    matchNum: number,
-    ScouterID: number,
+constructor(matchNum: number,
     scoutingStatus: number,
-    synced2MS: number,
     team: string,
-    teamMatchNum: number,
-    allianceStationID: number,){
-    this.eventID=eventID;
-    this.matchID=matchID;
+    commentOff: string,
+    commentDef: string,){
     this.matchNum=matchNum;
-    this.ScouterID=ScouterID;
     this.scoutingStatus=scoutingStatus;
-    this.synced2MS=synced2MS;
     this.team=team;
-    this.teamMatchNum=teamMatchNum;
-    this.allianceStationID=allianceStationID;
+    this.commentOff=commentOff;
+    this.commentDef=commentDef;
 }}

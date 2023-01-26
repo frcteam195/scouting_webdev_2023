@@ -1,72 +1,72 @@
 export class CEA {
     team: string;
-    AnalysisType: string;
-    analysisTypeID: Number;
-    eventID: Number;
-    M1D: String;
-    M1F: Number;
-    M1V: Number;
-    M2D: String;
-    M2F: Number;
-    M2V: Number;
-    M3D: String;
-    M3F: Number;
-    M3V: Number;
-    M4D: String;
-    M4F: Number;
-    M4V: Number;
-    M5D: String;
-    M5F: Number;
-    M5V: Number;
-    M6D: String;
-    M6F: Number;
-    M6V: Number;
-    M7D: String;
-    M7F: Number;
-    M7V: Number;
-    M8D: String;
-    M8F: Number;
-    M8V: Number;
-    M9D: String;
-    M9F: Number;
-    M9V: Number;
-    M10D: String;
-    M10F: Number;
-    M10V: Number;
-    M11D: String;
-    M11F: Number;
-    M11V: Number;
-    M12D: String;
-    M12F: Number;
-    M12V: Number;
-    S1D: String;
-    S1F: Number;
-    S1V: Number;
-    S2D: String;
-    S2F: Number;
-    S2V: Number;
-    S3D: String;
-    S3F: Number;
-    S3V: Number;
-    S4D: String;
-    S4F: Number;
-    S4V: Number;
-    Max: Number;
-    Min: Number;
-    Per: Number;
+    analysisType: string;
+    analysisTypeID: number;
+    eventID: number;
+    M1D: string;
+    M1F: number;
+    M1V: number;
+    M2D: string;
+    M2F: number;
+    M2V: number;
+    M3D: string;
+    M3F: number;
+    M3V: number;
+    M4D: string;
+    M4F: number;
+    M4V: number;
+    M5D: string;
+    M5F: number;
+    M5V: number;
+    M6D: string;
+    M6F: number;
+    M6V: number;
+    M7D: string;
+    M7F: number;
+    M7V: number;
+    M8D: string;
+    M8F: number;
+    M8V: number;
+    M9D: string;
+    M9F: number;
+    M9V: number;
+    M10D: string;
+    M10F: number;
+    M10V: number;
+    M11D: string;
+    M11F: number;
+    M11V: number;
+    M12D: string;
+    M12F: number;
+    M12V: number;
+    S1D: string;
+    S1F: number;
+    S1V: number;
+    S2D: string;
+    S2F: number;
+    S2V: number;
+    S3D: string;
+    S3F: number;
+    S3V: number;
+    S4D: string;
+    S4F: number;
+    S4V: number;
+    Max: number;
+    Min: number;
+    Per: number;
 
-    constructor(team: string,AnalysisType: string,analysisTypeID: Number,eventID: Number,M1D: String,M1F: Number,
-        M1V: Number,M2D: String,M2F: Number,M2V: Number,M3D: String,M3F: Number,
-        M3V: Number,M4D: String,M4F: Number,M4V: Number,M5D: String,M5F: Number,
-        M5V: Number,M6D: String,M6F: Number,M6V: Number,M7D: String,M7F: Number,
-        M7V: Number,M8D: String,M8F: Number,M8V: Number,M9D: String,M9F: Number,
-        M9V: Number,M10D: String,M10F: Number,M10V: Number,M11D: String,M11F: Number,
-        M11V: Number,M12D: String,M12F: Number,M12V: Number,S1D: String,S1F: Number,
-        S1V: Number,S2D: String,S2F: Number,S2V: Number,S3D: String,S3F: Number,
-        S3V: Number,S4D: String,S4F: Number,S4V: Number,Max: Number,Min: Number,Per: Number){
+    constructor(team: string,analysisType: string,analysisTypeID: number,eventID: number,M1D: string,M1F: number,
+        M1V: number,M2D: string,M2F: number,M2V: number,M3D: string,M3F: number,
+        M3V: number,M4D: string,M4F: number,M4V: number,M5D: string,M5F: number,
+        M5V: number,M6D: string,M6F: number,M6V: number,M7D: string,M7F: number,
+        M7V: number,M8D: string,M8F: number,M8V: number,M9D: string,M9F: number,
+        M9V: number,M10D: string,M10F: number,M10V: number,M11D: string,M11F: number,
+        M11V: number,M12D: string,M12F: number,M12V: number,S1D: string,S1F: number,
+        S1V: number,S2D: string,S2F: number,S2V: number,S3D: string,S3F: number,
+        S3V: number,S4D: string,S4F: number,S4V: number,Max: number,Min: number,Per: number){
 
         this.team=team;
-        this.AnalysisType=AnalysisType;
+        this.analysisType=analysisType;
         this.analysisTypeID=analysisTypeID;
         this.eventID=eventID;
         this.M1D=M1D;

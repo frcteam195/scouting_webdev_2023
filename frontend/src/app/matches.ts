@@ -1,72 +1,74 @@
 export class Matches {
-    blueChrgZoneRP: number
-    blueEndGmPts: number;
-    BlueScore: number;
-    BlueTeam1: string;
-    BlueTeam2: string;
-    BlueTeam3: string; 
-    blueTelePts: number;
-    EventID: number;
-    MatchID: number;
-    MatchNum: number;
-    blueLinksRP:number;
-    redLinksRP: number; 
-    RedHangarPoints: number;
-    redChrgZoneRP: number;
-    RedScore: number;
-    RedTeam1: string;
-    RedTeam2: string;
-    RedTeam3: string;
-    redTelePts: number;
-    redAutoPts: number;
+    actualTime: number;
+    blue1: string;
+    blue2: string;
+    blue3: string;
     blueAutoPts: number;
-    MatchTime: string;
-    ActualTime: string;
+    blueChrgZoneRP: number;
+    blueEndGmPts: number;
+    blueLinksRP: number;
+    blueScore: number;
+    blueTelePts: number;
+    eventID	: number;
+    matchID: number;
+    matchNum: number;
+    matchTime: number;
+    red1: string;
+    red2: string;
+    red3: string ;
+    redAutoPts: number;
+    redChrgZoneRP: number;
+    redEndGmPts: number;
+    redLinksRP: number;
+    redScore: number;
+    redTelePts: number;
 
-constructor(blueChrgZoneRP: number,
-    blueEndGmPts: number,
-    BlueScore: number,
-    BlueTeam1: string,
-    BlueTeam2: string,
-    BlueTeam3: string, 
-    blueTelePts: number,
-    EventID: number,
-    MatchID: number,
-    MatchNum: number,
-    redLinksRP: number, 
-    blueLinksRP:number,
-    RedHangarPoints: number,
-    redChrgZoneRP: number,
-    RedScore: number,
-    RedTeam1: string,
-    RedTeam2: string,
-    RedTeam3: string,
-    redTelePts: number,
-    redAutoPts: number,
+constructor(actualTime: number,
+    blue1: string,
+    blue2: string,
+    blue3: string,
     blueAutoPts: number,
-    MatchTime: string,
-    ActualTime: string ){
-        this.blueEndGmPts=blueEndGmPts;
-        this.BlueScore=BlueScore;
-        this.BlueTeam1=BlueTeam1;
-        this.BlueTeam2=BlueTeam2;
-        this.BlueTeam3=BlueTeam3; 
-        this.blueTelePts=blueTelePts;
-        this.EventID=EventID;
-        this.MatchID=MatchID;
-        this.MatchNum=MatchNum;
-        this.redLinksRP=redLinksRP; 
-        this.blueLinksRP=blueLinksRP
-        this.RedHangarPoints=RedHangarPoints;
-        this.redChrgZoneRP=redChrgZoneRP;
-        this.blueChrgZoneRP=blueChrgZoneRP
-        this.RedScore=RedScore;
-        this.RedTeam1=RedTeam1;
-        this.RedTeam2=RedTeam2;
-        this.RedTeam3=RedTeam3;
-        this.redTelePts=redTelePts;
-        this.redAutoPts=redAutoPts;
+    blueChrgZoneRP: number,
+    blueEndGmPts: number,
+    blueLinksRP: number,
+    blueScore: number,
+    blueTelePts: number,
+    eventID	: number,
+    matchID: number,
+    matchNum: number,
+    matchTime: number,
+    red1: string,
+    red2: string,
+    red3: string ,
+    redAutoPts: number,
+    redChrgZoneRP: number,
+    redEndGmPts: number,
+    redLinksRP: number,
+    redScore: number,
+    redTelePts: number
+    ){
+        this.actualTime=actualTime;
+        this.blue1=blue1;
+        this.blue2=blue2;
+        this.blue3=blue3;
         this.blueAutoPts=blueAutoPts;
-        this.MatchTime=MatchTime;
-        this.ActualTime=ActualTime;
+        this.blueChrgZoneRP=blueChrgZoneRP;
+        this.blueEndGmPts=blueEndGmPts;
+        this.blueLinksRP=blueLinksRP;
+        this.blueScore=blueScore;
+        this.blueTelePts=blueTelePts;
+        this.eventID	=eventID	;
+        this.matchID=matchID;
+        this.matchNum=matchNum;
+        this.matchTime=matchTime;
+        this.red1=red1;
+        this.red2=red2;
+        this.red3=red3;
+        this.redAutoPts=redAutoPts;
+        this.redChrgZoneRP=redChrgZoneRP;
+        this.redEndGmPts=redEndGmPts;
+        this.redLinksRP=redLinksRP;
+        this.redScore=redScore;
+        this.redTelePts=redTelePts;
+       
 }}
