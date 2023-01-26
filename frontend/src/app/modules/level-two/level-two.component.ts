@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService, Level2 } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Level2 } from '../../level2';
 
 @Component({
   selector: 'app-level-two',

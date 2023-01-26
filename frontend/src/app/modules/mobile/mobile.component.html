@@ -40,7 +40,7 @@
             <tr>
                 <td align="center">
                     <select id="teamSelect" name="teamSelect" [(ngModel)]="team">
-                        <option *ngFor="let a of apiTeamsList" value="{{ a.Team }}">{{ a.Team }}</option>
+                        <option *ngFor="let a of apiTeamsList" value="{{ a.team }}">{{ a.team }}</option>
                     </select>
                 </td>
             </tr>
@@ -72,8 +72,8 @@
                         </tr>
                         <tr>
                             <div *ngFor="let x of apiTeamsList">
-                                <td *ngIf="x.Team + '' == team + ''" align="center" style="align-items: center;">
-                                    <b>{{ x.RobotLength }} in. x {{ x.RobotWidth}} in. x {{ x.RobotHeight }}</b>
+                                <td *ngIf="x.team + '' == team + ''" align="center" style="align-items: center;">
+                                    <b>{{ x.robotLength }} in. x {{ x.width}} in. x {{ x.height }}</b>
                                 </td>
                             </div>
                         </tr>
@@ -109,7 +109,7 @@
                     <td colspan="3" align="center"><h2>Match {{matchNo}}</h2>
                         <b>Select Match: </b>
                         <select list="productName" name="matchSelect" ngModel (ngModelChange)="getMatch($event)">
-                            <option *ngFor="let m of apiMatchList" [ngValue]="m.MatchNo">{{ m.MatchNo }}</option>
+                            <option *ngFor="let m of apiMatchList" [ngValue]="m.matchNum">{{ m.matchNum }}</option>
                         </select>
                     </td>
                 </tr>

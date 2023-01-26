@@ -153,11 +153,11 @@ export class TeamTableComponent implements OnInit, OnChanges {
 
       // Lookup AnalysisType for Title and Description
       for (const type of this.apiTypes) {
-        if (type.AnalysisTypeID == this.analysisTypeID) {
-          if (type.Summary != null) {
-            this.title = type.AnalysisType + " (" + type.Summary + ")";
+        if (type.analysisTypeID == this.analysisTypeID) {
+          if (type.summary != null) {
+            this.title = type.analysisType + " (" + type.summary + ")";
           } else {
-            this.title = type.AnalysisType;
+            this.title = type.analysisType;
           }
           
           break; 

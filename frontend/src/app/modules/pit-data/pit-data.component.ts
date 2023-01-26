@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService, Teams } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Teams } from '../../teams';
 
 @Component({
   selector: 'app-pit-data',

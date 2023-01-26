@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService, CEA } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
+import { CEA } from '../../CEA';
 
 @Component({
   selector: 'app-robot-info',

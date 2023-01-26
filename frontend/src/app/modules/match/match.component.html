@@ -3,7 +3,7 @@
         <td colspan="3" align="center"><h2>Match {{matchNo}}</h2>
         <b>Select Match: </b>
         <select list="productName" name="matchSelect" ngModel (ngModelChange)="getMatch($event)">
-            <option *ngFor="let m of apiMatchList" [ngValue]="m.MatchNo">{{ m.MatchNo }}</option>
+            <option *ngFor="let m of apiMatchList" [ngValue]="m.matchNum">{{ m.matchNum }}</option>
         </select>
         </td>
     </tr>

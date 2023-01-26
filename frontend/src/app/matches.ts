@@ -1,5 +1,5 @@
 export class Matches {
-    actualTime: number;
+    actualTime: string;
     blue1: string;
     blue2: string;
     blue3: string;
@@ -9,10 +9,12 @@ export class Matches {
     blueLinksRP: number;
     blueScore: number;
     blueTelePts: number;
+    blueFouls: number;
+    blueTechFouls: number;
     eventID	: number;
     matchID: number;
     matchNum: number;
-    matchTime: number;
+    matchTime: string;
     red1: string;
     red2: string;
     red3: string ;
@@ -22,8 +24,10 @@ export class Matches {
     redLinksRP: number;
     redScore: number;
     redTelePts: number;
+    redFouls: number;
+    redTechFouls: number;
 
-constructor(actualTime: number,
+constructor(actualTime: string,
     blue1: string,
     blue2: string,
     blue3: string,
@@ -33,10 +37,12 @@ constructor(actualTime: number,
     blueLinksRP: number,
     blueScore: number,
     blueTelePts: number,
+    blueFouls: number,
+    blueTechFouls: number,
     eventID	: number,
     matchID: number,
     matchNum: number,
-    matchTime: number,
+    matchTime: string,
     red1: string,
     red2: string,
     red3: string ,
@@ -45,7 +51,9 @@ constructor(actualTime: number,
     redEndGmPts: number,
     redLinksRP: number,
     redScore: number,
-    redTelePts: number
+    redTelePts: number,
+    redFouls: number,
+    redTechFouls: number
     ){
         this.actualTime=actualTime;
         this.blue1=blue1;
@@ -57,7 +65,9 @@ constructor(actualTime: number,
         this.blueLinksRP=blueLinksRP;
         this.blueScore=blueScore;
         this.blueTelePts=blueTelePts;
-        this.eventID	=eventID	;
+        this.blueFouls=blueFouls;
+        this.blueTechFouls=blueTechFouls;
+        this.eventID=eventID	;
         this.matchID=matchID;
         this.matchNum=matchNum;
         this.matchTime=matchTime;
@@ -70,5 +80,7 @@ constructor(actualTime: number,
         this.redLinksRP=redLinksRP;
         this.redScore=redScore;
         this.redTelePts=redTelePts;
+        this.redFouls=redFouls;
+        this.redTechFouls=redTechFouls;
        
 }}

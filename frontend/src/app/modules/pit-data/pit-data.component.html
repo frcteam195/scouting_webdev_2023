@@ -1,7 +1,7 @@
 <table border="1">
     <tr>
         <div *ngFor="let x of apiTeamsList">
-            <div *ngIf="x.Team + '' == team">
+            <div *ngIf="x.team + '' == team">
                 <tr>
                     <td><b># Of Wheels: </b></td>
                     <td>{{ x.NumWheels }}</td>

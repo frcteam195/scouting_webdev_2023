@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService, Teams, CEA } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Matches } from '../../matches';
 import { Meta } from '@angular/platform-browser';
+import { Teams } from '../../teams';
+import { CEA } from '../../CEA';
 
 
 @Component({
@@ -74,13 +76,13 @@ export class MobileComponent implements OnInit {
     if (this.apiMatchList) {
       for (const m of this.apiMatchList) {
         //console.log("Match: [" + m.MatchNo + "], selected: [" + this.match + "]");
-        if (m.MatchNo == this.matchNo) {
-          this.redTeam1 = m.RedTeam1;
-          this.redTeam2 = m.RedTeam2;
-          this.redTeam3 = m.RedTeam3;
-          this.blueTeam1 = m.BlueTeam1;
-          this.blueTeam2 = m.BlueTeam2;
-          this.blueTeam3 = m.BlueTeam3;
+        if (m.matchNum == this.matchNo) {
+          this.redTeam1 = m.red1;
+          this.redTeam2 = m.red2;
+          this.redTeam3 = m.red3;
+          this.blueTeam1 = m.blue1;
+          this.blueTeam2 = m.blue2;
+          this.blueTeam3 = m.blue3;
           break;
         }
       }
