@@ -22,11 +22,11 @@
                 <div style="float:right;width:50%;">
                 <b>&nbsp;Left Table: </b>
                 <select class="form-control" type="text" name="AnalysisType1" [(ngModel)] = "analysis1" (ngModelChange)="select(1,$event)">
-                    <option *ngFor="let t of apiTypes;" [value]="t.AnalysisTypeID">{{t.AnalysisType}}</option>
+                    <option *ngFor="let t of apiTypes;" [value]="t.analysisTypeID">{{t.analysisType}}</option>
                 </select>
                 <b>&nbsp;Right Table: </b>
                 <select class="form-control" type="text" name="AnalysisType2" [(ngModel)] = "analysis2" (ngModelChange)="select(2,$event)">
-                    <option *ngFor="let t of apiTypes;" [value]="t.AnalysisTypeID">{{t.AnalysisType}}</option>
+                    <option *ngFor="let t of apiTypes;" [value]="t.analysisTypeID">{{t.analysisType}}</option>
                 </select>
     
                 <input type="hidden" [(ngModel)]='analysis1'>

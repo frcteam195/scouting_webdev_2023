@@ -1,6 +1,6 @@
 import { Types } from './../../types';
 import { Component, OnInit } from '@angular/core';
-import { ApiService, CEA, Final24 } from '../../services/api.service';
+import { ApiService, Final24 } from '../../services/api.service';
 import CeaJson from '../../cea.json';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';

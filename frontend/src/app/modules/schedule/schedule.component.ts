@@ -6,12 +6,12 @@ import { Matches } from '../../matches';
 
 export interface TeamMatch {
   Team: string;
-  MatchNo: number;
+  matchNum: number;
 }
 
 export interface PrepMatch {
   Team: string;
-  MatchNo: number;
+  matchNum: number;
   Format: number;
 }
 
@@ -26,13 +26,13 @@ export class ScheduleComponent implements OnInit {
   @Output() sendMatchEvent = new EventEmitter<number>();
   @Output() sendTeamEvent = new EventEmitter<string>();
 
-  redTeam1: string = "195";
-  redTeam2: string = "195";
-  redTeam3: string = "195";
-  blueTeam1: string = "195";
-  blueTeam2: string = "195";
-  blueTeam3: string = "195";
-  matchNo: number = 1;
+  red1: string = "195";
+  red2: string = "195";
+  red3: string = "195";
+  blue1: string = "195";
+  blue2: string = "195";
+  blue3: string = "195";
+  matchNum: number = 1;
   hiTeam: string = "xxx";
   team: string = "All";
   watch: number = 0;
@@ -84,7 +84,7 @@ export class ScheduleComponent implements OnInit {
 
   getMatch(match: number) {
     //console.log("Made it to getMatch with [" + match + "]");
-    this.matchNo=match;
+    this.matchNum=match;
     this.regenerateFilter();
 
   }
@@ -173,7 +173,7 @@ export class ScheduleComponent implements OnInit {
     }
     if (this.watch == 4) {
       for (const p of this.prepFinal) {
-        if ((p.Team==team)&&(p.MatchNo==match)){
+        if ((p.Team==team)&&(p.matchNum==match)){
           return 'bg'+p.Format;
         }
       }
@@ -190,15 +190,15 @@ export class ScheduleComponent implements OnInit {
 
   regenerateFilter() {
 
-    //console.log("Made it to Filter with [" + this.matchNo + "]");
+    //console.log("Made it to Filter with [" + this.matchNum + "]");
     if (this.apiMatchList) {
       this.apiMatchList_filter = [];
       var teamList = [];
       for (const m of this.apiMatchList) {
-        teamList=[m.RedTeam1, m.RedTeam2, m.RedTeam3, m.BlueTeam1, m.BlueTeam2, m.BlueTeam3];
+        teamList=[m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue2];
         if (this.team == "All") {
           if (this.mFilter == 0) {
-            if ((m.RedScore <= 0)||(m.RedScore <= 0))
+            if ((m.redScore <= 0)||(m.redScore <= 0))
               this.apiMatchList_filter.push(m);
           } else if (this.mFilter == 1) {
             this.apiMatchList_filter.push(m);
@@ -225,18 +225,18 @@ export class ScheduleComponent implements OnInit {
 
   teamList() {
 
-    //console.log("Made it to Filter with [" + this.matchNo + "]");
+    //console.log("Made it to Filter with [" + this.matchNum + "]");
     if (this.apiMatchList) {
 
       this.teamMatch = [];
       this.teamMatchFinal = [];
       for (const m of this.apiMatchList) {
-        this.teamMatch.push({Team: m.RedTeam1, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.RedTeam2, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.RedTeam3, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.BlueTeam1, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.BlueTeam2, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.BlueTeam3, MatchNo: m.MatchNo});
+        this.teamMatch.push({Team: m.red1, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.red2, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.red3, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.blue1, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.blue2, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.blue3, matchNum: m.matchNum});
       }
 
     } else {
@@ -251,43 +251,43 @@ export class ScheduleComponent implements OnInit {
 
     for (const w of this.teamMatchChange) {
       selectedTeams.push(w.Team);
-      selectedMatches.push(w.MatchNo);
+      selectedMatches.push(w.matchNum);
       this.teamMatchFinal.push(w);
     }
 
     for (const c of this.teamMatch) {
-      //console.log("Team: " + c.Team + " MatchNo: " + c.MatchNo);
-      if (selectedMatches.includes(c.MatchNo)) {
-        //console.log("Skipping Match: " + c.MatchNo);
+      //console.log("Team: " + c.Team + " matchNum: " + c.matchNum);
+      if (selectedMatches.includes(c.matchNum)) {
+        //console.log("Skipping Match: " + c.matchNum);
       } else if (selectedTeams.includes(c.Team)) {
           //console.log("Skipping team: " + c.Team);
       } else {
-            //console.log("Team List: " + c.Team + " Match: " + c.MatchNo);
-            //console.log("Printing Record: " + c.MatchNo + ":" + c.Team);
+            //console.log("Team List: " + c.Team + " Match: " + c.matchNum);
+            //console.log("Printing Record: " + c.matchNum + ":" + c.Team);
             this.teamMatchFinal.push(c);
             selectedTeams.push(c.Team);
-            selectedMatches.push(c.MatchNo);
+            selectedMatches.push(c.matchNum);
       }
     }
-    this.teamMatchFinal.sort((a, b) => a.MatchNo - b.MatchNo);
+    this.teamMatchFinal.sort((a, b) => a.matchNum - b.matchNum);
 
     this.teamMatchFilter = [];
     var i = 1;
     var j = 0;
     for (const x of this.teamMatchFinal) {
       //console.log("---------------------");
-      if (x.MatchNo == i) {
-        //console.log("Match " + x.MatchNo);
+      if (x.matchNum == i) {
+        //console.log("Match " + x.matchNum);
         this.teamMatchFilter.push(x);
         i = i + 1;
       } else {
         j = 0;
-        while (i < x.MatchNo) {
-          //console.log("Blank Match " + i + " MatchNo: " + x.MatchNo);
-          this.teamMatchFilter.push({Team: "", MatchNo: i});
+        while (i < x.matchNum) {
+          //console.log("Blank Match " + i + " matchNum: " + x.matchNum);
+          this.teamMatchFilter.push({Team: "", matchNum: i});
           i = i + 1;
         }
-        //console.log("Match " + x.MatchNo);
+        //console.log("Match " + x.matchNum);
         this.teamMatchFilter.push(x);
         i = i + 1;
       }
@@ -302,14 +302,14 @@ export class ScheduleComponent implements OnInit {
     this.teamHi = [];
     this.moveMatch = match;
     for (const m of this.apiMatchList) {
-      if (m.MatchNo == match)
+      if (m.matchNum == match)
         {
-          this.teamHi.push(m.RedTeam1);
-          this.teamHi.push(m.RedTeam2);
-          this.teamHi.push(m.RedTeam3);
-          this.teamHi.push(m.BlueTeam1);
-          this.teamHi.push(m.BlueTeam2);
-          this.teamHi.push(m.BlueTeam3);
+          this.teamHi.push(m.red1);
+          this.teamHi.push(m.red2);
+          this.teamHi.push(m.red3);
+          this.teamHi.push(m.blue1);
+          this.teamHi.push(m.blue2);
+          this.teamHi.push(m.blue3);
           break;
         }
     }
@@ -343,8 +343,8 @@ export class ScheduleComponent implements OnInit {
 
   switchTeam(team: string, match: number) {
     if ((this.moveMatch > 0) && (this.moveTeam != "")) {
-      this.teamMatchChange.push({Team: this.moveTeam, MatchNo: match});
-      this.teamMatchChange.push({Team: team, MatchNo: this.moveMatch});
+      this.teamMatchChange.push({Team: this.moveTeam, matchNum: match});
+      this.teamMatchChange.push({Team: team, matchNum: this.moveMatch});
       console.log("Adding ["+this.moveMatch+":"+team+"] and [" + match + ":" + this.moveTeam +"]");
     }
 
@@ -412,24 +412,24 @@ export class ScheduleComponent implements OnInit {
       var i=0;
       for (const m of this.apiMatchList) {
 
-        if ((team == m.RedTeam1)||(team == m.RedTeam2)||(team == m.RedTeam3)) {
+        if ((team == m.red1)||(team == m.red2)||(team == m.red3)) {
           i=i+1;
-          this.prepTeam.push({Team: m.RedTeam1, MatchNo: m.MatchNo, Format: i});
-          this.prepTeam.push({Team: m.RedTeam2, MatchNo: m.MatchNo, Format: i});
-          this.prepTeam.push({Team: m.RedTeam3, MatchNo: m.MatchNo, Format: i});
-        } else if ((team == m.BlueTeam1)||(team == m.BlueTeam2)||(team == m.BlueTeam3)) {
+          this.prepTeam.push({Team: m.red1, matchNum: m.matchNum, Format: i});
+          this.prepTeam.push({Team: m.red2, matchNum: m.matchNum, Format: i});
+          this.prepTeam.push({Team: m.red3, matchNum: m.matchNum, Format: i});
+        } else if ((team == m.blue1)||(team == m.blue2)||(team == m.blue3)) {
           i=i+1;
-          this.prepTeam.push({Team: m.BlueTeam1, MatchNo: m.MatchNo, Format: i});
-          this.prepTeam.push({Team: m.BlueTeam2, MatchNo: m.MatchNo, Format: i});
-          this.prepTeam.push({Team: m.BlueTeam3, MatchNo: m.MatchNo, Format: i});
+          this.prepTeam.push({Team: m.blue1, matchNum: m.matchNum, Format: i});
+          this.prepTeam.push({Team: m.blue2, matchNum: m.matchNum, Format: i});
+          this.prepTeam.push({Team: m.blue3, matchNum: m.matchNum, Format: i});
         }
 
-        this.teamMatch.push({Team: m.RedTeam1, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.RedTeam2, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.RedTeam3, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.BlueTeam1, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.BlueTeam2, MatchNo: m.MatchNo});
-        this.teamMatch.push({Team: m.BlueTeam3, MatchNo: m.MatchNo});        
+        this.teamMatch.push({Team: m.red1, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.red2, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.red3, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.blue1, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.blue2, matchNum: m.matchNum});
+        this.teamMatch.push({Team: m.blue3, matchNum: m.matchNum});        
       }
 
     } else {
@@ -444,13 +444,13 @@ export class ScheduleComponent implements OnInit {
         selTeam="";
         selMatch=0;
         for (const m of this.teamMatch) {
-          if ((m.Team == x.Team)&&(m.MatchNo < x.MatchNo)) {
+          if ((m.Team == x.Team)&&(m.matchNum < x.matchNum)) {
             selTeam = m.Team;
-            selMatch= m.MatchNo;
+            selMatch= m.matchNum;
           }
 
         }
-        this.prepFinal.push({Team: selTeam, MatchNo: selMatch, Format: x.Format});
+        this.prepFinal.push({Team: selTeam, matchNum: selMatch, Format: x.Format});
         //console.log("Opp: " + selTeam + " Match #: " + selMatch + " Format: " + x.Format);
       } else {
         x.Format = 0;

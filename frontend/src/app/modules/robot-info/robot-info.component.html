@@ -2,46 +2,46 @@
 <table border=1 width="100%">
     <tr>
         <ng-container *ngFor="let x of apiAnalysis">
-            <ng-container *ngIf="x.AnalysisTypeID == 72 && x.Team == selectedTeam">
+            <ng-container *ngIf="x.analysisTypeID == 72 && x.team == selectedTeam">
                 <tr>
                     <td width="100%">Tele Accuracy: </td>
-                    <td>{{ x.Summary1Value }}%</td>
+                    <td>{{ x.S1V }}%</td>
                 </tr>
                 <tr>
                     <td>Auto Accuracy: </td>
-                    <td>{{ x.Summary4Value }}%</td>
+                    <td>{{ x.S4V }}%</td>
                 </tr>
             </ng-container>
         </ng-container>
     </tr>
     <tr>
         <ng-container *ngFor="let x of apiAnalysis">
-            <ng-container *ngIf="x.AnalysisTypeID == 1 && x.Team == selectedTeam">
+            <ng-container *ngIf="x.analysisTypeID == 1 && x.team == selectedTeam">
                 <table border="1" align="center">
                     <tr>
-                        <td style="width: 30px;" class="bgB{{ x.Match1Format }}">B1</td>
+                        <td style="width: 30px;" class="bgB{{ x.M1F }}">B1</td>
                         <td rowspan="6"><img title="Picture of starting positions" style="width: 200px;height: 200px;" src="https://i.imgur.com/Ans3hjM.jpg"></td> <!-- https://imgur.com/VfyiD9t.png -->
-                        <td style="width: 30px;" class="bgR{{ x.Match6Format }}">R6</td>
+                        <td style="width: 30px;" class="bgR{{ x.M6F }}">R6</td>
                     </tr>
                     <tr>
-                        <td class="bgB{{ x.Match2Format }}">B2</td>
-                        <td class="bgR{{ x.Match5Format }}">R5</td>
+                        <td class="bgB{{ x.M2F }}">B2</td>
+                        <td class="bgR{{ x.M5F }}">R5</td>
                     </tr>
                     <tr>
-                        <td class="bgB{{ x.Match3Format }}">B3</td>
-                        <td class="bgR{{ x.Match4Format }}">R4</td>
+                        <td class="bgB{{ x.M3F }}">B3</td>
+                        <td class="bgR{{ x.M4F }}">R4</td>
                     </tr>
                     <tr>
-                        <td class="bgB{{ x.Match4Format }}">B4</td>
-                        <td class="bgR{{ x.Match3Format }}">R3</td>
+                        <td class="bgB{{ x.M4F }}">B4</td>
+                        <td class="bgR{{ x.M3F }}">R3</td>
                     </tr>
                     <tr>
-                        <td class="bgB{{ x.Match5Format }}">B5</td>
-                        <td class="bgR{{ x.Match2Format }}">R2</td>
+                        <td class="bgB{{ x.M5F }}">B5</td>
+                        <td class="bgR{{ x.M2F }}">R2</td>
                     </tr>
                     <tr>
-                        <td class="bgB{{ x.Match6Format }}">B6</td>
-                        <td class="bgR{{ x.Match1Format }}">R1</td>
+                        <td class="bgB{{ x.M6F }}">B6</td>
+                        <td class="bgR{{ x.M1F }}">R1</td>
                     </tr>
                 </table>
             </ng-container>

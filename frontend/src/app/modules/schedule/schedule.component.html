@@ -24,17 +24,17 @@
                     <th colspan="6" *ngIf="score==1">Scores</th>
                     <tr *ngFor="let x of apiMatchList_filter">
                         <td (dblclick)="matchPage( x.matchNum )" (click)="setMatch( x.matchNum )">{{ x.matchNum }}</td>
-                        <td>{{ x.ActualTime != null && x.ActualTime != '' ? x.ActualTime : x.MatchTime }}</td>
-                        <td class="titleR" (click)="teamSelect( x.RedTeam1 )" (dblclick)="teamPage( x.RedTeam1 )"><div [ngClass]="getClass(x.RedTeam1,x.matchNum,'R')">{{ x.RedTeam1 }}</div></td>
-                        <td class="titleR" (click)="teamSelect( x.RedTeam2 )" (dblclick)="teamPage( x.RedTeam2 )"><div [ngClass]="getClass(x.RedTeam2,x.matchNum,'R')">{{ x.RedTeam2 }}</div></td>
-                        <td class="titleR" (click)="teamSelect( x.RedTeam3 )" (dblclick)="teamPage( x.RedTeam3 )"><div [ngClass]="getClass(x.RedTeam3,x.matchNum,'R')">{{ x.RedTeam3 }}</div></td>
-                        <td class="titleB" (click)="teamSelect( x.BlueTeam1 )" (dblclick)="teamPage( x.BlueTeam1 )"><div [ngClass]="getClass(x.BlueTeam1,x.matchNum,'B')">{{ x.BlueTeam1 }}</div></td>
-                        <td class="titleB" (click)="teamSelect( x.BlueTeam2 )" (dblclick)="teamPage( x.BlueTeam2 )"><div [ngClass]="getClass(x.BlueTeam2,x.matchNum,'B')">{{ x.BlueTeam2 }}</div></td>
-                        <td class="titleB" (click)="teamSelect( x.BlueTeam3 )" (dblclick)="teamPage( x.BlueTeam3 )"><div [ngClass]="getClass(x.BlueTeam3,x.matchNum,'B')">{{ x.BlueTeam3 }}</div></td>
-                        <td class="titleR" *ngIf="score==1"><div [ngClass]="getScoreClass(x.RedScore,x.BlueScore,'R')">{{ x.RedScore }}</div></td>
+                        <td>{{ x.actualTime != null && x.actualTime != '' ? x.actualTime : x.matchTime }}</td>
+                        <td class="titleR" (click)="teamSelect( x.red1 )" (dblclick)="teamPage( x.red1 )"><div [ngClass]="getClass(x.red1,x.matchNum,'R')">{{ x.red1 }}</div></td>
+                        <td class="titleR" (click)="teamSelect( x.red2 )" (dblclick)="teamPage( x.red2 )"><div [ngClass]="getClass(x.red2,x.matchNum,'R')">{{ x.red2 }}</div></td>
+                        <td class="titleR" (click)="teamSelect( x.red3 )" (dblclick)="teamPage( x.red3 )"><div [ngClass]="getClass(x.red3,x.matchNum,'R')">{{ x.red3 }}</div></td>
+                        <td class="titleB" (click)="teamSelect( x.blue1 )" (dblclick)="teamPage( x.blue1 )"><div [ngClass]="getClass(x.blue1,x.matchNum,'B')">{{ x.blue1 }}</div></td>
+                        <td class="titleB" (click)="teamSelect( x.blue2 )" (dblclick)="teamPage( x.blue2 )"><div [ngClass]="getClass(x.blue2,x.matchNum,'B')">{{ x.blue2 }}</div></td>
+                        <td class="titleB" (click)="teamSelect( x.blue3 )" (dblclick)="teamPage( x.blue3 )"><div [ngClass]="getClass(x.blue3,x.matchNum,'B')">{{ x.blue3 }}</div></td>
+                        <td class="titleR" *ngIf="score==1"><div [ngClass]="getScoreClass(x.redScore,x.blueScore,'R')">{{ x.redScore }}</div></td>
 <!--                         <td class="bg{{ x.RedCargoRanking }}" *ngIf="score==1"></td>
                         <td class="bg{{ x.RedHangarRanking }}" *ngIf="score==1"></td> -->
-                        <td class="titleB" *ngIf="score==1"><div [ngClass]="getScoreClass(x.RedScore,x.BlueScore,'B')">
+                        <td class="titleB" *ngIf="score==1"><div [ngClass]="getScoreClass(x.redScore,x.blueScore,'B')">
             <!--                 <svg class="top-left-dot"  title="Cargo Bonus">
                                 <circle cx="2" cy="2" r="2"/>
                             </svg> -->
@@ -43,7 +43,7 @@
                                 <circle cx="2" cy="2" r="2"/>
                             </svg> -->
                             
-                            {{ x.BlueScore }}</div>
+                            {{ x.blueScore }}</div>
 
                         </td>
 
