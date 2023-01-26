@@ -7,6 +7,10 @@ import { formatDate } from '@angular/common';
 import { relayout } from 'plotly.js-dist-min';
 import { Types } from '../types';
 import { WordCloud } from '../wordcloud';
+import { CEA } from '../CEA';
+import { Level2 } from '../level2';
+import { Matches } from '../matches'
+import { Teams } from '../teams'
  
 
 export class Final24 {
@@ -17,146 +21,146 @@ export class Final24 {
   }
 }
 
-export interface CEA {
-  Team: string;
-  AnalysisType: string;
-  AnalysisTypeID: number;
-  EventID: number;
-  Match1Display: string;
-  Match1Format: number;
-  Match1Value: number;
-  Match2Display: string;
-  Match2Format: number;
-  Match2Value: number;
-  Match3Display: string;
-  Match3Format: number;
-  Match3Value: number;
-  Match4Display: string;
-  Match4Format: number;
-  Match4Value: number;
-  Match5Display: string;
-  Match5Format: number;
-  Match5Value: number;
-  Match6Display: string;
-  Match6Format: number;
-  Match6Value: number;
-  Match7Display: string;
-  Match7Format: number;
-  Match7Value: number;
-  Match8Display: string;
-  Match8Format: number;
-  Match8Value: number;
-  Match9Display: string;
-  Match9Format: number;
-  Match9Value: number;
-  Match10Display: string;
-  Match10Format: number;
-  Match10Value: number;
-  Match11Display: string;
-  Match11Format: number;
-  Match11Value: number;
-  Match12Display: string;
-  Match12Format: number;
-  Match12Value: number;
-  Summary1Display: string;
-  Summary1Format: number;
-  Summary1Value: number;
-  Summary2Display: string;
-  Summary2Format: number;
-  Summary2Value: number;
-  Summary3Display: string;
-  Summary3Format: number;
-  Summary3Value: number;
-  Summary4Display: string;
-  Summary4Format: number;
-  Summary4Value: number;
-  Maximum: number;
-  Minimum: number;
-  Percent: number;
-}
+// export interface CEA {
+//   Team: string;
+//   AnalysisType: string;
+//   AnalysisTypeID: number;
+//   EventID: number;
+//   Match1Display: string;
+//   Match1Format: number;
+//   Match1Value: number;
+//   Match2Display: string;
+//   Match2Format: number;
+//   Match2Value: number;
+//   Match3Display: string;
+//   Match3Format: number;
+//   Match3Value: number;
+//   Match4Display: string;
+//   Match4Format: number;
+//   Match4Value: number;
+//   Match5Display: string;
+//   Match5Format: number;
+//   Match5Value: number;
+//   Match6Display: string;
+//   Match6Format: number;
+//   Match6Value: number;
+//   Match7Display: string;
+//   Match7Format: number;
+//   Match7Value: number;
+//   Match8Display: string;
+//   Match8Format: number;
+//   Match8Value: number;
+//   Match9Display: string;
+//   Match9Format: number;
+//   Match9Value: number;
+//   Match10Display: string;
+//   Match10Format: number;
+//   Match10Value: number;
+//   Match11Display: string;
+//   Match11Format: number;
+//   Match11Value: number;
+//   Match12Display: string;
+//   Match12Format: number;
+//   Match12Value: number;
+//   Summary1Display: string;
+//   Summary1Format: number;
+//   Summary1Value: number;
+//   Summary2Display: string;
+//   Summary2Format: number;
+//   Summary2Value: number;
+//   Summary3Display: string;
+//   Summary3Format: number;
+//   Summary3Value: number;
+//   Summary4Display: string;
+//   Summary4Format: number;
+//   Summary4Value: number;
+//   Maximum: number;
+//   Minimum: number;
+//   Percent: number;
+// }
 
-export interface Matches {
-BlueCargoRanking: number;
-BlueFouls: number;
-BlueHangarPoints: number;
-BlueHangarRanking: number;
-BlueScore: number;
-BlueTeam1: string;
-BlueTeam2: string;
-BlueTeam3: string; 
-BlueTechFouls: number;
-BlueTelePoints: number;
-EventID: number;
-MatchID: number;
-MatchNo: number;
-RedCargoRanking: number; 
-RedFouls: number;
-RedHangarPoints: number;
-RedHangarRanking: number;
-RedScore: number;
-RedTeam1: string;
-RedTeam2: string;
-RedTeam3: string;
-RedTechFouls: number;
-RedTelePoints: number;
-RedAutoPoints: number;
-BlueAutoPoints: number;
-MatchTime: string;
-ActualTime: string;
+// export interface Matches {
+// BlueCargoRanking: number;
+// BlueFouls: number;
+// BlueHangarPoints: number;
+// BlueHangarRanking: number;
+// BlueScore: number;
+// BlueTeam1: string;
+// BlueTeam2: string;
+// BlueTeam3: string; 
+// BlueTechFouls: number;
+// BlueTelePoints: number;
+// EventID: number;
+// MatchID: number;
+// MatchNo: number;
+// RedCargoRanking: number; 
+// RedFouls: number;
+// RedHangarPoints: number;
+// RedHangarRanking: number;
+// RedScore: number;
+// RedTeam1: string;
+// RedTeam2: string;
+// RedTeam3: string;
+// RedTechFouls: number;
+// RedTelePoints: number;
+// RedAutoPoints: number;
+// BlueAutoPoints: number;
+// MatchTime: string;
+// ActualTime: string;
 
-}
+// }
 
-export interface Teams {
-  AutoHuman: Number;
-  AutoPickUp: Number;
-  AutoScoredHigh: Number;
-  AutoScoredLow: Number;
-  AutoStartPosID: number;
-  AutoSummary: String;
-  CanClimb: Number;
-  ClimbHeightID: Number;
-  ClimbPosition: Number;
-  ClimbStrategy: String;
-  ClimbTime: Number;
-  DriveType: String;
-  DriveTypeID: Number;
-  GearRatio: String;
-  HasAuto: Number;
-  IntakeType: Number;
-  LanguageID: Number;
-  LanguageType: String;
-  MaxBallCapacity: Number;
-  MotorType: String;
-  MotorTypeID: Number;
-  MoveBonus: Number;
-  NumDriveMotors: Number;
-  NumGearSpeed: number;
-  NumWheels: Number;
-  Pneumatics: Number;
-  Preload: Number;
-  RobotHeight: Number;
-  RobotLength: Number;
-  RobotWeight: Number;
-  RobotWidth: Number;
-  Speed: Number;
-  Team: Number;
-  TeamCity: String;
-  TeamCountry: String;
-  TeamLocation: String;
-  TeamName: String;
-  TeamStateProv: String;
-  TeleBallsScoredHigh: Number;
-  TeleBallsScoredLow: Number
-  TeleDefense: Number;
-  TeleDefenseEvade: Number;
-  TeleDefenseStrat: String;
-  TeleShootWhileDrive: Number;
-  TeleSortCargo: Number;
-  TeleStrategy: String;
-  WheelType: String;
-  WheelTypeID: Number;
-  Image: string;
-}
+// export interface Teams {
+//   AutoHuman: Number;
+//   AutoPickUp: Number;
+//   AutoScoredHigh: Number;
+//   AutoScoredLow: Number;
+//   AutoStartPosID: number;
+//   AutoSummary: String;
+//   CanClimb: Number;
+//   ClimbHeightID: Number;
+//   ClimbPosition: Number;
+//   ClimbStrategy: String;
+//   ClimbTime: Number;
+//   DriveType: String;
+//   DriveTypeID: Number;
+//   GearRatio: String;
+//   HasAuto: Number;
+//   IntakeType: Number;
+//   LanguageID: Number;
+//   LanguageType: String;
+//   MaxBallCapacity: Number;
+//   MotorType: String;
+//   MotorTypeID: Number;
+//   MoveBonus: Number;
+//   NumDriveMotors: Number;
+//   NumGearSpeed: number;
+//   NumWheels: Number;
+//   Pneumatics: Number;
+//   Preload: Number;
+//   RobotHeight: Number;
+//   RobotLength: Number;
+//   RobotWeight: Number;
+//   RobotWidth: Number;
+//   Speed: Number;
+//   Team: Number;
+//   TeamCity: String;
+//   TeamCountry: String;
+//   TeamLocation: String;
+//   TeamName: String;
+//   TeamStateProv: String;
+//   TeleBallsScoredHigh: Number;
+//   TeleBallsScoredLow: Number
+//   TeleDefense: Number;
+//   TeleDefenseEvade: Number;
+//   TeleDefenseStrat: String;
+//   TeleShootWhileDrive: Number;
+//   TeleSortCargo: Number;
+//   TeleStrategy: String;
+//   WheelType: String;
+//   WheelTypeID: Number;
+//   Image: string;
+// }
 
 export interface CurrTeams {
   team: Number;
@@ -196,17 +200,17 @@ export interface Summary {
   TotalScoreMedian: number;
 }
 
-export interface Level2 {
-  Name: string;
-  MatchNo: number;
-  TeamNo: number;
-  OffensiveQualities: string;
-  DefenseQualities: string;
-  LabelBot: string;
-  GeneralThoughts: string;
-  HarishLove: string;
-  ClimbStart: number;
-}
+// export interface Level2 {
+//   Name: string;
+//   MatchNo: number;
+//   TeamNo: number;
+//   OffensiveQualities: string;
+//   DefenseQualities: string;
+//   LabelBot: string;
+//   GeneralThoughts: string;
+//   HarishLove: string;
+//   ClimbStart: number;
+// }
 
 @Injectable({
   providedIn: 'root'

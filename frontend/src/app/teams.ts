@@ -18,7 +18,7 @@ export class Teams {
     motorType: Number;
     robotLength: Number;
     robotdurability: Number;
-   team: String;
+    team: String;
     width: Number;
     
 constructor(

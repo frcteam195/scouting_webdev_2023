@@ -37,7 +37,7 @@ def get_analysis():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT cea.*, at.AnalysisType "
                 "FROM CEanalysis cea, analysisTypes at "
-                "WHERE cea.AnalysisTypeID = at.id order by analysisTypeID;")
+                "WHERE cea.AnalysisTypeID = at.analysisTypeID order by analysisTypeID;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
@@ -52,8 +52,8 @@ def get_analysis():
 def get_currteam():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT t.team "
-                "FROM Teams t, CurrentEventTeams c "
-                "WHERE t.team = c.team order by cast(c.Team as int);")
+                "FROM teams t, events e "
+                "WHERE t.eventID = e.eventID order by cast(t.team as int);")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -87,9 +87,9 @@ def get_teams():
 @app.route("/matches/", methods =['GET', 'POST'])
 def get_matches():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT m.MatchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+    cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
                 "FROM matches m, events e "
-                "WHERE e.id = m.eventID "
+                "WHERE e.eventID = m.eventID "
                 "AND e.currentEvent = 1;")
     data = cursor.fetchall()	
     response = app.response_class(
@@ -130,9 +130,9 @@ def get_195Data(team):
 def get_matchinfo():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT m.* "
-                "FROM Matches m, Events e "
-                "WHERE e.EventID = m.EventID "
-                "AND e.CurrentEvent = 1 ORDER BY m.MatchNo;")
+                "FROM matches m, events e "
+                "WHERE e.eventID = m.eventID "
+                "AND e.currentEvent = 1 ORDER BY m.matchNum;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
@@ -145,37 +145,9 @@ def get_matchinfo():
 @app.route("/summary/", methods =['GET', 'POST'])
 def get_summary():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.* from CurrentEventAnalysisGraphs a, Events b "
-                    "where a.EventID=b.EventID "
-                    "and b.CurrentEvent = 1;")
-    data = cursor.fetchall()
-    response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
-
-# Get Word Descriptions
-@app.route("/words/", methods =['GET', 'POST'])
-def get_words():
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM WordID ORDER BY DisplayWordOrder;")
-    data = cursor.fetchall()
-    response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
-# Get Word Cloud Data
-@app.route("/word-cloud/", methods =['GET', 'POST'])
-def get_wordcloud():
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT b.* FROM Events a, WordCloud b "
-                   "WHERE a.CurrentEvent = 1 AND a.EventID = b.EventID ORDER BY b.MatchID, b.WordID;")
+    cursor.execute("select a.* from CEanalysisGraphs a, events e "
+                    "where a.eventID=e.eventID "
+                    "and e.currentEvent = 1;")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -189,7 +161,7 @@ def get_wordcloud():
 @app.route("/types/", methods =['GET', 'POST'])
 def get_types():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * from AnalysisTypes")
+    cursor.execute("SELECT * from analysisTypes")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
@@ -198,11 +170,15 @@ def get_types():
     )
     return response
 
+
 # Get Analysis Type Data
 @app.route("/level2", methods =['GET', 'POST'])
 def get_level2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * from SheetsL2Scouting order by MatchNo")
+    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef from matchScoutingL2 a, events e "
+                   "where a.eventID=e.eventID "
+                   "and e.currentEvent = 1 "
+                   "order by matchNum;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
@@ -215,7 +191,7 @@ def get_level2():
 @app.route("/final24Old", methods =['GET'])
 def get_final24Old():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * from Final24;")
+    cursor.execute("SELECT * from final24;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
@@ -317,7 +293,7 @@ def post_dnp():
 @app.route("/pick", methods =['GET'])
 def get_pick():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * from PickList1;")
+    cursor.execute("SELECT * from pickList1;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
