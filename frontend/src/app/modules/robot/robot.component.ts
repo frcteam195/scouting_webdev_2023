@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService, Teams, CurrTeams } from 'src/app/services/api.service';
+import { ApiService, CurrTeams } from 'src/app/services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Teams } from '../../teams';
 
 @Component({
   selector: 'app-robot',
@@ -43,8 +44,8 @@ export class RobotComponent implements OnInit {
   getRoboPic(ID: string) {
     for (let x of this.apiTeamsList){
       console.log('x.Team')
-      if (x.Team + '' == ID && x.Image != null) {
-        return x.Image;
+      if (x.team + '' == ID && x.image != null) {
+        return x.image;
       }
     }
     return "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png";

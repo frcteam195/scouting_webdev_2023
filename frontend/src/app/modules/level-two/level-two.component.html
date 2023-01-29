@@ -1,51 +1,38 @@
 <table style="width: 100%;" border="1">
     <tr>
-        <th colspan="4">Climb Time</th>
+        <th colspan="4">Offensive Qualities</th>
     </tr>
     <ng-container *ngFor="let x of apiLevel2">
-        <tr *ngIf="x.TeamNo + '' == team">
-            <td>#{{ x.MatchNo }}</td>
-            <td colspan="3">{{ x.ClimbStart }} secs</td>
+        <tr *ngIf="x.team + '' == team">
+            <td>#{{ x.matchNum }}</td>
+            <td>{{ x.commentOff }}</td>
         </tr>
     </ng-container>
     <tr>
-        <th colspan="4">General Comments of the robot</th>
+        <th colspan="4">Defensive Qualities</th>
     </tr>
     <ng-container *ngFor="let x of apiLevel2">
-        <tr *ngIf="x.TeamNo + '' == team">
-            <td>#{{ x.MatchNo }}</td>
-            <td colspan="3">{{ x.GeneralThoughts }}</td>
-        </tr>
-    </ng-container>
-    <tr>
-        <th colspan="4">Qualities</th>
-    </tr>
-    <tr>
-        <th colspan="2">Offensive</th>
-        <th colspan="2">Defensive</th>
-    </tr>
-    <ng-container *ngFor="let x of apiLevel2">
-        <tr *ngIf="x.TeamNo + '' == team">
-            <td>#{{ x.MatchNo }}</td>
-            <td>{{ x.OffensiveQualities }}</td>
-            <td>{{ x.DefenseQualities }}</td>
+        <tr *ngIf="x.team + '' == team">
+            <td>#{{ x.matchNum }}</td>
+            <td>{{ x.commentDef }}</td>
         </tr>
     </ng-container>
     <tr>
         <th colspan="4">This team is labed as a</th>
     </tr>
     <ng-container *ngFor="let x of apiLevel2">
-        <tr *ngIf="x.TeamNo + '' == team">
-            <td>#{{ x.MatchNo }}</td>
-            <td colspan="3">{{ x.LabelBot }}</td>
+        <tr *ngIf="x.team + '' == team">
+            <td>#{{ x.matchNum }}</td>
+            <td>{{ x.goodOffBot }}</td>
+            <td>{{ x.goodDefBot }}</td>
         </tr>
     </ng-container>
     <tr>
         <th colspan="4">Love for Harish</th>
     </tr>
     <ng-container *ngFor="let x of apiLevel2">
-        <tr *ngIf="x.TeamNo + '' == team">
-            <td colspan="4">{{ x.HarishLove }}</td>
+        <tr *ngIf="x.team + '' == team">
+            <td colspan="4">{{ x.goodDefBot }}</td>
         </tr>
     </ng-container>
 </table>

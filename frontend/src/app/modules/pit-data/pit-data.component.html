@@ -3,111 +3,62 @@
         <div *ngFor="let x of apiTeamsList">
             <div *ngIf="x.team + '' == team">
                 <tr>
-                    <td><b># Of Wheels: </b></td>
-                    <td>{{ x.NumWheels }}</td>
-                    <td><b># Of Motors: </b></td>
-                    <td>{{ x.NumDriveMotors }}</td>
-                </tr>
-                <tr>
-                    <td><b>Type of Wheels: </b></td>
-                    <td>{{ x.WheelType }}</td>
                     <td><b>Type of Drive: </b></td>
-                    <td>{{ x.DriveType }}</td>
-                </tr>
-                <tr>
+                    <td>{{ x.driveType }}</td>
                     <td><b>Type of Motors: </b></td>
-                    <td>{{ x.MotorType }}</td>
-                    <td><b>Language: </b></td>
-                    <td>{{ x.LanguageType }}</td>
+                    <td>{{ x.motorType }}</td>
                 </tr>
                 <tr>
-                    <td><b>Gear Ratio: </b></td>
-                    <td>{{ x.GearRatio }}</td>
-                    <td><b>Gear Speed: </b></td>
-                    <td>{{ x.NumGearSpeed + 1}}</td>
+                    <td><b>Build Type: </b></td>
+                    <td>{{ x.buildType }}</td>    
+                    <td><b>build Quality: </b></td>
+                    <td>{{ x.buildQuality }}</td>
                 </tr>
                 <tr>
-                    <td><b>Speed: </b></td>
-                    <td>{{ x.Speed }} ft/s</td>
-                    <td><b>Weight: </b></td>
-                    <td>{{ x.RobotWeight }} lb.</td>
+                    <td><b>Center Gravity: </b></td>
+                    <td>{{ x.centerGravity }}</td>    
+                    <td><b>Drive Base: </b></td>
+                    <td>{{ x.driveBase }}</td>  
+                </tr>
+                <tr>
+                    <td><b>Drive Type: </b></td>
+                    <td>{{ x.driveType }}</td>    
+                    <td><b>Electrical Quality: </b></td>
+                    <td>{{ x.electricalQuality }}</td>  
                 </tr>
                 <tr>
                     <td><b>Length: </b></td>
-                    <td>{{ x.RobotLength }} in.</td>
+                    <td>{{ x.robotLength }} in.</td>
                     <td><b>Width: </b></td>
-                    <td>{{ x.RobotWidth }} in.</td>
+                    <td>{{ x.width }} in.</td>
                 </tr>
                 <tr>
                     <td><b>Height: </b></td>
-                    <td>{{ x.RobotHeight }} in.</td>
-                    <td><b>Pneumatics: </b></td>
-                    <td>{{ getYesNo(x.Pneumatics) }}</td>
+                    <td>{{ x.height }} in.</td>
+                    <td><b>Intake Type: </b></td>
+                    <td>{{ x.intakeType }} in.</td>
                 </tr>
                 <tr>
-                    
-                    <td><b>Has Auto: </b></td>
-                    <td>{{ getYesNo(x.HasAuto) }}</td>
-                    <td><b>Move Bonus: </b></td>
-                    <td>{{ getYesNo(x.MoveBonus) }}</td>
+                    <td><b>Robot Durability: </b></td>
+                    <td>{{ x.robotdurability }} in.</td>
                 </tr>
                 <tr>
-                    <td><b>Favored Start Position: </b></td>
-                    <td>{{ x.AutoStartPosID + 1 }}</td>
-                    <td><b>Human Player Scored: </b></td>
-                    <td>{{ getYesNo(x.AutoHuman) }}</td>
-                </tr>
-                <tr>
-                    <td><b>Avg. Auto Scored High: </b></td>
-                    <td>{{ x.AutoScoredHigh }}</td>
-                    <td><b>Avg. Auto Scored Low: </b></td>
-                    <td>{{ x.AutoScoredLow }}</td>
-                </tr>
-                <tr>
-                    <td><b>Typical Auto PickUp: </b></td>
-                    <td>{{ getYesNo(x.AutoPickUp) }}</td>
-                    <td><b>Shoot While Driving?: </b></td>
-                    <td>{{ getYesNo(x.TeleShootWhileDrive) }}</td>
-                </tr>
-                <tr>
-                    <td><b>Auto Strategy: </b></td>
-                    <td colspan="3">{{ x.AutoSummary }}</td>
-                </tr>
-                <tr>
-                    <td><b>Preload: </b></td>
-                    <td>{{ getYesNo(x.Preload) }}</td>
-                    <td><b>Max Ball Capacity: </b></td>
-                    <td>{{ x.MaxBallCapacity }}</td>
-                </tr>
-                <tr>
-                    <td><b>Tele Strategy: </b></td>
-                    <td colspan="3">{{ x.TeleStrategy }}</td> 
-                </tr>
-                <tr>
-                    <td><b>Defense?: </b></td>
-                    <td>{{ getYesNo(x.TeleDefense) }}</td>
-                    <td><b>Evade Defense?: </b></td>
-                    <td>{{ getYesNo(x.TeleDefenseEvade) }}</td>
-                </tr>
-                <tr>
-                    <td><b>Defense Strategy: </b></td>
-                    <td colspan="3">{{ x.TeleDefenseStrat }}</td>
-                </tr>
-                <tr>
-                    <td><b>Sort Cargo?: </b></td>
-                    <td>{{ getYesNo(x.TeleSortCargo) }}</td>
-                    <td><b>Can Climb: </b></td>
-                    <td>{{ getYesNo(x.CanClimb) }}</td>
-                </tr>
-                <tr>
-                    <td><b>Avg. Climb Time: </b></td>
-                    <td>{{ x.ClimbTime }} seconds</td>
-                    <td><b>Avg. Climb Rung: </b></td>
-                    <td>{{ getClimbHeight(x.ClimbHeightID) }}</td>
+                    <td><b>Manupulator?: </b></td>
+                    <td>{{ getYesNo(x.manupulator) }}</td>
+                    <td><b>buddyClimb: </b></td>
+                    <td>{{ getYesNo(x.buddyClimb) }}</td>
                 </tr>
                 <tr>
                     <td><b>Climb Strategy: </b></td>
-                    <td colspan="3">{{ x.ClimbStrategy }}</td>
+                    <td colspan="3">{{ x.generalComments }}</td>
+                </tr>
+                <tr>
+                    <td><b>Build Comments: </b></td>
+                    <td colspan="3">{{ x.buildComments }}</td>
+                </tr>
+                <tr>
+                    <td><b>Electrical Comments: </b></td>
+                    <td colspan="3">{{ x.electricalComments }}</td>
                 </tr>
                 
             </div>
