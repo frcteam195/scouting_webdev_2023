@@ -67,15 +67,13 @@ def get_currteam():
 @app.route("/pitdata/", methods =['GET', 'POST'])
 def get_teams():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.*, w.WheelType, d.DriveType, m.MotorType, l.LanguageType "
-                "FROM Teams t "
-                "INNER JOIN CurrentEventTeams c on t.Team = c.Team "
-                "LEFT JOIN WheelTypes w on t.WheelTypeID=w.WheelTypeID "
-                "LEFT JOIN DriveTypes d on t.DriveTypeID=d.DriveTypeID "
-                "LEFT JOIN MotorTypes m on t.MotorTypeID=m.MotorTypeID "
-                "LEFT JOIN LanguageTypes l on t.LanguageID=l.LanguageTypeID")
+    cursor.execute("SELECT p.*, d.driveType, t.teamName, teamLocation "
+                "FROM pit p "
+                "INNER JOIN teams t on p.Team = t.team "
+                "LEFT JOIN driveTypes d on p.driveTypeID=d.driveTypeID; ")
     data = cursor.fetchall()
     response = app.response_class(
+
         response=json.dumps(data),
         status=200,
         mimetype='application/json'
@@ -175,7 +173,8 @@ def get_types():
 @app.route("/level2", methods =['GET', 'POST'])
 def get_level2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef from matchScoutingL2 a, events e "
+    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+                   "from matchScoutingL2 a, events e "
                    "where a.eventID=e.eventID "
                    "and e.currentEvent = 1 "
                    "order by matchNum;")
