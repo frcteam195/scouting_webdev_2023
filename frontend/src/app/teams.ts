@@ -1,6 +1,3 @@
-import { G } from "@angular/cdk/keycodes";
-import { threadId } from "worker_threads";
-
 export class Teams {
     buddyClimb: Number;
     buildComments: String;
