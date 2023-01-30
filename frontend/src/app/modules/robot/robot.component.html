@@ -10,7 +10,7 @@
                     </td>
                     <td style="vertical-align: middle;">
                         <ng-container *ngFor="let x of apiTeamsList">
-                            <ng-container *ngIf="x.Team + '' == team + ''"><b>{{ x.Team }} - {{ x.TeamName }} ({{ x.TeamCity }}, {{ x.TeamStateProv }})</b></ng-container>
+                            <ng-container *ngIf="x.team + '' == team + ''"><b>{{ x.team }} - {{ x.teamName }} ({{ x.teamLocation }})</b></ng-container>
                         </ng-container>
                     </td>
                 </tr>
@@ -53,8 +53,8 @@
                 </tr>
                 <tr>
                     <div *ngFor="let x of apiTeamsList">
-                        <td *ngIf="x.Team + '' == team + ''" align="center" style="align-items: center;">
-                            <b>{{ x.RobotLength }} in. x {{ x.RobotWidth}} in. x {{ x.RobotHeight }}</b>
+                        <td *ngIf="x.team + '' == team + ''" align="center" style="align-items: center;">
+                            <b>{{ x.robotLength }} in. x {{ x.width}} in. x {{ x.height }}</b>
                         </td>
                     </div>
                 </tr>
