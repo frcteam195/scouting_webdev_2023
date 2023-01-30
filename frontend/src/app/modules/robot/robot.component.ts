@@ -44,8 +44,8 @@ export class RobotComponent implements OnInit {
   getRoboPic(ID: string) {
     for (let x of this.apiTeamsList){
       console.log('x.Team')
-      if (x.team + '' == ID && x.image != null) {
-        return x.image;
+      if (x.team + '' == ID && x.imageLink != null) {
+        return x.imageLink;
       }
     }
     return "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png";
