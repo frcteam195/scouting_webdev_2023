@@ -12,7 +12,7 @@ export class Teams {
     eventID: Number;
     generalComments: Number;
     height: Number;
-    image: String;
+    imageLink: String;
     intakeType: Number;
     manupulator: Number;
     motorType: Number;
@@ -38,7 +38,7 @@ constructor(
    eventID: Number,
    generalComments: Number,
    height: Number,
-   image: String,
+   imageLink: String,
     intakeType: Number,
     manupulator: Number,
     motorType: Number,
@@ -64,7 +64,7 @@ this.centerGravity = centerGravity;
     this.intakeType = intakeType;
     this.generalComments = generalComments;
     this.height = height;
-    this.image = image;
+    this.imageLink = imageLink;
     this.motorType = motorType;
     this.manupulator = manupulator;
     this.robotLength = robotLength;
