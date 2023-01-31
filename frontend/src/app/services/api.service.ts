@@ -21,147 +21,6 @@ export class Final24 {
   }
 }
 
-// export interface CEA {
-//   Team: string;
-//   AnalysisType: string;
-//   AnalysisTypeID: number;
-//   EventID: number;
-//   Match1Display: string;
-//   Match1Format: number;
-//   Match1Value: number;
-//   Match2Display: string;
-//   Match2Format: number;
-//   Match2Value: number;
-//   Match3Display: string;
-//   Match3Format: number;
-//   Match3Value: number;
-//   Match4Display: string;
-//   Match4Format: number;
-//   Match4Value: number;
-//   Match5Display: string;
-//   Match5Format: number;
-//   Match5Value: number;
-//   Match6Display: string;
-//   Match6Format: number;
-//   Match6Value: number;
-//   Match7Display: string;
-//   Match7Format: number;
-//   Match7Value: number;
-//   Match8Display: string;
-//   Match8Format: number;
-//   Match8Value: number;
-//   Match9Display: string;
-//   Match9Format: number;
-//   Match9Value: number;
-//   Match10Display: string;
-//   Match10Format: number;
-//   Match10Value: number;
-//   Match11Display: string;
-//   Match11Format: number;
-//   Match11Value: number;
-//   Match12Display: string;
-//   Match12Format: number;
-//   Match12Value: number;
-//   Summary1Display: string;
-//   Summary1Format: number;
-//   Summary1Value: number;
-//   Summary2Display: string;
-//   Summary2Format: number;
-//   Summary2Value: number;
-//   Summary3Display: string;
-//   Summary3Format: number;
-//   Summary3Value: number;
-//   Summary4Display: string;
-//   Summary4Format: number;
-//   Summary4Value: number;
-//   Maximum: number;
-//   Minimum: number;
-//   Percent: number;
-// }
-
-// export interface Matches {
-// BlueCargoRanking: number;
-// BlueFouls: number;
-// BlueHangarPoints: number;
-// BlueHangarRanking: number;
-// BlueScore: number;
-// BlueTeam1: string;
-// BlueTeam2: string;
-// BlueTeam3: string; 
-// BlueTechFouls: number;
-// BlueTelePoints: number;
-// EventID: number;
-// MatchID: number;
-// MatchNo: number;
-// RedCargoRanking: number; 
-// RedFouls: number;
-// RedHangarPoints: number;
-// RedHangarRanking: number;
-// RedScore: number;
-// RedTeam1: string;
-// RedTeam2: string;
-// RedTeam3: string;
-// RedTechFouls: number;
-// RedTelePoints: number;
-// RedAutoPoints: number;
-// BlueAutoPoints: number;
-// MatchTime: string;
-// ActualTime: string;
-
-// }
-
-// export interface Teams {
-//   AutoHuman: Number;
-//   AutoPickUp: Number;
-//   AutoScoredHigh: Number;
-//   AutoScoredLow: Number;
-//   AutoStartPosID: number;
-//   AutoSummary: String;
-//   CanClimb: Number;
-//   ClimbHeightID: Number;
-//   ClimbPosition: Number;
-//   ClimbStrategy: String;
-//   ClimbTime: Number;
-//   DriveType: String;
-//   DriveTypeID: Number;
-//   GearRatio: String;
-//   HasAuto: Number;
-//   IntakeType: Number;
-//   LanguageID: Number;
-//   LanguageType: String;
-//   MaxBallCapacity: Number;
-//   MotorType: String;
-//   MotorTypeID: Number;
-//   MoveBonus: Number;
-//   NumDriveMotors: Number;
-//   NumGearSpeed: number;
-//   NumWheels: Number;
-//   Pneumatics: Number;
-//   Preload: Number;
-//   RobotHeight: Number;
-//   RobotLength: Number;
-//   RobotWeight: Number;
-//   RobotWidth: Number;
-//   Speed: Number;
-//   Team: Number;
-//   TeamCity: String;
-//   TeamCountry: String;
-//   TeamLocation: String;
-//   TeamName: String;
-//   TeamStateProv: String;
-//   TeleBallsScoredHigh: Number;
-//   TeleBallsScoredLow: Number
-//   TeleDefense: Number;
-//   TeleDefenseEvade: Number;
-//   TeleDefenseStrat: String;
-//   TeleShootWhileDrive: Number;
-//   TeleSortCargo: Number;
-//   TeleStrategy: String;
-//   WheelType: String;
-//   WheelTypeID: Number;
-//   Image: string;
-// }
-
 export interface CurrTeams {
   team: Number;
 }
@@ -200,17 +59,6 @@ export interface Summary {
   TotalScoreMedian: number;
 }
 
-// export interface Level2 {
-//   Name: string;
-//   MatchNo: number;
-//   TeamNo: number;
-//   OffensiveQualities: string;
-//   DefenseQualities: string;
-//   LabelBot: string;
-//   GeneralThoughts: string;
-//   HarishLove: string;
-//   ClimbStart: number;
-// }
 
 @Injectable({
   providedIn: 'root'
@@ -227,8 +75,8 @@ export class ApiService {
   public CloudReplay: ReplaySubject<WordCloud[]>;
   public Level2Replay: ReplaySubject<Level2[]>;
 
-  //private apiUrl = 'http://localhost:5000';
-  private apiUrl = 'http://scouting.team195.com:5000';
+  private apiUrl = 'http://localhost:5000';
+  //private apiUrl = 'http://scouting.team195.com:5000';
   //private apiUrl = 'http://192.168.1.195:23450';  // Dave's House
   //private apiUrl = 'http://10.0.20.195:23450';     // Mark's House
 
@@ -369,37 +217,6 @@ export class ApiService {
       }
     });
 
-
-    // First try to load a fresh copy of the data from the API
-    this.http.get<WordCloud[]>(this.apiUrl + '/word-cloud').subscribe(response => {
-      // Store the response in the ReplaySubject, which components can use to access the data
-      this.CloudReplay.next(response as WordCloud[]);
-      // Might as well store it while we have it
-      localStorage.setItem('WordCloud', JSON.stringify(response));
-    }, () => {
-      try {
-        // Send the cached data
-        this.CloudReplay.next(JSON.parse(localStorage.getItem('WordCloud')!) as WordCloud[]);
-      } catch (err) {
-        console.error('Could not load Word Cloud data from server or cache!');
-      }
-    });    
-
-    // First try to load a fresh copy of the data from the API
-    this.http.get<Word[]>(this.apiUrl + '/words').subscribe(response => {
-      // Store the response in the ReplaySubject, which components can use to access the data
-      this.WordReplay.next(response as Word[]);
-      // Might as well store it while we have it
-      localStorage.setItem('Word', JSON.stringify(response));
-    }, () => {
-      try {
-        // Send the cached data
-        this.WordReplay.next(JSON.parse(localStorage.getItem('Word')!) as Word[]);
-      } catch (err) {
-        console.error('Could not load Word data from server or cache!');
-      }
-    });    
-	
   }
 
 
