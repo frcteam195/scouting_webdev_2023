@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Types } from 'src/app/types';
+import { Types } from '../../types';
 import { CEA } from '../../CEA';
 
 @Component({
@@ -71,7 +71,7 @@ export class AnalysisTableComponent implements OnInit {
       
 
       if (this.analysisGroup == 1) {
-        analysisTypes = [10,11,20,21,22,30,46,61]; // Match Report
+        analysisTypes = [1,2,3,10,11,20,21,22,30,46,61]; // Match Report
       } else if (this.analysisGroup == 2) {
         analysisTypes = [40,41,42,43,44,45,46,47,48,49,50,51,52,53];  // Robot Snapshot Middle
       } else if (this.analysisGroup == 3) {
@@ -101,7 +101,7 @@ export class AnalysisTableComponent implements OnInit {
              //url = "<a href='C:/ck/video/"+cea.Match1Display+".mp4'>"+cea.Match1Display+"</a>";
               //cea.Match4Display = this.url;
             }
-            
+            console.log("Analysis Type: [" + cea.analysisType + "]");
             this.apiAnalysis_filter.push(cea);
           }
          }
