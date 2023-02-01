@@ -155,6 +155,26 @@ def get_summary():
     return response
 
 
+# Get Level1 Data
+@app.route("/matchscouting/", methods =['GET', 'POST'])
+def get_matchscouting():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3 "
+    "from matchScouting ms, matches m, events e "
+    "where ms.matchID = m.matchID "
+    "AND e.eventID = 1 "
+    "AND m.eventID = e.eventID;")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+
+
 # Get Analysis Type Data
 @app.route("/types/", methods =['GET', 'POST'])
 def get_types():
