@@ -24,9 +24,10 @@
     </tr>
     <tr *ngFor="let a of apiAnalysis_filter | slice:0:2">
         <ng-container *ngFor="let x of apiTypes">
-            <td align="center" *ngIf=" x.analysisType == a.analysisType" title="{{ x.summary }}">{{ a.analysisType }}</td>
+            <td align="center" *ngIf=" x.analysisTypeID == a.analysisTypeID" title="{{ x.summary }}">{{ x.analysisType }}</td>
         </ng-container>
          <!-- <a href="file:///C:/ck/video/Q7.mov" target="_blank"></a> -->
+        
         <td align="center" class="bg{{ a?.M1F }}">{{ a.M1D }}</td>
         <td align="center" class="bg{{ a?.M2F }}">{{ a.M2D }}</td>
         <td align="center" class="bg{{ a?.M3F }}">{{ a.M3D }}</td>
@@ -49,7 +50,7 @@
     </tr>
     <tr *ngFor="let a of apiAnalysis_filter | slice:2:6">
         <ng-container *ngFor="let x of apiTypes">
-            <td align="center" *ngIf=" x.analysisType == a.analysisType" title="{{ x.summary }}">{{ a.analysisType }}</td>
+            <td align="center" *ngIf=" x.analysisTypeID == a.analysisTypeID" title="{{ x.summary }}">{{ x.analysisType }}</td>
         </ng-container>
 <!--         <a href="file:///C:/ck/video/Q1.mp4" target="_blank"></a> -->
         <td align="center" class="bg{{ a?.M1F }}">{{ a.M1D }}</td>
@@ -74,7 +75,7 @@
     </tr>
     <tr *ngFor="let a of apiAnalysis_filter | slice:6:14">
         <ng-container *ngFor="let x of apiTypes">
-            <td align="center" *ngIf=" x.analysisType == a.analysisType" title="{{ x.summary }}">{{ a.analysisType }}</td>
+            <td align="center" *ngIf=" x.analysisTypeID == a.analysisTypeID" title="{{ x.summary }}">{{ x.analysisType }}</td>
         </ng-container>
          <!-- <a href="file:///C:/ck/video/Q7.mov" target="_blank"></a> -->
         <td align="center" class="bg{{ a?.M1F }}">{{ a.M1D }}</td>
