@@ -195,8 +195,8 @@ def get_matchscouting():
 @app.route("/types/", methods =['GET', 'POST'])
 def get_types():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT analysisTypeID, analysisType, teamPickerOrder, matchReportOrder, "
-                   "snapshotOrder, developer, summary from analysisTypes;")
+    cursor.execute("SELECT analysisTypeID, analysisType, teamPicker, matchReport, "
+                   "robotSnapshot, developer, summary, sortOrder from analysisTypes;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
