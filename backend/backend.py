@@ -31,7 +31,7 @@ def hello():
 def hello2():
     return "Hello Harish!!!"
 
-# Get Analyss Data
+# Get Analysis Data
 @app.route("/analysis/", methods =['GET', 'POST'])
 def get_analysis():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -61,6 +61,22 @@ def get_currteam():
         mimetype='application/json'
     )
     return response
+
+
+# get scouter info
+@app.route("/scouters/", methods = ['GET', 'POST']) 
+def get_scouters():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select s.scouterID, s.firstName, s.lastName "
+    "from scouters s; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response 
 
 
 # Get Pit Data
