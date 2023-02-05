@@ -67,20 +67,54 @@ export class AnalysisTableComponent implements OnInit {
 
       this.apiAnalysis_filter = [];
       let analysisTypes = [];
+      let i = 0;
 
       
 
       if (this.analysisGroup == 1) {
-        analysisTypes = [1,2,3,10,11,20,21,22,30,46,61]; // Match Report
-        console.log("I love Harish" + this.apiTypes[0].analysisTypeID );
+        for(const m of this.apiTypes){
+          if(m.matchReport>0){
+            //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
+            analysisTypes[i]=m.analysisTypeID;
+            i++;
+          }
+        }
       } else if (this.analysisGroup == 2) {
-        analysisTypes = [40,41,42,43,44,45,46,47,48,49,50,51,52,53];  // Robot Snapshot Middle
+        //analysisTypes = [40,41,42,43,44,45,46,47,48,49,50,51,52,53];  // Robot Snapshot 1st/top
+          for(const m of this.apiTypes){
+            if(m.robotSnapshot==1){
+              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
+              analysisTypes[i]=m.analysisTypeID;
+              i++;
+            }
+          }
       } else if (this.analysisGroup == 3) {
-        analysisTypes = [1,2,3,10,11,12,20,21,22,30,60,61,62,72];  // Robot Snapshot Top
+        //analysisTypes = [1,2,3,10,11,12,20,21,22,30,60,61,62,72];  // Robot Snapshot 2nd
+          for(const m of this.apiTypes){
+            if(m.robotSnapshot==2){
+              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
+              analysisTypes[i]=m.analysisTypeID;
+              i++;
+            }
+          }
       } else if (this.analysisGroup == 4) {
-        analysisTypes = [73,74,75];  // Robot Snapshot Blue
+        //analysisTypes = [73,74,75];  // Robot Snapshot 3rd
+          for(const m of this.apiTypes){
+            if(m.robotSnapshot==3){
+              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
+              analysisTypes[i]=m.analysisTypeID;
+              i++;
+            }
+          }
       } else {
-        analysisTypes = [70,71];   // Robot Snapshot Bottom
+        //analysisTypes = [70,71];   // Robot Snapshot 4th/bottom
+          for(const m of this.apiTypes){
+            if(m.robotSnapshot==4){
+              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
+              analysisTypes[i]=m.analysisTypeID;
+              i++;
+            }
+          }
       }
 
       if (this.color > 0) {
