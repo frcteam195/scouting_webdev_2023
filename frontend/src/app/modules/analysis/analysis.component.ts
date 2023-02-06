@@ -38,7 +38,7 @@ export class AnalysisComponent implements OnInit {
   apiPickList: Final24[] = [];
   apiWatch1List: Final24[] = [];
   apiWatch2List: Final24[] = [];
-  compareList: Final24[]=[{ Team: "" },{ Team: "" },{ Team: "" },{ Team: "" },{ Team: "" },{ Team: "" },{ Team: "" },{ Team: "" }];
+  compareList: Final24[]=[{ team: "" },{ team: "" },{ team: "" },{ team: "" },{ team: "" },{ team: "" },{ team: "" },{ team: "" }];
 
   filterList: Final24[]=[];
   filter: number = 0;
@@ -115,7 +115,7 @@ export class AnalysisComponent implements OnInit {
     if (this.apiFinal24List.length == 1){
       this.apiFinal24List.splice(index, 0, new Final24());
     }
-    else if (this.apiFinal24List[index].Team === '') {
+    else if (this.apiFinal24List[index].team === '') {
       if (this.apiFinal24List.length > 1) {
         this.apiFinal24List.splice(index, 1);
       }
@@ -128,7 +128,7 @@ export class AnalysisComponent implements OnInit {
     if (this.apiDnpList.length == 1){
       this.apiDnpList.splice(index, 0, new Final24());
     }
-    else if (this.apiDnpList[index].Team === '') {
+    else if (this.apiDnpList[index].team === '') {
       if (this.apiDnpList.length > 1) {
         this.apiDnpList.splice(index, 1);
       }
@@ -141,7 +141,7 @@ export class AnalysisComponent implements OnInit {
     if (this.apiPickList.length == 1){
       this.apiPickList.splice(index, 0, new Final24());
     }
-    else if (this.apiPickList[index].Team === '') {
+    else if (this.apiPickList[index].team === '') {
       if (this.apiPickList.length > 1) {
         this.apiPickList.splice(index, 1);
       }
@@ -330,7 +330,7 @@ export class AnalysisComponent implements OnInit {
 
   clearFinal24() {
     for (const t of this.apiFinal24List)  {
-      t.Team = "";
+      t.team = "";
     }
     this.teamSelectionChange(1);
   }
@@ -349,7 +349,7 @@ export class AnalysisComponent implements OnInit {
     //return 'tbox';
     if (this.mode == 3) {
       for (const t of this.apiFinal24List) {
-        if (team == t.Team && t.Team != "") {
+        if (team == t.team && t.team != "") {
           console.log("Matched: " + team);
           return 'selected';  
         }
@@ -368,7 +368,7 @@ export class AnalysisComponent implements OnInit {
         this.pageFilter = 1;
       }
       else {
-        this.filterList = [{ Team: "" }];
+        this.filterList = [{ team: "" }];
         this.pageFilter = 0;
       }
 

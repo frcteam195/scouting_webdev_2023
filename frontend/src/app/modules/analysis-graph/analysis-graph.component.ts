@@ -110,7 +110,7 @@ export class AnalysisGraphComponent implements OnInit {
           this.analysisType = cea.analysisType;
           
 
-          if ((this.teamList.find(item => item.Team === cea.team)) || (this.selectedTeam == cea.team)) {
+          if ((this.teamList.find(item => item.team === cea.team)) || (this.selectedTeam == cea.team)) {
             if (this.filter == 1) {
               color = '#0000FF';
             } else {

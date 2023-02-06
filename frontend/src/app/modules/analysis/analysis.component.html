@@ -44,28 +44,28 @@
                                 <div align="center"><b>Captain</b></div>
                                 <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                                 <ng-container *ngFor="let c of apiFinal24List | slice:0:8; let i = index">
-                                    {{ i+1 }} <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.Team" (ngModelChange)="teamSelectionChange(1)"><br>
+                                    {{ i+1 }} <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" (ngModelChange)="teamSelectionChange(1)"><br>
                                 </ng-container>
                             </td>
                             <td>
                                 <div align="center"><b>Pick1</b></div>
                                 <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                                 <ng-container *ngFor="let c of apiFinal24List | slice:8:16">
-                                    <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.Team" (ngModelChange)="teamSelectionChange(1)"><br>
+                                    <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" (ngModelChange)="teamSelectionChange(1)"><br>
                                 </ng-container>
                             </td>
                             <td>
                                 <div align="left"><b>Pick2</b></div>
                                 <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                                 <ng-container *ngFor="let c of apiFinal24List | slice:16:24">
-                                    <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.Team" (ngModelChange)="teamSelectionChange(1)"><br>
+                                    <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" (ngModelChange)="teamSelectionChange(1)"><br>
                                 </ng-container>
                             </td>
                             <td>
                                 <div align="left"><b>Pick3</b></div>
                                 <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                                 <ng-container *ngFor="let c of apiFinal24List | slice:24:32">
-                                    <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.Team" (ngModelChange)="teamSelectionChange(1)"><br>
+                                    <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" (ngModelChange)="teamSelectionChange(1)"><br>
                                 </ng-container>
                             </td>
                             
@@ -79,7 +79,7 @@
                             <div align="center"><b>Final</b></div>
                             <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                             <ng-container *ngFor="let c of apiFinal24List; let i = index">
-                                {{ i+1 }} <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.Team" (dblclick)="processDoubleClick(i)" (ngModelChange)="teamSelectionChange(1)"><br>
+                                {{ i+1 }} <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" (dblclick)="processDoubleClick(i)" (ngModelChange)="teamSelectionChange(1)"><br>
                             </ng-container>
                           <button (click)="addEnd(1)">Add</button>
 
@@ -88,7 +88,7 @@
                             <div align="center"><b>Watch 1</b></div>
                             <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                             <ng-container *ngFor="let c of apiWatch1List; let i = index">
-                                {{ i+1 }} <input type="text" [ngClass]="getClass(c.Team)" maxlength="4" [(ngModel)]="c.Team"><br>
+                                {{ i+1 }} <input type="text" [ngClass]="getClass(c.team)" maxlength="4" [(ngModel)]="c.team"><br>
                             </ng-container>
                             <div *ngIf="mode > 1">
                                 <button (click)="copyToComp(1)">Comp</button>
@@ -97,7 +97,7 @@
                             <div align="center"><b>Watch 2</b></div>
                             <!-- <input type="text" class="form-control" placeholder="teamList" [ngModel]="listRecipients()"name="recpList"/> -->
                             <ng-container *ngFor="let c of apiWatch2List; let i = index">
-                                {{ i+1 }} <input type="text" [ngClass]="getClass(c.Team)" maxlength="4" [(ngModel)]="c.Team"><br>
+                                {{ i+1 }} <input type="text" [ngClass]="getClass(c.team)" maxlength="4" [(ngModel)]="c.team"><br>
                             </ng-container>
                             <div *ngIf="mode > 1">
                                 <button (click)="copyToComp(2)">Comp</button>
@@ -106,7 +106,7 @@
                         <td valign="top" align="center">
                             <b>Pick</b><br>
                             <ng-container *ngFor="let c of apiPickList; let i = index">
-                                <input type="text" [ngClass]="getClass(c.Team)" maxlength="4" [(ngModel)]="c.Team" (dblclick)="processDoubleClickPick(i)" (ngModelChange)="teamSelectionChange(3)"><br>
+                                <input type="text" [ngClass]="getClass(c.team)" maxlength="4" [(ngModel)]="c.team" (dblclick)="processDoubleClickPick(i)" (ngModelChange)="teamSelectionChange(3)"><br>
                             </ng-container>
                           <button (click)="addEnd(3)">Add</button>
                         </td>
@@ -123,7 +123,7 @@
                             <br>
                             <b>Compare</b><br>
                             <ng-container *ngFor="let c of compareList">
-                                <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.Team" ><br>
+                                <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" ><br>
                             </ng-container>
                             <button (click)="compareTeams()">{{ filter == 1 ? 'Compare Off' : 'Compare' }}</button>
                             <br>
@@ -135,7 +135,7 @@
                             <br>
                             <b>DNP</b><br>
                             <ng-container *ngFor="let c of apiDnpList; let i = index">
-                                <input type="text" [ngClass]="getClass(c.Team)" class="tbox" maxlength="4" [(ngModel)]="c.Team" (dblclick)="processDoubleClickDnp(i)" (ngModelChange)="teamSelectionChange(2)"><br>
+                                <input type="text" [ngClass]="getClass(c.team)" class="tbox" maxlength="4" [(ngModel)]="c.team" (dblclick)="processDoubleClickDnp(i)" (ngModelChange)="teamSelectionChange(2)"><br>
                             </ng-container>
                                 <button (click)="addEnd(2)">Add</button>
                             <div *ngIf="mode == 1">
