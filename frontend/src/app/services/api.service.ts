@@ -14,10 +14,10 @@ import { Teams } from '../teams'
  
 
 export class Final24 {
-  Team: string;
+  team: string;
 
   constructor() {
-    this.Team = '';
+    this.team = '';
   }
 }
 
@@ -222,7 +222,7 @@ export class ApiService {
 
   async getFinal24(): Promise<Final24[]> {
     // First try to load a fresh copy of the data from the API
-    const options = {params: new HttpParams().append('table', 'Final24')};
+    const options = {params: new HttpParams().append('table', 'final24')};
     // First try to load a fresh copy of the data from the API
     try {
       const response = await this.http.get<Final24[]>(this.apiUrl + '/final24',options).toPromise();
@@ -245,7 +245,7 @@ export class ApiService {
     //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
     //const params = new HttpParams().append('table', 'Final24');
     const options = {headers: new HttpHeaders({'Content-Type': 'application/json'}),
-                     params: new HttpParams().append('table', 'Final24')};
+                     params: new HttpParams().append('table', 'final24')};
     //this.http.delete(this.apiUrl + '/final24').subscribe(() => this.status = 'Delete successful');
     
     this.http.post<Final24[]>(this.apiUrl + '/final24-update', JSON.stringify(final24), options).subscribe();
@@ -256,7 +256,7 @@ export class ApiService {
 
   async getDnp(): Promise<Final24[]> {
     // First try to load a fresh copy of the data from the API
-    const options = {params: new HttpParams().append('table', 'DnpList')};
+    const options = {params: new HttpParams().append('table', 'dnpList')};
 
     try {
       const response = await this.http.get<Final24[]>(this.apiUrl + '/final24',options).toPromise();
@@ -279,7 +279,7 @@ export class ApiService {
 
     //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
     const options = {headers: new HttpHeaders({'Content-Type': 'application/json'}),
-                     params: new HttpParams().append('table', 'DnpList')};
+                     params: new HttpParams().append('table', 'dnpList')};
     //this.http.delete(this.apiUrl + '/final24').subscribe(() => this.status = 'Delete successful');
     
     this.http.post<Final24[]>(this.apiUrl + '/final24-update', JSON.stringify(dnp), options).subscribe();
@@ -290,7 +290,7 @@ export class ApiService {
 
   async getPick(): Promise<Final24[]> {
     // First try to load a fresh copy of the data from the API
-    const options = {params: new HttpParams().append('table', 'PickList1')};
+    const options = {params: new HttpParams().append('table', 'pickList1')};
 
     try {
       const response = await this.http.get<Final24[]>(this.apiUrl + '/final24',options).toPromise();
@@ -313,7 +313,7 @@ export class ApiService {
 
     //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
     const options = {headers: new HttpHeaders({'Content-Type': 'application/json'}),
-                     params: new HttpParams().append('table', 'PickList1')};
+                     params: new HttpParams().append('table', 'pickList1')};
     //this.http.delete(this.apiUrl + '/final24').subscribe(() => this.status = 'Delete successful');
     
     this.http.post<Final24[]>(this.apiUrl + '/final24-update', JSON.stringify(picklist), options).subscribe();
@@ -325,7 +325,7 @@ export class ApiService {
   async getWatch1(): Promise<Final24[]> {
     // First try to load a fresh copy of the data from the API
     
-    const options = {params: new HttpParams().append('table', 'Watch1')};
+    const options = {params: new HttpParams().append('table', 'watch1')};
 
     try {
       const response = await this.http.get<Final24[]>(this.apiUrl + '/final24',options).toPromise();
@@ -347,7 +347,7 @@ export class ApiService {
 
     //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
     const options = {headers: new HttpHeaders({'Content-Type': 'application/json'}),
-                     params: new HttpParams().append('table', 'Watch1')};
+                     params: new HttpParams().append('table', 'watch1')};
     //this.http.delete(this.apiUrl + '/final24').subscribe(() => this.status = 'Delete successful');
     
     this.http.post<Final24[]>(this.apiUrl + '/final24-update', JSON.stringify(watch1list), options).subscribe();
@@ -359,7 +359,7 @@ export class ApiService {
   async getWatch2(): Promise<Final24[]> {
     // First try to load a fresh copy of the data from the API
     
-    const options = {params: new HttpParams().append('table', 'Watch2')};
+    const options = {params: new HttpParams().append('table', 'watch2')};
 
     try {
       const response = await this.http.get<Final24[]>(this.apiUrl + '/final24',options).toPromise();
@@ -381,7 +381,7 @@ export class ApiService {
 
     //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
     const options = {headers: new HttpHeaders({'Content-Type': 'application/json'}),
-                     params: new HttpParams().append('table', 'Watch2')};
+                     params: new HttpParams().append('table', 'watch2')};
     //this.http.delete(this.apiUrl + '/final24').subscribe(() => this.status = 'Delete successful');
     
     this.http.post<Final24[]>(this.apiUrl + '/final24-update', JSON.stringify(watch2list), options).subscribe();

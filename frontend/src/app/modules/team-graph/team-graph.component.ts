@@ -75,7 +75,7 @@ export class TeamGraphComponent implements OnInit {
           this.fFlag = "N";
           for (const team of this.teamList) {
 
-            if (cea.team == team.Team) {
+            if (cea.team == team.team) {
               if (this.filter == 0) {
                 rcount = rcount+1;// increment count
                 //team.Team = "";

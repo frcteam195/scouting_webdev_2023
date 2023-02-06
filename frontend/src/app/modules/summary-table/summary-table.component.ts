@@ -111,7 +111,7 @@ export class SummaryTableComponent implements OnInit {
       this.fFlag = "N";
       for (const team of this.teamList) {
         //console.log("cea.Team: [" + cea.Team + "] Team: [" + team.Team + "]");
-        if (summ.Team == team.Team) {
+        if (summ.Team == team.team) {
           if (this.filter == 0) {
             rcount = rcount+1;// increment count
             //console.log("Don't Pick Team: " + team.Team);

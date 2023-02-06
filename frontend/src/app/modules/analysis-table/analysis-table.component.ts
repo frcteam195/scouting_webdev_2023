@@ -66,62 +66,58 @@ export class AnalysisTableComponent implements OnInit {
     if (this.apiAnalysis) {
 
       this.apiAnalysis_filter = [];
-      let analysisTypes = [];
+      let analysisTypes: number[] = [];
       let i = 0;
 
-      
-
-      if (this.analysisGroup == 1) {
+      if (this.analysisGroup == 1) {              // Match Report
+        this.apiTypes.sort((a, b) => a.matchReport - b.matchReport);
         for(const m of this.apiTypes){
           if(m.matchReport>0){
-            //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
+            //console.log("I love Harish [" + m.analysisTypeID + "],[" + m.analysisType + "],[" + m.matchReport + "]");
             analysisTypes[i]=m.analysisTypeID;
             i++;
           }
         }
-      } else if (this.analysisGroup == 2) {
-        //analysisTypes = [40,41,42,43,44,45,46,47,48,49,50,51,52,53];  // Robot Snapshot 1st/top
-          for(const m of this.apiTypes){
-            if(m.robotSnapshot==1){
-              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
-              analysisTypes[i]=m.analysisTypeID;
-              i++;
-            }
+        
+      } else if (this.analysisGroup == 2) {      // Robot Snapshot 1st/top
+        this.apiTypes.sort((a, b) => a.sortOrder - b.sortOrder);
+        for(const m of this.apiTypes){
+          if(m.robotSnapshot==1){
+            analysisTypes[i]=m.analysisTypeID;
+            i++;
           }
-      } else if (this.analysisGroup == 3) {
-        //analysisTypes = [1,2,3,10,11,12,20,21,22,30,60,61,62,72];  // Robot Snapshot 2nd
-          for(const m of this.apiTypes){
-            if(m.robotSnapshot==2){
-              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
-              analysisTypes[i]=m.analysisTypeID;
-              i++;
-            }
+        }
+      } else if (this.analysisGroup == 3) {      // Robot Snapshot 2nd
+        for(const m of this.apiTypes){
+          if(m.robotSnapshot==2){
+            analysisTypes[i]=m.analysisTypeID;
+            i++;
           }
-      } else if (this.analysisGroup == 4) {
-        //analysisTypes = [73,74,75];  // Robot Snapshot 3rd
-          for(const m of this.apiTypes){
-            if(m.robotSnapshot==3){
-              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
-              analysisTypes[i]=m.analysisTypeID;
-              i++;
-            }
+        }
+      } else if (this.analysisGroup == 4) {       // Robot Snapshot 3rd
+        for(const m of this.apiTypes){
+          if(m.robotSnapshot==3){
+            analysisTypes[i]=m.analysisTypeID;
+            i++;
           }
-      } else {
-        //analysisTypes = [70,71];   // Robot Snapshot 4th/bottom
-          for(const m of this.apiTypes){
-            if(m.robotSnapshot==4){
-              //console.log("I love Harish [" + m.analysisType + "],[" + m.matchReport + "]");
-              analysisTypes[i]=m.analysisTypeID;
-              i++;
-            }
+        }
+      } else {                                  // Robot Snapshot 4th/bottom
+        for(const m of this.apiTypes){
+          if(m.robotSnapshot==4){
+            analysisTypes[i]=m.analysisTypeID;
+            i++;
           }
+        }
       }
 
       if (this.color > 0) {
         this.titleShow = false;
       }
 
-      //console.log("Analysis Count: [" + analysisTypes.length + "]");
+      //console.log("analysisTypes: " + analysisTypes);
+
+      // Sort Analysis Type data based on the Sort on analysisTypes
+      this.apiAnalysis.sort((a, b) => analysisTypes.indexOf(a.analysisTypeID) - analysisTypes.indexOf(b.analysisTypeID));
       
       // Filter
       var url;
@@ -136,7 +132,7 @@ export class AnalysisTableComponent implements OnInit {
              //url = "<a href='C:/ck/video/"+cea.Match1Display+".mp4'>"+cea.Match1Display+"</a>";
               //cea.Match4Display = this.url;
             }
-            console.log("Analysis Type: [" + cea.analysisType + "]");
+            //console.log("Analysis Type: [" + cea.analysisType + "]");
             this.apiAnalysis_filter.push(cea);
           }
          }

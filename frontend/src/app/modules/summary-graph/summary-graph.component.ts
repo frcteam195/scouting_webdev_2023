@@ -96,7 +96,7 @@ export class SummaryGraphComponent implements OnInit {
         this.fFlag = "N";
         for (const team of this.teamList) {
 
-          if (t.Team == team.Team) {
+          if (t.Team == team.team) {
             if (this.filter == 0) {
               rcount = rcount+1;// increment count
               //team.Team = "";

@@ -159,14 +159,14 @@ export class ScheduleComponent implements OnInit {
     }
     if ((this.watch == 1) || (this.watch == 3)) {
       for (const t of this.apiWatch1List) {
-        if (team == t.Team) {
+        if (team == t.team) {
           return 'watch1';
         }
       }
     } 
     if ((this.watch == 2) || (this.watch == 3)) {
       for (const t of this.apiWatch2List) {
-        if (team == t.Team) {
+        if (team == t.team) {
           return 'watch2';
         }
       }

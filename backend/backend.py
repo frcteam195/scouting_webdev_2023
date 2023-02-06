@@ -179,7 +179,7 @@ def get_matchscouting():
     "from matchScouting ms, matches m, events e "
     "where ms.matchID = m.matchID "
     "AND e.eventID = 1 "
-    "AND m.eventID = e.eventID;")
+    "AND m.eventID = e.eventID and allianceStationID = 1;")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -265,7 +265,7 @@ def post_final24():
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
             #cursor.execute(query1)
-            cursor.execute('INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team']))
+            cursor.execute('INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE team=%s',(pos+1, team_selection['team'],team_selection['team']))
         mysql.connection.commit()
 
     return '1'

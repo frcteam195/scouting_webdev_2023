@@ -115,7 +115,7 @@ export class TeamTableComponent implements OnInit, OnChanges {
           this.fFlag = "N";
           for (const team of this.teamList) {
             //console.log("cea.Team: [" + cea.Team + "] Team: [" + team.Team + "]");
-            if (cea.team == team.Team) {
+            if (cea.team == team.team) {
               if (this.filter == 0) {
                 rcount = rcount+1;// increment count
                 //team.Team = "";
