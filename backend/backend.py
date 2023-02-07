@@ -61,6 +61,21 @@ def get_currteam():
         mimetype='application/json'
     )
     return response
+    
+    # get event info 
+@app.route("/event/", methods =['GET', 'POST'])
+def get_event():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select * from events where currentEvent = 1; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
 
 
 # get scouter info
@@ -177,6 +192,22 @@ def get_matchscouting():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3 "
     "from matchScouting ms, matches m, events e "
+    "where ms.matchID = m.matchID "
+    "AND e.eventID = 1 "
+    "AND m.eventID = e.eventID and allianceStationID = 1;")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+    # Get Level2 Data
+@app.route("/matchscoutingl2/", methods =['GET', 'POST'])
+def get_matchscoutingl2():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3 "
+    "from matchScoutingL2 ms, matches m, events e "
     "where ms.matchID = m.matchID "
     "AND e.eventID = 1 "
     "AND m.eventID = e.eventID and allianceStationID = 1;")
