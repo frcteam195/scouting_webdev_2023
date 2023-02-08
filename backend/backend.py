@@ -190,11 +190,13 @@ def get_summary():
 @app.route("/matchscouting/", methods =['GET', 'POST'])
 def get_matchscouting():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3 "
-    "from matchScouting ms, matches m, events e "
+    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
+    "from matchScouting ms, matches m, events e, teams t "
     "where ms.matchID = m.matchID "
     "AND e.eventID = 1 "
-    "AND m.eventID = e.eventID and allianceStationID = 1;")
+    "AND m.eventID = e.eventID and allianceStationID = 1 "
+    "AND t.eventID = ms.eventID "
+    "AND t.team = ms.team;")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -202,15 +204,36 @@ def get_matchscouting():
         mimetype='application/json'
     )
     return response
+
+#get pit scouting data
+@app.route("/pitscouting/", methods =['GET', 'POST'])
+def get_pitscouting():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select p.*, t.teamName "
+    "from pit p, events e, teams t "
+    "where e.eventID = 1 "
+    "AND p.eventID = e.eventID "
+    "and t.eventID = p.eventID "
+    "AND t.team = p.team;") 
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
     # Get Level2 Data
 @app.route("/matchscoutingl2/", methods =['GET', 'POST'])
 def get_matchscoutingl2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3 "
-    "from matchScoutingL2 ms, matches m, events e "
+    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
+    "from matchScoutingL2 ms, matches m, events e, teams t "
     "where ms.matchID = m.matchID "
     "AND e.eventID = 1 "
-    "AND m.eventID = e.eventID and allianceStationID = 1;")
+    "AND m.eventID = e.eventID and allianceStationID = 1 "
+    "AND t.eventID = ms.eventID "
+    "AND t.team = ms.team;") 
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
