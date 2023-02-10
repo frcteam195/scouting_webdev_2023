@@ -7,6 +7,7 @@ import MySQLdb.cursors
 from json import dumps
 import configparser
 
+
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -22,6 +23,7 @@ app.config['MYSQL_PASSWORD'] = config['mysqlDB']['pass']
 app.config['MYSQL_DB'] = config['mysqlDB']['db']
 
 mysql = MySQL(app)
+
 
 @app.route("/")
 def hello():
@@ -320,6 +322,49 @@ def post_final24():
             ##print(query1)
             #cursor.execute(query1)
             cursor.execute('INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE team=%s',(pos+1, team_selection['team'],team_selection['team']))
+        mysql.connection.commit()
+
+    return '1'
+
+
+
+
+
+
+
+
+
+
+# Update Pit Scouting Data
+@app.route("/pit-update", methods =['POST'])
+def post_pitscouting():
+    # TODO: IMPLEMENT ME
+
+    if not request.is_json:
+        return Response('Invalid submission, please submit as JSON.', status=400)
+    data = request.json
+
+    for line in data:
+        print(line)
+
+    # SortOrder is gone from the frontend code - you'll need to iterate through
+    # the rows and get SortOrder from the position of the row. Something like
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        for pos, pit_data in enumerate(data):
+            #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
+            #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
+            ##print(query1)
+            #cursor.execute(query1)
+            cursor.execute('UPDATE pit SET buildComments = %s, buildQuality = %s, buildTypeID = %s, centerGravityTypeID = %s, dedicatedGroundIntake = %s, '
+                'driveBaseTypeID = %s, driveMotorTypeID = %s, driveTypeID = %s, electricalComments= %s, electricalQuality = %s, '
+                'generalComments = %s, imageLink = %s, manipulatorTypeID = %s, robotDurability = %s, robotHeight = %s, '
+                'robotLength = %s, robotWidth = %s, scouterID = %s, scoutingStatus = %s, superClimbTypeID = %s '
+                'where team = %s and eventID = %s',(pit_data['buildComments'],pit_data['buildQuality'],pit_data['buildTypeID'],pit_data['centerGravityTypeID'],pit_data['dedicatedGroundIntake'],
+                pit_data['driveBaseTypeID'],pit_data['driveMotorTypeID'],pit_data['driveTypeID'],pit_data['electricalComments'],pit_data['electricalQuality'],
+                pit_data['generalComments'],pit_data['imageLink'],pit_data['manipulatorTypeID'],pit_data['robotDurability'],pit_data['robotHeight'],
+                pit_data['robotLength'],pit_data['robotWidth'],pit_data['scouterID'],pit_data['scoutingStatus'],pit_data['superClimbTypeID'],
+                pit_data['team'],pit_data['eventID']))
         mysql.connection.commit()
 
     return '1'
