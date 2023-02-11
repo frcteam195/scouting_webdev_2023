@@ -113,6 +113,96 @@ def get_teams():
     )
     return response
 
+# Get drive base types 
+@app.route("/drivebasetypes/", methods =['GET', 'POST'])
+def get_teams():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT d.* "
+    "FROM driveBaseTypes d; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Get drive motor types 
+@app.route("/drivemotortypes/", methods =['GET', 'POST'])
+def get_teams():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT d.* "
+    "FROM driveMotorTypes d; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Get manipulator types 
+@app.route("/manipulatortypes/", methods =['GET', 'POST'])
+def get_teams():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT m.* "
+    "FROM manipulatorTypes m; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Get super climb types 
+@app.route("/superclimbtypes/", methods =['GET', 'POST'])
+def get_teams():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT s.* "
+    "FROM superClimbTypes s; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Get build types 
+@app.route("/buildtypes/", methods =['GET', 'POST'])
+def get_teams():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT b.* "
+    "FROM buildTypes b; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Get center of gravity  types 
+@app.route("/cgtypes/", methods =['GET', 'POST'])
+def get_teams():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT c.* "
+    "FROM centerGravityTypes c; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
 
 # Get Matches Data
 @app.route("/matches/", methods =['GET', 'POST'])
