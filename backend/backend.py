@@ -98,7 +98,7 @@ def get_scouters():
 
 # Get Pit Data
 @app.route("/pitdata/", methods =['GET', 'POST'])
-def get_teams():
+def get_pitdata():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT p.*, d.driveType, t.teamName, teamLocation "
                 "FROM pit p "
@@ -115,7 +115,7 @@ def get_teams():
 
 # Get drive base types 
 @app.route("/drivebasetypes/", methods =['GET', 'POST'])
-def get_teams():
+def get_drivebasetypes():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT d.* "
     "FROM driveBaseTypes d; ")
@@ -130,7 +130,7 @@ def get_teams():
 
 # Get drive motor types 
 @app.route("/drivemotortypes/", methods =['GET', 'POST'])
-def get_teams():
+def get_drivemotortypes():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT d.* "
     "FROM driveMotorTypes d; ")
@@ -145,7 +145,7 @@ def get_teams():
 
 # Get manipulator types 
 @app.route("/manipulatortypes/", methods =['GET', 'POST'])
-def get_teams():
+def get_manipulatortypes():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT m.* "
     "FROM manipulatorTypes m; ")
@@ -160,7 +160,7 @@ def get_teams():
 
 # Get super climb types 
 @app.route("/superclimbtypes/", methods =['GET', 'POST'])
-def get_teams():
+def get_superclimbtypes():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT s.* "
     "FROM superClimbTypes s; ")
@@ -175,7 +175,7 @@ def get_teams():
 
 # Get build types 
 @app.route("/buildtypes/", methods =['GET', 'POST'])
-def get_teams():
+def get_buildtypes():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT b.* "
     "FROM buildTypes b; ")
@@ -190,7 +190,7 @@ def get_teams():
 
 # Get center of gravity  types 
 @app.route("/cgtypes/", methods =['GET', 'POST'])
-def get_teams():
+def get_cgtypes():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT c.* "
     "FROM centerGravityTypes c; ")
