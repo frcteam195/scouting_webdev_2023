@@ -100,10 +100,16 @@ def get_scouters():
 @app.route("/pitdata/", methods =['GET', 'POST'])
 def get_pitdata():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT p.*, d.driveType, t.teamName, teamLocation "
+    cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
+     "s.superClimbType, b.buildType, c.centerGravityType "
                 "FROM pit p "
                 "INNER JOIN teams t on p.Team = t.team "
-                "LEFT JOIN driveTypes d on p.driveTypeID=d.driveTypeID; ")
+                "LEFT JOIN driveBaseTypes d on p.driveBaseTypeID=d.driveBaseTypeID "
+                "LEFT JOIN driveMotorTypes m on p.driveMotorTypeID=m.driveMotorTypeID "
+                "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
+                "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
+                "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
+                "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID; ")
     data = cursor.fetchall()
     response = app.response_class(
 
