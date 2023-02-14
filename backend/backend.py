@@ -131,6 +131,7 @@ def get_drivebasetypes():
 # Get drive motor types 
 @app.route("/drivemotortypes/", methods =['GET', 'POST'])
 def get_drivemotortypes():
+
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT d.* "
     "FROM driveMotorTypes d; ")
@@ -161,6 +162,7 @@ def get_manipulatortypes():
 # Get super climb types 
 @app.route("/superclimbtypes/", methods =['GET', 'POST'])
 def get_superclimbtypes():
+
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT s.* "
     "FROM superClimbTypes s; ")
