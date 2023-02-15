@@ -449,7 +449,7 @@ def post_pitscouting():
     # the rows and get SortOrder from the position of the row. Something like
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        for pos, pit_data in enumerate(data):
+        for pit_data in enumerate(data):
             #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
@@ -463,6 +463,79 @@ def post_pitscouting():
                 pit_data['generalComments'],pit_data['imageLink'],pit_data['manipulatorTypeID'],pit_data['robotDurability'],pit_data['robotHeight'],
                 pit_data['robotLength'],pit_data['robotWidth'],pit_data['scouterID'],pit_data['scoutingStatus'],pit_data['superClimbTypeID'],
                 pit_data['team'],pit_data['eventID']))
+        mysql.connection.commit()
+
+    return '1'
+
+    
+# Update Pit Scouting Data
+@app.route("/level2-update", methods =['POST'])
+def post_level2sccouting():
+    # TODO: IMPLEMENT ME
+
+    if not request.is_json:
+        return Response('Invalid submission, please submit as JSON.', status=400)
+    data = request.json
+
+    for line in data:
+        print(line)
+
+    # SortOrder is gone from the frontend code - you'll need to iterate through
+    # the rows and get SortOrder from the position of the row. Something like
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        for pos, lvl2_data in enumerate(data):
+            #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
+            #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
+            ##print(query1)
+            #cursor.execute(query1)
+            cursor.execute('UPDATE matchScoutingL2 SET synced2MS = %s, speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
+                'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, '
+                'goodOffBot = %s, goodDefBot = %s, scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s '
+                'where matchScoutingL2ID = %s',(lvl2_data['synced2MS'],lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
+                lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
+                lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
+                lvl2_data['matchScoutingL2ID']))
+            
+        mysql.connection.commit()
+
+    return '1'
+        
+# Update Pit Scouting Data
+@app.route("/level1-update", methods =['POST'])
+def post_level1sccouting():
+    # TODO: IMPLEMENT ME
+
+    if not request.is_json:
+        return Response('Invalid submission, please submit as JSON.', status=400)
+    data = request.json
+
+    for line in data:
+        print(line)
+
+    # SortOrder is gone from the frontend code - you'll need to iterate through
+    # the rows and get SortOrder from the position of the row. Something like
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        for pos, lvl1_data in enumerate(data):
+            #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
+            #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
+            ##print(query1)
+            #cursor.execute(query1)
+            cursor.execute('UPDATE matchScouting SET preStartPos = %s, preLoad = %s, preNoShow = %s, autoMB = %s, autoRamp = %s, '
+                'autoPen = %s, autoGamePiece1 = %s, autoGamePiece2 = %s, autoGamePiece3= %s, autoGamePiece4 = %s, '
+                'autoScore1 = %s, autoScore2 = %s, scouterID = %s, scoutingStatus = %s, autoScore3 = %s, autoScore4 = %s, teleConeHigh = %s, '
+                'teleCubeHigh = %s, teleConeMid = %s, teleCubeMid = %s, teleConeLow = %s, teleCubeLow = %s, teleConeCMTY = %s, teleCubeCMTY = %s, teleLZPickup = %s,'
+                'teleObstructed = %s, teleWasObstructed = %s, ramp = %s, rampAssist = %s, rampPos = %s, rampStartTime = %s, postSubsystemBroke = %s, '
+                'postBrokeDown = %s, postReorientCone = %s, postShelfPickup = %s, postGroundPickup = %s, postGoodPartner = %s,'
+                'where matchScoutingID = %s',(lvl1_data['preStartPos'],lvl1_data['preLoad'],lvl1_data['preNoShow'],lvl1_data['autoMB'],lvl1_data['autoRamp'],
+                lvl1_data['autoPen'],lvl1_data['autoGamePiece1'],lvl1_data['autoGamePiece2'],lvl1_data['autoGamePiece3'],lvl1_data['autogamePiece4'],
+                lvl1_data['autoScore1'],lvl1_data['autoScore2'],lvl1_data['scouterID'],lvl1_data['scoutingStatus'],lvl1_data['autoScore3'],lvl1_data['autoScore4'],lvl1_data['teleConeHigh'],
+                lvl1_data['teleCubeHigh'],lvl1_data['teleConeMid'],lvl1_data['teleCubeMid'],lvl1_data['teleConeLow'],lvl1_data['teleCubeLow'],lvl1_data['teleConeCMTY'],lvl1_data['teleCubeCMTY'],lvl1_data['teleLZPickup'],
+                lvl1_data['teleObstructed'],lvl1_data['teleWasObstructed'],lvl1_data['ramp'],lvl1_data['rampAssist'],lvl1_data['rampPos'],lvl1_data['rampStartTime'], lvl1_data['postSubsystemBroke'],
+                lvl1_data['postBrokeDown'],lvl1_data['postReorientCone'],lvl1_data['postShelfPickup'],lvl1_data['postGroundPickup'],lvl1_data['postGoodPartner'],
+                lvl1_data['matchScoutingID']))
+            
         mysql.connection.commit()
 
     return '1'
