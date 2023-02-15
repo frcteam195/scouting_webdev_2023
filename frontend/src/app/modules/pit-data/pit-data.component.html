@@ -1,12 +1,12 @@
 <table border="1">
     <tr>
         <div *ngFor="let x of apiTeamsList">
-            <div *ngIf="x.team + '' == team">
+            <div *ngIf="x.team + '' == team">   
                 <tr>
                     <td><b>Type of Drive: </b></td>
-                    <td>{{ x.driveType }}</td>
+                    <td>{{ x.driveBaseType }}</td>
                     <td><b>Type of Motors: </b></td>
-                    <td>{{ x.motorType }}</td>
+                    <td>{{ x.driveMotorType }}</td>
                 </tr>
                 <tr>
                     <td><b>Build Type: </b></td>
@@ -16,37 +16,35 @@
                 </tr>
                 <tr>
                     <td><b>Center Gravity: </b></td>
-                    <td>{{ x.centerGravity }}</td>    
-                    <td><b>Drive Base: </b></td>
-                    <td>{{ x.driveBase }}</td>  
+                    <td>{{ x.centerGravityType }}</td>     
                 </tr>
-                <tr>
-                    <td><b>Drive Type: </b></td>
-                    <td>{{ x.driveType }}</td>    
+                <tr>   
                     <td><b>Electrical Quality: </b></td>
                     <td>{{ x.electricalQuality }}</td>  
+                    <td><b>Scouting Status</b></td>
+                    <td>{{ x.scoutingStatus }}</td>
                 </tr>
                 <tr>
                     <td><b>Length: </b></td>
                     <td>{{ x.robotLength }} in.</td>
                     <td><b>Width: </b></td>
-                    <td>{{ x.width }} in.</td>
+                    <td>{{ x.robotWidth }} in.</td>
                 </tr>
                 <tr>
                     <td><b>Height: </b></td>
-                    <td>{{ x.height }} in.</td>
+                    <td>{{ x.robotHeight }} in.</td>
                     <td><b>Intake Type: </b></td>
-                    <td>{{ x.intakeType }} in.</td>
+                    <td>{{ x.dedicatedGroundIntake }} in.</td>
                 </tr>
                 <tr>
                     <td><b>Robot Durability: </b></td>
                     <td>{{ x.robotdurability }} in.</td>
                 </tr>
                 <tr>
-                    <td><b>Manupulator?: </b></td>
-                    <td>{{ getYesNo(x.manupulator) }}</td>
-                    <td><b>buddyClimb: </b></td>
-                    <td>{{ getYesNo(x.buddyClimb) }}</td>
+                    <td><b>Manipulator: </b></td>
+                    <td>{{ x.manipulatorType }}</td>
+                    <td><b>Climb: </b></td>
+                    <td>{{ x.superClimbType }}</td>
                 </tr>
                 <tr>
                     <td><b>Climb Strategy: </b></td>

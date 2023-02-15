@@ -1,78 +1,96 @@
 export class Teams {
-    buddyClimb: Number;
     buildComments: String;
-    buildType: Number;
+    buildType: String;
+    buildTypeID: Number;
     buildQuality: Number;
-    centerGravity: Number;
-    driveBase: Number;
-    driveType: String;
-    driveTypeID: Number;
+    centerGravityType: String;
+    centerGravityTypeID: Number;
+    driveBaseType: String;
+    driveBaseTypeID: Number;
     electricalQuality: Number;
     electricalComments: String;
     eventID: Number;
-    generalComments: Number;
-    height: Number;
+    generalComments: String;
+    robotHeight: Number;
     imageLink: String;
-    intakeType: Number;
-    manupulator: Number;
-    motorType: Number;
+    dedicatedGroundIntake: String;
+    manipulatorType: String;
+    manipulatorTypeID: Number;
+    driveMotorType: String;
+    driveMotorTypeID: Number;
     robotLength: Number;
     robotdurability: Number;
     team: String;
     teamName: String;
     teamLocation: String;
-    width: Number;
+    robotWidth: Number;
+    scouterID: Number;
+    scoutingStatus: Number;
+    superClimbType: String;
+    superClimbTypeID: Number;
     
     
 constructor(
-    buddyClimb: Number,
     buildComments: String,
-    buildType: Number,
+    buildType: String,
+    buildTypeID: Number,
     buildQuality: Number,
-    centerGravity: Number,
-    driveBase: Number,
-    driveType: String,
-    driveTypeID: Number,
+    centerGravityType: String,
+    centerGravityTypeID: Number,
+    driveBaseType: String,
+    driveBaseTypeID: Number,
     electricalQuality: Number,
     electricalComments: String,
    eventID: Number,
-   generalComments: Number,
-   height: Number,
+   generalComments: String,
+   robotHeight: Number,
    imageLink: String,
-    intakeType: Number,
-    manupulator: Number,
-    motorType: Number,
+    dedicatedGroundIntake: String,
+    manipulatorType: String,
+    manipulatorTypeID: Number,
+    driveMotorType: String,
+    driveMotorTypeID: Number,
     robotLength: Number,
     robotdurability: Number,
     team: String,
     teamName: String,
     teamLocation: String,
-    width: Number,
+    robotWidth: Number,
+    scouterID: Number,
+    scoutingStatus: Number,
+    superClimbType: String,
+    superClimbTypeID: Number,
    
     ){
-this.buddyClimb = buddyClimb;
 this.buildComments = buildComments;
 this.buildType = buildType;
+this.buildTypeID =buildTypeID;
 this.buildQuality = buildQuality;
-this.centerGravity = centerGravity;
-   this.driveBase = driveBase
-    this.driveType = driveType
-    this.driveTypeID = driveTypeID;
+this.centerGravityType = centerGravityType;
+this.centerGravityTypeID = centerGravityTypeID
+    this.driveBaseType = driveBaseType
+    this.driveBaseTypeID = driveBaseTypeID;
     this.electricalQuality = electricalQuality;
     this.electricalComments = electricalComments;
     this.eventID = eventID;
-    this.intakeType = intakeType;
+    this.dedicatedGroundIntake = dedicatedGroundIntake;
     this.generalComments = generalComments;
-    this.height = height;
+    this.robotHeight = robotHeight;
     this.imageLink = imageLink;
-    this.motorType = motorType;
-    this.manupulator = manupulator;
+    this.driveMotorType = driveMotorType;
+    this.driveMotorTypeID = driveMotorTypeID;
+    this.manipulatorType = manipulatorType;
+    this.manipulatorTypeID = manipulatorTypeID;
     this.robotLength = robotLength;
     this.robotdurability= robotdurability;
     this.team = team
     this.teamName = teamName
     this.teamLocation = teamLocation
-    this.width = width;
+    this.robotWidth = robotWidth;
+    this.scouterID =scouterID
+    this.scoutingStatus = scoutingStatus
+    this.superClimbType = superClimbType
+    this.superClimbTypeID = superClimbTypeID
     
 }}
 
