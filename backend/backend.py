@@ -449,17 +449,17 @@ def post_pitscouting():
     # the rows and get SortOrder from the position of the row. Something like
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        for pit_data in enumerate(data):
+        for pos, pit_data in enumerate(data):
             #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
             #cursor.execute(query1)
             cursor.execute('UPDATE pit SET buildComments = %s, buildQuality = %s, buildTypeID = %s, centerGravityTypeID = %s, dedicatedGroundIntake = %s, '
-                'driveBaseTypeID = %s, driveMotorTypeID = %s, driveTypeID = %s, electricalComments= %s, electricalQuality = %s, '
+                'driveBaseTypeID = %s, driveMotorTypeID = %s, electricalComments= %s, electricalQuality = %s, '
                 'generalComments = %s, imageLink = %s, manipulatorTypeID = %s, robotDurability = %s, robotHeight = %s, '
                 'robotLength = %s, robotWidth = %s, scouterID = %s, scoutingStatus = %s, superClimbTypeID = %s '
                 'where team = %s and eventID = %s',(pit_data['buildComments'],pit_data['buildQuality'],pit_data['buildTypeID'],pit_data['centerGravityTypeID'],pit_data['dedicatedGroundIntake'],
-                pit_data['driveBaseTypeID'],pit_data['driveMotorTypeID'],pit_data['driveTypeID'],pit_data['electricalComments'],pit_data['electricalQuality'],
+                pit_data['driveBaseTypeID'],pit_data['driveMotorTypeID'],pit_data['electricalComments'],pit_data['electricalQuality'],
                 pit_data['generalComments'],pit_data['imageLink'],pit_data['manipulatorTypeID'],pit_data['robotDurability'],pit_data['robotHeight'],
                 pit_data['robotLength'],pit_data['robotWidth'],pit_data['scouterID'],pit_data['scoutingStatus'],pit_data['superClimbTypeID'],
                 pit_data['team'],pit_data['eventID']))
