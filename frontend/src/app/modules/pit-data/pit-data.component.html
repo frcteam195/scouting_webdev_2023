@@ -2,6 +2,10 @@
     <tr>
         <div *ngFor="let x of apiTeamsList">
             <div *ngIf="x.team + '' == team">   
+                <tr>    
+                    <td><b>Scouting Status</b></td>
+                    <td colspan="3">{{ x.scoutingStatus }}</td>
+                </tr>
                 <tr>
                     <td><b>Type of Drive: </b></td>
                     <td>{{ x.driveBaseType }}</td>
@@ -16,39 +20,34 @@
                 </tr>
                 <tr>
                     <td><b>Center Gravity: </b></td>
-                    <td>{{ x.centerGravityType }}</td>     
-                </tr>
-                <tr>   
+                    <td>{{ x.centerGravityType }}</td> 
                     <td><b>Electrical Quality: </b></td>
-                    <td>{{ x.electricalQuality }}</td>  
-                    <td><b>Scouting Status</b></td>
-                    <td>{{ x.scoutingStatus }}</td>
+                    <td>{{ x.electricalQuality }}</td>     
                 </tr>
+                
                 <tr>
                     <td><b>Length: </b></td>
-                    <td>{{ x.robotLength }} in.</td>
+                    <td colspan="3">{{ x.robotLength }} in.</td>
+                </tr>
+                <tr>
                     <td><b>Width: </b></td>
-                    <td>{{ x.robotWidth }} in.</td>
+                    <td colspan="3">{{ x.robotWidth }} in.</td>
                 </tr>
                 <tr>
                     <td><b>Height: </b></td>
-                    <td>{{ x.robotHeight }} in.</td>
+                    <td colspan="3">{{ x.robotHeight }} in.</td>
+                </tr>
+                <tr>
                     <td><b>Intake Type: </b></td>
                     <td>{{ x.dedicatedGroundIntake }} in.</td>
+                    <td><b>Manipulator: </b></td>
+                    <td>{{ x.manipulatorType }}</td>
                 </tr>
                 <tr>
                     <td><b>Robot Durability: </b></td>
                     <td>{{ x.robotdurability }} in.</td>
-                </tr>
-                <tr>
-                    <td><b>Manipulator: </b></td>
-                    <td>{{ x.manipulatorType }}</td>
                     <td><b>Climb: </b></td>
                     <td>{{ x.superClimbType }}</td>
-                </tr>
-                <tr>
-                    <td><b>Climb Strategy: </b></td>
-                    <td colspan="3">{{ x.generalComments }}</td>
                 </tr>
                 <tr>
                     <td><b>Build Comments: </b></td>
@@ -58,7 +57,10 @@
                     <td><b>Electrical Comments: </b></td>
                     <td colspan="3">{{ x.electricalComments }}</td>
                 </tr>
-                
+                <tr>
+                    <td><b>general Comments: </b></td>
+                    <td colspan="3">{{ x.generalComments }}</td>
+                </tr>
             </div>
         </div>
     </tr>
