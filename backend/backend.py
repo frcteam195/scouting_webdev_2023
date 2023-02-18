@@ -150,6 +150,20 @@ def get_drivemotortypes():
     )
     return response
 
+@app.route("/alliance/", methods =['GET', 'POST'])
+def get_alliance():
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT t.* FROM dev1.allianceStations t; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
 # Get manipulator types 
 @app.route("/manipulatortypes/", methods =['GET', 'POST'])
 def get_manipulatortypes():
@@ -287,16 +301,28 @@ def get_summary():
 
 
 # Get Level1 Data
-@app.route("/matchscouting/", methods =['GET', 'POST'])
-def get_matchscouting():
+@app.route("/matchscouting/", methods =['GET', 'POST'], defaults={'allianceStationID': None})
+@app.route("/matchscouting/<allianceStationID>")
+def get_matchscouting(allianceStationID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
-    "from matchScouting ms, matches m, events e, teams t "
-    "where ms.matchID = m.matchID "
-    "AND e.eventID = 1 "
-    "AND m.eventID = e.eventID and allianceStationID = 1 "
-    "AND t.eventID = ms.eventID "
-    "AND t.team = ms.team;")
+    if allianceStationID is not None:
+        cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
+                "from matchScouting ms, matches m, events e, teams t "
+                "where ms.matchID = m.matchID "
+                "AND e.eventID = 1 "
+                "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
+                "AND t.eventID = ms.eventID "
+                "AND t.team = ms.team;" )
+    else: 
+       
+        cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
+                "from matchScouting ms, matches m, events e, teams t "
+                "where ms.matchID = m.matchID "
+                "AND e.eventID = 1 "
+                "AND m.eventID = e.eventID and allianceStationID = 1 "
+                "AND t.eventID = ms.eventID "
+                "AND t.team = ms.team;")
+    
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -324,16 +350,28 @@ def get_pitscouting():
     return response
 
     # Get Level2 Data
-@app.route("/matchscoutingl2/", methods =['GET', 'POST'])
-def get_matchscoutingl2():
+@app.route("/matchscoutingl2/", methods =['GET', 'POST'], defaults={'allianceStationID': None})
+@app.route("/matchscoutingl2/<allianceStationID>")
+def get_matchscoutingl2(allianceStationID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
-    "from matchScoutingL2 ms, matches m, events e, teams t "
-    "where ms.matchID = m.matchID "
-    "AND e.eventID = 1 "
-    "AND m.eventID = e.eventID and allianceStationID = 1 "
-    "AND t.eventID = ms.eventID "
-    "AND t.team = ms.team;") 
+    if allianceStationID is not None:
+        cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
+                "from matchScoutingL2 ms, matches m, events e, teams t "
+                "where ms.matchID = m.matchID "
+                "AND e.eventID = 1 "
+                "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
+                "AND t.eventID = ms.eventID "
+                "AND t.team = ms.team;" )
+    else: 
+       
+        cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
+                "from matchScoutingL2 ms, matches m, events e, teams t "
+                "where ms.matchID = m.matchID "
+                "AND e.eventID = 1 "
+                "AND m.eventID = e.eventID and allianceStationID = 1 "
+                "AND t.eventID = ms.eventID "
+                "AND t.team = ms.team;")
+    
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
