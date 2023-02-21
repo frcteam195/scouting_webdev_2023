@@ -440,13 +440,10 @@ def post_final24():
 
     for line in data:
         print(line)
-
     
     table = request.args.get('table', default = '*', type = str)
 
     print("Updating " + table + " table")
-
-    
 
     # SortOrder is gone from the frontend code - you'll need to iterate through
     # the rows and get SortOrder from the position of the row. Something like
@@ -466,15 +463,9 @@ def post_final24():
 
 
 
-
-
-
-
-
 # Update Pit Scouting Data
 @app.route("/pit-update", methods =['POST'])
 def post_pitscouting():
-    # TODO: IMPLEMENT ME
 
     if not request.is_json:
         return Response('Invalid submission, please submit as JSON.', status=400)
@@ -505,11 +496,39 @@ def post_pitscouting():
 
     return '1'
 
+
+# Update Pit Scouting Status
+@app.route("/pit-status", methods =['POST'])
+def post_pitscouting2():
+    # TODO: IMPLEMENT ME
+
+    if not request.is_json:
+        return Response('Invalid submission, please submit as JSON.', status=400)
+    data = request.json
+
+    for line in data:
+        print(line)
+
+    # SortOrder is gone from the frontend code - you'll need to iterate through
+    # the rows and get SortOrder from the position of the row. Something like
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        for pos, pit_data in enumerate(data):
+            #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
+            #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
+            ##print(query1)
+            #cursor.execute(query1)
+            cursor.execute('UPDATE pit SET scoutingStatus = %s where team = %s and eventID = %s',(pit_data['scoutingStatus'],pit_data['team'],pit_data['eventID']))
+        mysql.connection.commit()
+
+    return '1'
+
+
+
     
 # Update Pit Scouting Data
 @app.route("/level2-update", methods =['POST'])
 def post_level2sccouting():
-    # TODO: IMPLEMENT ME
 
     if not request.is_json:
         return Response('Invalid submission, please submit as JSON.', status=400)
@@ -527,10 +546,10 @@ def post_level2sccouting():
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
             #cursor.execute(query1)
-            cursor.execute('UPDATE matchScoutingL2 SET synced2MS = %s, speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
+            cursor.execute('UPDATE matchScoutingL2 SET speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
                 'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, '
                 'goodOffBot = %s, goodDefBot = %s, scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s '
-                'where matchScoutingL2ID = %s',(lvl2_data['synced2MS'],lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
+                'where matchScoutingL2ID = %s',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
                 lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
                 lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
                 lvl2_data['matchScoutingL2ID']))
