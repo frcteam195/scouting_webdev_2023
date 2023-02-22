@@ -254,12 +254,12 @@ def get_195Data(team):
                 "FROM MatchScouting m, Events e "
                 "WHERE e.EventID = m.EventID "
                 "AND Team="+team+" "
-                "AND e.CurrentEvent = 1;")
+                "AND e.currentEvent = 1;")
     else: 
         cursor.execute("SELECT m.* "
                 "FROM MatchScouting m, Events e "
                 "WHERE e.EventID = m.EventID "
-                "AND e.CurrentEvent = 1;")    
+                "AND e.currentEvent = 1;")    
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -309,7 +309,7 @@ def get_matchscouting(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScouting ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;" )
@@ -318,7 +318,7 @@ def get_matchscouting(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScouting ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID = 1 "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;")
@@ -337,7 +337,7 @@ def get_pitscouting():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("select p.*, t.teamName "
     "from pit p, events e, teams t "
-    "where e.eventID = 1 "
+    "where e.currentEvent = 1 "
     "AND p.eventID = e.eventID "
     "and t.eventID = p.eventID "
     "AND t.team = p.team;") 
@@ -358,7 +358,7 @@ def get_matchscoutingl2(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;" )
@@ -367,7 +367,7 @@ def get_matchscoutingl2(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID = 1 "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;")
