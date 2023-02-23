@@ -55,7 +55,9 @@ def get_currteam():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT t.team "
                 "FROM teams t, events e "
-                "WHERE t.eventID = e.eventID order by cast(t.team as int);")
+                "WHERE t.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
+                "order by cast(t.team as int);")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -103,13 +105,15 @@ def get_pitdata():
     cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
      "s.superClimbType, b.buildType, c.centerGravityType "
                 "FROM pit p "
-                "INNER JOIN teams t on p.Team = t.team "
+                "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
+                "INNER JOIN events e on p.eventID = e.eventID "
                 "LEFT JOIN driveBaseTypes d on p.driveBaseTypeID=d.driveBaseTypeID "
                 "LEFT JOIN driveMotorTypes m on p.driveMotorTypeID=m.driveMotorTypeID "
                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
-                "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID; ")
+                "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
+                "WHERE e.currentEvent = 1; ")
     data = cursor.fetchall()
     response = app.response_class(
 

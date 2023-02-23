@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService, Summary, Final24 } from 'src/app/services/api.service';
+import { ApiService, Final24 } from 'src/app/services/api.service';
+import { Summary } from '../../summary';
 
 @Component({
   selector: 'app-summary-graph',
@@ -74,7 +75,7 @@ export class SummaryGraphComponent implements OnInit {
 
       this.apiSummary_filter = this.apiSummary;
 
-      this.apiSummary_filter.sort((a, b) => b.TotalScoreMean - a.TotalScoreMean);
+      // this.apiSummary_filter.sort((a, b) => b.TotalScoreMean - a.TotalScoreMean);
 
       this.graphData = [];
 
@@ -96,7 +97,7 @@ export class SummaryGraphComponent implements OnInit {
         this.fFlag = "N";
         for (const team of this.teamList) {
 
-          if (t.Team == team.team) {
+          if (t.team == team.team) {
             if (this.filter == 0) {
               rcount = rcount+1;// increment count
               //team.Team = "";
@@ -109,23 +110,23 @@ export class SummaryGraphComponent implements OnInit {
         }
         if ((rcount == 0 && this.filter == 0) || (this.fFlag == "Y" && this.filter == 1)) {
 
-            robotList.push(t.Team);
+            robotList.push(t.team);
 
             if (this.sortType == 1) {
             
-              autoList.push(t.AutonomousMean);
+              autoList.push(t.autoScoreMean);
             // ballsList.push(t.TotalBallsMean)
             // scoreList.push(t.TotalScoreMean)
-              climbList.push(t.ClimbMean)
-              lowerList.push(t.TeleLowBallsMean)
-              upperList.push(t.TeleHighBallsMean)
+              climbList.push(t.rampMean)
+              lowerList.push(t.teleLowMean)
+              upperList.push(t.teleHighMean)
           //   totalList.push(t.TeleTotalBallsMean)
             }
             else {  
-              autoList.push(t.AutonomousMedian);
-              climbList.push(t.ClimbMedian)
-              lowerList.push(t.TeleLowBallsMedian)
-              upperList.push(t.TeleHighBallsMedian)
+              autoList.push(t.autoScoreMedian);
+              climbList.push(t.rampMedian)
+              lowerList.push(t.teleLowMedian)
+              upperList.push(t.teleHighMedian)
             }
         }
       }
