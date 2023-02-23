@@ -11,6 +11,7 @@ import { CEA } from '../CEA';
 import { Level2 } from '../level2';
 import { Matches } from '../matches'
 import { Teams } from '../teams'
+import { Summary } from '../summary';
  
 
 export class Final24 {
@@ -25,39 +26,39 @@ export interface CurrTeams {
   team: Number;
 }
 
-export interface Summary {
-  AutonomousFormat: number;
-  AutonomousMean: number;
-  AutonomousMedian: number;
-  AutonomousScoreFormat: number;
-  AutonomousScoreMean: number;
-  AutonomousScoreMedian: number;
-  ClimbFormat: number;
-  ClimbMean: number;
-  ClimbMedian: number;
-  EventID: number;
-  Summary: number;
-  SummaryFormat: number;
-  Team: string;
-  TeleBallScoreFormat: number;
-  TeleBallScoreMean: number;
-  TeleBallScoreMedian: number;
-  TeleHighBallsFormat: number;
-  TeleHighBallsMean: number;
-  TeleHighBallsMedian: number;
-  TeleLowBallsFormat: number;
-  TeleLowBallsMean: number;
-  TeleLowBallsMedian: number;
-  TeleTotalBallsFormat: number;
-  TeleTotalBallsMean: number;
-  TeleTotalBallsMedian: number;
-  TotalBallsFormat: number;
-  TotalBallsMean: number;
-  TotalBallsMedian: number;
-  TotalScoreFormat: number;
-  TotalScoreMean: number;
-  TotalScoreMedian: number;
-}
+// export interface Summary {
+//   AutonomousFormat: number;
+//   AutonomousMean: number;
+//   AutonomousMedian: number;
+//   AutonomousScoreFormat: number;
+//   AutonomousScoreMean: number;
+//   AutonomousScoreMedian: number;
+//   ClimbFormat: number;
+//   ClimbMean: number;
+//   ClimbMedian: number;
+//   EventID: number;
+//   Summary: number;
+//   SummaryFormat: number;
+//   Team: string;
+//   TeleBallScoreFormat: number;
+//   TeleBallScoreMean: number;
+//   TeleBallScoreMedian: number;
+//   TeleHighBallsFormat: number;
+//   TeleHighBallsMean: number;
+//   TeleHighBallsMedian: number;
+//   TeleLowBallsFormat: number;
+//   TeleLowBallsMean: number;
+//   TeleLowBallsMedian: number;
+//   TeleTotalBallsFormat: number;
+//   TeleTotalBallsMean: number;
+//   TeleTotalBallsMedian: number;
+//   TotalBallsFormat: number;
+//   TotalBallsMean: number;
+//   TotalBallsMedian: number;
+//   TotalScoreFormat: number;
+//   TotalScoreMean: number;
+//   TotalScoreMedian: number;
+// }
 
 
 @Injectable({

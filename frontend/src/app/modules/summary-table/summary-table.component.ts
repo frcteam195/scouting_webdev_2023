@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, Final24, Summary } from 'src/app/services/api.service';
+import { ApiService, Final24 } from 'src/app/services/api.service';
+import { Summary } from '../../summary';
 
 @Component({
   selector: 'app-summary-table',
@@ -111,7 +112,7 @@ export class SummaryTableComponent implements OnInit {
       this.fFlag = "N";
       for (const team of this.teamList) {
         //console.log("cea.Team: [" + cea.Team + "] Team: [" + team.Team + "]");
-        if (summ.Team == team.team) {
+        if (summ.team == team.team) {
           if (this.filter == 0) {
             rcount = rcount+1;// increment count
             //console.log("Don't Pick Team: " + team.Team);
@@ -152,39 +153,39 @@ export class SummaryTableComponent implements OnInit {
       }
     }
 
-    
-      // Sort Logic
-      if (this.sort == 1)  {
-        //Total Score Sort
-        this.apiSummary_filter.sort((a, b) => b.TotalScoreMedian - a.TotalScoreMedian);
-      } else if (this.sort == 2) {
-        //Sort by Team Number
-        this.apiSummary_filter.sort((a, b) => Number(a.Team) - Number(b.Team));
-      } else if (this.sort == 3) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.AutonomousMedian - a.AutonomousMedian);
-      } else if (this.sort == 4) {
-        //Sort by Auto Score
-        this.apiSummary_filter.sort((a, b) => b.AutonomousScoreMedian - a.AutonomousScoreMedian);
-      } else if (this.sort == 5) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.TeleLowBallsMedian - a.TeleLowBallsMedian);
-      } else if (this.sort == 6) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.TeleHighBallsMedian - a.TeleHighBallsMedian);
-      } else if (this.sort == 7) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.TeleTotalBallsMedian - a.TeleTotalBallsMedian);
-      } else if (this.sort == 8) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.TeleBallScoreMedian - a.TeleBallScoreMedian);
-      } else if (this.sort == 9) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.TotalBallsMedian - a.TotalBallsMedian);
-      } else if (this.sort == 10) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.ClimbMedian - a.ClimbMedian);
-      } 
+      // 2/22/2023 - Commented  out until we are ready to add sort logic
+      // // Sort Logic
+      // if (this.sort == 1)  {
+      //   //Total Score Sort
+      //   this.apiSummary_filter.sort((a, b) => b.TotalScoreMedian - a.TotalScoreMedian);
+      // } else if (this.sort == 2) {
+      //   //Sort by Team Number
+      //   this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
+      // } else if (this.sort == 3) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.AutonomousMedian - a.AutonomousMedian);
+      // } else if (this.sort == 4) {
+      //   //Sort by Auto Score
+      //   this.apiSummary_filter.sort((a, b) => b.AutonomousScoreMedian - a.AutonomousScoreMedian);
+      // } else if (this.sort == 5) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.TeleLowBallsMedian - a.TeleLowBallsMedian);
+      // } else if (this.sort == 6) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.TeleHighBallsMedian - a.TeleHighBallsMedian);
+      // } else if (this.sort == 7) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.TeleTotalBallsMedian - a.TeleTotalBallsMedian);
+      // } else if (this.sort == 8) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.TeleBallScoreMedian - a.TeleBallScoreMedian);
+      // } else if (this.sort == 9) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.TotalBallsMedian - a.TotalBallsMedian);
+      // } else if (this.sort == 10) {
+      //   //Sort by Auto
+      //   this.apiSummary_filter.sort((a, b) => b.ClimbMedian - a.ClimbMedian);
+      // } 
 
     } else {
       this.apiSummary_filter = [];
