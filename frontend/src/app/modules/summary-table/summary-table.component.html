@@ -7,18 +7,17 @@
         <tr>
             <th><div [ngClass]="{'sorted': this.sort==2}"><a (click)="localSort(2)">Team</a></div></th>
             <th><div [ngClass]="{'sorted': this.sort==3}"><a (click)="localSort(3)">Auto</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==4}"><a (click)="localSort(4)">AS</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==5}"><a (click)="localSort(5)">TLow</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==6}"><a (click)="localSort(6)">THigh</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==7}"><a (click)="localSort(7)">TT</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==8}"><a (click)="localSort(8)">BS</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==9}"><a (click)="localSort(9)">TB</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">Climb</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">TS</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==4}"><a (click)="localSort(4)">AR</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==5}"><a (click)="localSort(5)">AS</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==6}"><a (click)="localSort(6)">Ramp</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==7}"><a (click)="localSort(7)">TC</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==8}"><a (click)="localSort(8)">TLZ</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==9}"><a (click)="localSort(9)">TL</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">TM</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">TT</a></div></th>
         </tr>
         <tr *ngFor="let a of apiSummary_filter">
             <td align="center"><a (click)="teamSelect( a.team )" (dblclick)="teamPage( a.team )"><div [ngClass]="{'sorted': a.team==this.team}">{{ a.team }}</div></a></td>
-            
             <td align="center" class="bg{{ a?.autoGamePiecesFormat }}">{{ sortType == 1 ? a.autoGamePiecesMean : a.autoGamePiecesMedian }}</td>
             <td align="center" class="bg{{ a?.autoRampFormat }}">{{ sortType == 1 ? a.autoRampMean : a.autoRampMedian }}</td>
             <td align="center" class="bg{{ a?.autoScoreFormat }}">{{ sortType == 1 ? a.autoScoreMean : a.autoScoreMedian }}</td>
