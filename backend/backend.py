@@ -66,18 +66,18 @@ def get_currteam():
     )
     return response
     
-#     # get event info 
-# @app.route("/event/", methods =['GET', 'POST'])
-# def get_event():
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cursor.execute("select * from events where currentEvent = 1; ")
-#     data = cursor.fetchall()
-#     response = app.response_class(
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
+    # get event info 
+@app.route("/event/", methods =['GET', 'POST'])
+def get_event():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select * from events where currentEvent = 1; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 
 
