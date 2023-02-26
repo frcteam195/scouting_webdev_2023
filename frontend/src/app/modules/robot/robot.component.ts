@@ -16,23 +16,25 @@ export class RobotComponent implements OnInit {
   nestedDisplay: number;
   roboPic: String;
   apiCurrTeamList: CurrTeams[];
-
-
-  //apiAnalysis: CEA[] = [];
   apiTeamsList: Teams[] = [];  
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {
-    //this.apiService.CEAReplay.subscribe((analysis) => (this.apiAnalysis = analysis));
-    this.apiService.TeamsReplay.subscribe((Teams) => (this.apiTeamsList = Teams));
+
     this.apiCurrTeamList = [];
-    this.apiService.CurrTeamReplay.subscribe(currteam => {
-      this.apiCurrTeamList = currteam;
-    });
+    this.apiTeamsList = [];
     this.team="195";
     this.display=1;
     this.nestedDisplay=1;
     this.roboPic = "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png";
-    //this.roboPic = "https://i.imgur.com/mDO77M8h.jpg";
+
+    this.apiService.TeamsReplay.subscribe(Teams => {
+      this.apiTeamsList = Teams;
+    });
+
+    this.apiService.CurrTeamReplay.subscribe(currteam => {
+      this.apiCurrTeamList = currteam;
+    });
+
   }
 
   setTeam(team: string) {

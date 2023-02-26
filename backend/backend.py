@@ -55,7 +55,9 @@ def get_currteam():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT t.team "
                 "FROM teams t, events e "
-                "WHERE t.eventID = e.eventID order by cast(t.team as int);")
+                "WHERE t.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
+                "order by cast(t.team as int);")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -103,13 +105,15 @@ def get_pitdata():
     cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
      "s.superClimbType, b.buildType, c.centerGravityType "
                 "FROM pit p "
-                "INNER JOIN teams t on p.Team = t.team "
+                "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
+                "INNER JOIN events e on p.eventID = e.eventID "
                 "LEFT JOIN driveBaseTypes d on p.driveBaseTypeID=d.driveBaseTypeID "
                 "LEFT JOIN driveMotorTypes m on p.driveMotorTypeID=m.driveMotorTypeID "
                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
-                "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID; ")
+                "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
+                "WHERE e.currentEvent = 1; ")
     data = cursor.fetchall()
     response = app.response_class(
 
@@ -254,12 +258,12 @@ def get_195Data(team):
                 "FROM MatchScouting m, Events e "
                 "WHERE e.EventID = m.EventID "
                 "AND Team="+team+" "
-                "AND e.CurrentEvent = 1;")
+                "AND e.currentEvent = 1;")
     else: 
         cursor.execute("SELECT m.* "
                 "FROM MatchScouting m, Events e "
                 "WHERE e.EventID = m.EventID "
-                "AND e.CurrentEvent = 1;")    
+                "AND e.currentEvent = 1;")    
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -309,7 +313,7 @@ def get_matchscouting(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScouting ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;" )
@@ -318,7 +322,7 @@ def get_matchscouting(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScouting ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID = 1 "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;")
@@ -337,7 +341,7 @@ def get_pitscouting():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("select p.*, t.teamName "
     "from pit p, events e, teams t "
-    "where e.eventID = 1 "
+    "where e.currentEvent = 1 "
     "AND p.eventID = e.eventID "
     "and t.eventID = p.eventID "
     "AND t.team = p.team;") 
@@ -358,7 +362,7 @@ def get_matchscoutingl2(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;" )
@@ -367,7 +371,7 @@ def get_matchscoutingl2(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
-                "AND e.eventID = 1 "
+                "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID = 1 "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team;")
@@ -440,13 +444,10 @@ def post_final24():
 
     for line in data:
         print(line)
-
     
     table = request.args.get('table', default = '*', type = str)
 
     print("Updating " + table + " table")
-
-    
 
     # SortOrder is gone from the frontend code - you'll need to iterate through
     # the rows and get SortOrder from the position of the row. Something like
@@ -466,15 +467,9 @@ def post_final24():
 
 
 
-
-
-
-
-
 # Update Pit Scouting Data
 @app.route("/pit-update", methods =['POST'])
 def post_pitscouting():
-    # TODO: IMPLEMENT ME
 
     if not request.is_json:
         return Response('Invalid submission, please submit as JSON.', status=400)
@@ -505,11 +500,39 @@ def post_pitscouting():
 
     return '1'
 
+
+# Update Pit Scouting Status
+@app.route("/pit-status", methods =['POST'])
+def post_pitscouting2():
+    # TODO: IMPLEMENT ME
+
+    if not request.is_json:
+        return Response('Invalid submission, please submit as JSON.', status=400)
+    data = request.json
+
+    for line in data:
+        print(line)
+
+    # SortOrder is gone from the frontend code - you'll need to iterate through
+    # the rows and get SortOrder from the position of the row. Something like
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        for pos, pit_data in enumerate(data):
+            #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
+            #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
+            ##print(query1)
+            #cursor.execute(query1)
+            cursor.execute('UPDATE pit SET scoutingStatus = %s where team = %s and eventID = %s',(pit_data['scoutingStatus'],pit_data['team'],pit_data['eventID']))
+        mysql.connection.commit()
+
+    return '1'
+
+
+
     
 # Update Pit Scouting Data
 @app.route("/level2-update", methods =['POST'])
 def post_level2sccouting():
-    # TODO: IMPLEMENT ME
 
     if not request.is_json:
         return Response('Invalid submission, please submit as JSON.', status=400)
@@ -527,10 +550,10 @@ def post_level2sccouting():
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
             #cursor.execute(query1)
-            cursor.execute('UPDATE matchScoutingL2 SET synced2MS = %s, speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
+            cursor.execute('UPDATE matchScoutingL2 SET speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
                 'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, '
                 'goodOffBot = %s, goodDefBot = %s, scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s '
-                'where matchScoutingL2ID = %s',(lvl2_data['synced2MS'],lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
+                'where matchScoutingL2ID = %s',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
                 lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
                 lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
                 lvl2_data['matchScoutingL2ID']))
