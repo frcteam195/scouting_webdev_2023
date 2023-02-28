@@ -41,23 +41,23 @@
             </div>
         </td>
         <td style="width: 25%;" align="center">
-            <app-robot-info [selectedTeam]="team"></app-robot-info>
+            <tr>
+                <td align="center"><img [src]="roboPic" alt="robotnotfound" style="width:95%; align-items: center;"></td>
+            </tr>
+            <tr>
+                <div *ngFor="let x of apiTeamsList">
+                    <td *ngIf="x.team + '' == team + ''" align="center" style="align-items: center;">
+                        <b>{{ x.robotLength }} in. x {{ x.robotWidth }} in. x {{ x.robotHeight }}</b>
+                    </td>
+                </div>
+            </tr>
         </td>
         <td>
             <div *ngIf="display==1" align="center">
                 <app-pit-data [team]="team"></app-pit-data>
             </div>
-            <table border="0" *ngIf="display==2" align="center">
-                <tr>
-                    <td align="center"><img [src]="roboPic" alt="robotnotfound" style="width:95%; align-items: center;"></td>
-                </tr>
-                <tr>
-                    <div *ngFor="let x of apiTeamsList">
-                        <td *ngIf="x.team + '' == team + ''" align="center" style="align-items: center;">
-                            <b>{{ x.robotLength }} in. x {{ x.robotWidth }} in. x {{ x.robotHeight }}</b>
-                        </td>
-                    </div>
-                </tr>
+            <table border="0" *ngIf="display==2" align="center">  
+                <app-robot-graphic></app-robot-graphic>
             </table>
             <table border="1" *ngIf="display==3" align="center">
                 <tr>
