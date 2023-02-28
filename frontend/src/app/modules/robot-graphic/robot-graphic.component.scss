@@ -1,0 +1,42 @@
+#field td{
+    width: 40px;
+    height: 40px;
+}
+#tele td{
+    width: 60px;
+    height: 60px;
+}
+.carpet{
+    background-color: gray;
+}
+.grid{
+    background-color: lightgray;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+#field tr, #tele tr, #field td, #tele td{
+    padding: 0;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: center;
+    font-size: medium;
+}
+.r1, .r2, .r3, .r4{
+    border: 2px solid black;
+}
+.r1{
+    background-color: green;
+}
+.r2{
+    background-color: yellowgreen;
+}
+.r3{
+    background-color: yellow;
+}
+.r4{
+    background-color: red;
+}
