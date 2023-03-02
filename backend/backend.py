@@ -33,20 +33,10 @@ def hello():
 def hello2():
     return "Hello Harish!!!"
 
-# # Get Analysis Data
-# @app.route("/analysis/", methods =['GET', 'POST'])
-# def get_analysis():
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cursor.execute("SELECT cea.*, at.AnalysisType "
-#                 "FROM CEanalysis cea, analysisTypes at "
-#                 "WHERE cea.AnalysisTypeID = at.analysisTypeID order by analysisTypeID;")
-#     data = cursor.fetchall()	
-#     response = app.response_class(
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
+#order:
+#simple tables?? - 
+#web app - 
+#web dev - 
 
 
 # Get Event Team List
@@ -95,33 +85,7 @@ def get_scouters():
         status=200,
         mimetype='application/json'
     )
-    return response 
-
-
-# # Get Pit Data
-# @app.route("/pitdata/", methods =['GET', 'POST'])
-# def get_pitdata():
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
-#      "s.superClimbType, b.buildType, c.centerGravityType "
-#                 "FROM pit p "
-#                 "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
-#                 "INNER JOIN events e on p.eventID = e.eventID "
-#                 "LEFT JOIN driveBaseTypes d on p.driveBaseTypeID=d.driveBaseTypeID "
-#                 "LEFT JOIN driveMotorTypes m on p.driveMotorTypeID=m.driveMotorTypeID "
-#                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
-#                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
-#                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
-#                 "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
-#                 "WHERE e.currentEvent = 1; ")
-#     data = cursor.fetchall()
-#     response = app.response_class(
-
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
+    return response
 
 # Get drive base types 
 @app.route("/drivebasetypes/", methods =['GET', 'POST'])
@@ -228,13 +192,144 @@ def get_cgtypes():
         mimetype='application/json'
     )
     return response
+ 
+
+ 
 
 
-# Get Matches Data
-@app.route("/matches/", methods =['GET', 'POST'])
-def get_matches():
+
+
+
+
+# # Get Analysis Data
+# @app.route("/analysis/", methods =['GET', 'POST'])
+# def get_analysis():
+#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cursor.execute("SELECT cea.*, at.AnalysisType "
+#                 "FROM CEanalysis cea, analysisTypes at "
+#                 "WHERE cea.AnalysisTypeID = at.analysisTypeID order by analysisTypeID;")
+#     data = cursor.fetchall()	
+#     response = app.response_class(
+#         response=json.dumps(data),
+#         status=200,
+#         mimetype='application/json'
+#     )
+#     return response
+
+
+# Get Event Team List
+@app.route("/currteam/", methods =['GET', 'POST'])
+def get_currteam():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+    cursor.execute("SELECT t.team "
+                "FROM teams t, events e "
+                "WHERE t.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
+                "order by cast(t.team as int);")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+    
+    # get event info 
+@app.route("/event/", methods =['GET', 'POST'])
+def get_event():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("select * from events where currentEvent = 1; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+
+
+ 
+
+
+# # Get Pit Data
+# @app.route("/pitdata/", methods =['GET', 'POST'])
+# def get_pitdata():
+#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
+#      "s.superClimbType, b.buildType, c.centerGravityType "
+#                 "FROM pit p "
+#                 "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
+#                 "INNER JOIN events e on p.eventID = e.eventID "
+#                 "LEFT JOIN driveBaseTypes d on p.driveBaseTypeID=d.driveBaseTypeID "
+#                 "LEFT JOIN driveMotorTypes m on p.driveMotorTypeID=m.driveMotorTypeID "
+#                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
+#                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
+#                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
+#                 "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
+#                 "WHERE e.currentEvent = 1; ")
+#     data = cursor.fetchall()
+#     response = app.response_class(
+
+#         response=json.dumps(data),
+#         status=200,
+#         mimetype='application/json'
+#     )
+#     return response
+
+
+
+
+
+@app.route("/alliance/", methods =['GET', 'POST'])
+def get_alliance():
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT t.* FROM dev1.allianceStations t; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+
+
+
+
+
+# # Get Matches Data
+# @app.route("/matches/", methods =['GET', 'POST'])
+# def get_matches():
+#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+#                 "FROM matches m, events e "
+#                 "WHERE e.eventID = m.eventID "
+#                 "AND e.currentEvent = 1;")
+#     data = cursor.fetchall()	
+#     response = app.response_class(
+#         response=json.dumps(data),
+#         status=200,
+#         mimetype='application/json' 
+#     )
+#     return response
+
+# Get Matches Data from past events
+@app.route("/matches/", methods =['GET', 'POST'], defaults={'eventID':None})
+@app.route("/matches/<eventID>")
+def get_matches(eventID):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if eventID is not None:
+        cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+                "FROM matches m, events e "
+                "WHERE e.eventID = m.eventID "
+                "AND e.eventID = " + eventID + ";")
+    else:
+        cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
                 "FROM matches m, events e "
                 "WHERE e.eventID = m.eventID "
                 "AND e.currentEvent = 1;")
@@ -288,11 +383,32 @@ def get_195Data(team):
 #     )
 #     return response
 
-# Get Summary Data
-@app.route("/summary/", methods =['GET', 'POST'])
-def get_summary():
+# # Get Summary Data
+# @app.route("/summary/", methods =['GET', 'POST'])
+# def get_summary():
+#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cursor.execute("select a.* from CEanalysisGraphs a, events e "
+#                     "where a.eventID=e.eventID "
+#                     "and e.currentEvent = 1;")
+#     data = cursor.fetchall()
+#     response = app.response_class(
+#         response=json.dumps(data),
+#         status=200,
+#         mimetype='application/json'
+#     )
+#     return response
+
+# Get Summary Data from past events 
+@app.route("/summary/", methods =['GET', 'POST'], defaults={'eventID' : None})
+@app.route("/summary/<eventID>")
+def get_summary(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.* from CEanalysisGraphs a, events e "
+    if eventID is not None:
+        cursor.execute("select a.* from CEanalysisGraphs a, events e "
+                "where a.eventID=e.eventID "
+                "and e.eventID = " + eventID + ";")
+    else: 
+        cursor.execute("select a.* from CEanalysisGraphs a, events e "
                     "where a.eventID=e.eventID "
                     "and e.currentEvent = 1;")
     data = cursor.fetchall()
@@ -364,10 +480,10 @@ def get_analysis(eventID):
 def get_matchinfo(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if eventID is not None:
-        cursor.execute("SELECT m.* " 
-                "FROM matches m, events e " 
-                "WHERE e.eventID = m.eventID " 
-                "AND e.currentEvent = 1 ORDER BY m.matchNum;")
+        cursor.execute("SELECT m.* "
+                    "FROM matches m, events e "
+                    "WHERE e.eventID = m.eventID "
+                    "and e.eventID = " + eventID + " ORDER BY m.matchNum;")
     else:
         cursor.execute("SELECT m.* "
                 "FROM matches m, events e "
@@ -442,16 +558,43 @@ def get_pitdata(eventID):
 
 
 
-#get pit scouting data
-@app.route("/pitscouting/", methods =['GET', 'POST'])
-def get_pitscouting():
+# #get pit scouting data
+# @app.route("/pitscouting/", methods =['GET', 'POST'])
+# def get_pitscouting():
+#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cursor.execute("select p.*, t.teamName "
+#     "from pit p, events e, teams t "
+#     "where e.currentEvent = 1 "
+#     "AND p.eventID = e.eventID "
+#     "and t.eventID = p.eventID "
+#     "AND t.team = p.team;") 
+#     data = cursor.fetchall()
+#     response = app.response_class(
+#         response=json.dumps(data),
+#         status=200,
+#         mimetype='application/json'
+#     )
+#     return response
+
+#get pit scouting data from past events
+@app.route("/pitscouting/", methods =['GET', 'POST'], defaults = {'eventID': None})
+@app.route("/pitscouting/<eventID>")
+def get_pitscouting(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select p.*, t.teamName "
-    "from pit p, events e, teams t "
-    "where e.currentEvent = 1 "
-    "AND p.eventID = e.eventID "
-    "and t.eventID = p.eventID "
-    "AND t.team = p.team;") 
+    if eventID is not None:   
+        cursor.execute("select p.*, t.teamName "
+                "from pit p, events e, teams t "
+                "where e.eventID = " + eventID + " "
+                "AND p.eventID = e.eventID "
+                "and t.eventID = p.eventID "
+                "AND t.team = p.team;") 
+    else: 
+        cursor.execute("select p.*, t.teamName "
+                "from pit p, events e, teams t "
+                "where e.currentEvent = 1 "
+                "AND p.eventID = e.eventID "
+                "and t.eventID = p.eventID "
+                "AND t.team = p.team;") 
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -509,7 +652,7 @@ def get_types():
     return response
 
 
-# Get Analysis Type Data
+# Get level 2 Data
 @app.route("/level2", methods =['GET', 'POST'])
 def get_level2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)

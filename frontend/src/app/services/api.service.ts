@@ -220,6 +220,7 @@ export class ApiService {
 
   }
 
+//load historical data COMING SOON TO A THEATER NEAR YOUUU
 
   async getFinal24(): Promise<Final24[]> {
     // First try to load a fresh copy of the data from the API
