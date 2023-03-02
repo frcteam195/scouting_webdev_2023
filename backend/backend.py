@@ -122,7 +122,7 @@ def get_drivemotortypes():
 def get_alliance():
 
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.* FROM allianceStations t; ")
+    cursor.execute("SELECT * FROM allianceStations; ")
     data = cursor.fetchall()
     response = app.response_class(
 
@@ -193,22 +193,6 @@ def get_cgtypes():
     )
     return response
  
-
-
-@app.route("/alliance/", methods =['GET', 'POST'])
-def get_alliance():
-
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.* FROM dev1.allianceStations t; ")
-    data = cursor.fetchall()
-    response = app.response_class(
-
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
 # Get Matches Data from past events
 @app.route("/matches/", methods =['GET', 'POST'], defaults={'eventID':None})
 @app.route("/matches/<eventID>")
@@ -481,10 +465,11 @@ def get_types():
 @app.route("/level2", methods =['GET', 'POST'])
 def get_level2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.matchNum, a.scoutingStatus, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
                    "from matchScoutingL2 a, events e "
                    "where a.eventID=e.eventID "
                    "and e.currentEvent = 1 "
+                   "and a.scoutingStatus = 1 "
                    "order by matchNum;")
     data = cursor.fetchall()	
     response = app.response_class(
