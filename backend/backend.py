@@ -70,7 +70,7 @@ def get_currteam():
 @app.route("/event/", methods =['GET', 'POST'])
 def get_event():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select * from events where currentEvent = 1; ")
+    cursor.execute("select * from events; ")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -158,7 +158,7 @@ def get_drivemotortypes():
 def get_alliance():
 
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.* FROM dev1.allianceStations t; ")
+    cursor.execute("SELECT t.* FROM allianceStations t; ")
     data = cursor.fetchall()
     response = app.response_class(
 
@@ -322,9 +322,10 @@ def get_matchscouting(allianceStationID):
                 "from matchScouting ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID = 1 "
+                "AND m.eventID = e.eventID "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;")
+                "AND t.team = ms.team "
+                "AND ms.scoutingStatus = 2;")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -512,7 +513,7 @@ def get_types():
 @app.route("/level2", methods =['GET', 'POST'])
 def get_level2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+    cursor.execute("select a.matchNum, a.scoutingStatus, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
                    "from matchScoutingL2 a, events e "
                    "where a.eventID=e.eventID "
                    "and e.currentEvent = 1 "
@@ -524,6 +525,7 @@ def get_level2():
         mimetype='application/json'
     )
     return response
+
 
 # Get Final 24 Data
 @app.route("/final24Old", methods =['GET'])
@@ -657,12 +659,12 @@ def post_level2sccouting():
             ##print(query1)
             #cursor.execute(query1)
             cursor.execute('UPDATE matchScoutingL2 SET speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
-                'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, '
-                'goodOffBot = %s, goodDefBot = %s, scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s '
+                'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, goodOffBot = %s, goodDefBot = %s, '
+                'scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s preNoShow = %s '
                 'where matchScoutingL2ID = %s',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
                 lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
                 lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
-                lvl2_data['matchScoutingL2ID']))
+                lvl2_data['preNoShow'],lvl2_data['matchScoutingL2ID']))
             
         mysql.connection.commit()
 

@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NumberValueAccessor } from '@angular/forms';
 import { CEA } from '../../CEA';
 import { ApiService, Final24 } from 'src/app/services/api.service';
+import { Types } from '../../types';
 
 @Component({
   selector: 'app-analysis-graph',
@@ -23,6 +24,7 @@ export class AnalysisGraphComponent implements OnInit {
 
   apiAnalysis: CEA[] = [];
   apiAnalysis_filter: CEA[] = [];
+  apiTypes: Types[]=[];
   title: string;
   team: string;
   analysisType: string;
@@ -37,6 +39,7 @@ export class AnalysisGraphComponent implements OnInit {
   constructor(private apiService: ApiService) {
     this.apiAnalysis_filter = [];
     this.apiAnalysis = [];
+    this.apiTypes = [];
     this.title = "Title";
     this.selectedTeam = "";
     this.analysisTypeID = 0;
@@ -53,6 +56,10 @@ export class AnalysisGraphComponent implements OnInit {
     this.apiService.CEAReplay.subscribe(analysis => {
       this.apiAnalysis = analysis;
       this.regenerateFilter();
+    });
+
+    this.apiService.TypesReplay.subscribe(types => {
+      this.apiTypes = types;
     });
 
   }
@@ -107,7 +114,13 @@ export class AnalysisGraphComponent implements OnInit {
          
 
           this.team = cea.team;
-          this.analysisType = cea.analysisType;
+
+          for (const t of this.apiTypes) {
+            if (t.analysisTypeID == cea.analysisTypeID) {
+              this.analysisType = t.analysisType;
+            }
+          }
+          
           
 
           if ((this.teamList.find(item => item.team === cea.team)) || (this.selectedTeam == cea.team)) {
