@@ -78,6 +78,7 @@ export class ApiService {
 
   private apiUrl = 'http://localhost:5000';
   //private apiUrl = 'http://scouting.team195.com:5000';
+  //private apiUrl = 'http://10.0.20.196:5000'; // Jetson
   //private apiUrl = 'http://192.168.1.195:23450';  // Dave's House
   //private apiUrl = 'http://10.0.20.195:23450';     // Mark's House
 
