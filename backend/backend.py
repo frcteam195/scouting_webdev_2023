@@ -33,20 +33,10 @@ def hello():
 def hello2():
     return "Hello Harish!!!"
 
-# # Get Analysis Data
-# @app.route("/analysis/", methods =['GET', 'POST'])
-# def get_analysis():
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cursor.execute("SELECT cea.*, at.AnalysisType "
-#                 "FROM CEanalysis cea, analysisTypes at "
-#                 "WHERE cea.AnalysisTypeID = at.analysisTypeID order by analysisTypeID;")
-#     data = cursor.fetchall()	
-#     response = app.response_class(
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
+#order:
+#simple tables?? - 
+#web app - 
+#web dev - 
 
 
 # Get Event Team List
@@ -70,7 +60,7 @@ def get_currteam():
 @app.route("/event/", methods =['GET', 'POST'])
 def get_event():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select * from events where currentEvent = 1; ")
+    cursor.execute("select * from events; ")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -95,33 +85,7 @@ def get_scouters():
         status=200,
         mimetype='application/json'
     )
-    return response 
-
-
-# # Get Pit Data
-# @app.route("/pitdata/", methods =['GET', 'POST'])
-# def get_pitdata():
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
-#      "s.superClimbType, b.buildType, c.centerGravityType "
-#                 "FROM pit p "
-#                 "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
-#                 "INNER JOIN events e on p.eventID = e.eventID "
-#                 "LEFT JOIN driveBaseTypes d on p.driveBaseTypeID=d.driveBaseTypeID "
-#                 "LEFT JOIN driveMotorTypes m on p.driveMotorTypeID=m.driveMotorTypeID "
-#                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
-#                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
-#                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
-#                 "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
-#                 "WHERE e.currentEvent = 1; ")
-#     data = cursor.fetchall()
-#     response = app.response_class(
-
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
+    return response
 
 # Get drive base types 
 @app.route("/drivebasetypes/", methods =['GET', 'POST'])
@@ -158,7 +122,7 @@ def get_drivemotortypes():
 def get_alliance():
 
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.* FROM dev1.allianceStations t; ")
+    cursor.execute("SELECT * FROM allianceStations; ")
     data = cursor.fetchall()
     response = app.response_class(
 
@@ -228,13 +192,19 @@ def get_cgtypes():
         mimetype='application/json'
     )
     return response
-
-
-# Get Matches Data
-@app.route("/matches/", methods =['GET', 'POST'])
-def get_matches():
+ 
+# Get Matches Data from past events
+@app.route("/matches/", methods =['GET', 'POST'], defaults={'eventID':None})
+@app.route("/matches/<eventID>")
+def get_matches(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+    if eventID is not None:
+        cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+                "FROM matches m, events e "
+                "WHERE e.eventID = m.eventID "
+                "AND e.eventID = " + eventID + ";")
+    else:
+        cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
                 "FROM matches m, events e "
                 "WHERE e.eventID = m.eventID "
                 "AND e.currentEvent = 1;")
@@ -272,27 +242,18 @@ def get_195Data(team):
     )
     return response
 
-# # Get Matches Info
-# @app.route("/matchinfo/", methods =['GET', 'POST'])
-# def get_matchinfo():
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cursor.execute("SELECT m.* "
-#                 "FROM matches m, events e "
-#                 "WHERE e.eventID = m.eventID "
-#                 "AND e.currentEvent = 1 ORDER BY m.matchNum;")
-#     data = cursor.fetchall()	
-#     response = app.response_class(
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json' 
-#     )
-#     return response
 
-# Get Summary Data
-@app.route("/summary/", methods =['GET', 'POST'])
-def get_summary():
+# Get Summary Data from past events 
+@app.route("/summary/", methods =['GET', 'POST'], defaults={'eventID' : None})
+@app.route("/summary/<eventID>")
+def get_summary(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.* from CEanalysisGraphs a, events e "
+    if eventID is not None:
+        cursor.execute("select a.* from CEanalysisGraphs a, events e "
+                "where a.eventID=e.eventID "
+                "and e.eventID = " + eventID + ";")
+    else: 
+        cursor.execute("select a.* from CEanalysisGraphs a, events e "
                     "where a.eventID=e.eventID "
                     "and e.currentEvent = 1;")
     data = cursor.fetchall()
@@ -322,9 +283,10 @@ def get_matchscouting(allianceStationID):
                 "from matchScouting ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID = 1 "
+                "AND m.eventID = e.eventID "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;")
+                "AND t.team = ms.team "
+                "AND ms.scoutingStatus = 2;")
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -363,10 +325,10 @@ def get_analysis(eventID):
 def get_matchinfo(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if eventID is not None:
-        cursor.execute("SELECT m.* " 
-                "FROM matches m, events e " 
-                "WHERE e.eventID = m.eventID " 
-                "AND e.currentEvent = 1 ORDER BY m.matchNum;")
+        cursor.execute("SELECT m.* "
+                    "FROM matches m, events e "
+                    "WHERE e.eventID = m.eventID "
+                    "and e.eventID = " + eventID + " ORDER BY m.matchNum;")
     else:
         cursor.execute("SELECT m.* "
                 "FROM matches m, events e "
@@ -422,35 +384,26 @@ def get_pitdata(eventID):
     )
     return response
 
-#      # get event info from past events
-# @app.route("/event/", methods =['GET', 'POST'], defaults = {'eventID': None})
-# @app.route("/event/<eventID>")
-# def get_event(eventID):
-#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#     if eventID is not None:
-#         cursor.execute("select * from events where eventID = " + eventID + " ;")
-#     else:
-#         cursor.execute("select * from events where currentEvent = 1;")
-#     data = cursor.fetchall()
-#     response = app.response_class(
-#         response=json.dumps(data),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
 
-
-
-#get pit scouting data
-@app.route("/pitscouting/", methods =['GET', 'POST'])
-def get_pitscouting():
+#get pit scouting data from past events
+@app.route("/pitscouting/", methods =['GET', 'POST'], defaults = {'eventID': None})
+@app.route("/pitscouting/<eventID>")
+def get_pitscouting(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select p.*, t.teamName "
-    "from pit p, events e, teams t "
-    "where e.currentEvent = 1 "
-    "AND p.eventID = e.eventID "
-    "and t.eventID = p.eventID "
-    "AND t.team = p.team;") 
+    if eventID is not None:   
+        cursor.execute("select p.*, t.teamName "
+                "from pit p, events e, teams t "
+                "where e.eventID = " + eventID + " "
+                "AND p.eventID = e.eventID "
+                "and t.eventID = p.eventID "
+                "AND t.team = p.team;") 
+    else: 
+        cursor.execute("select p.*, t.teamName "
+                "from pit p, events e, teams t "
+                "where e.currentEvent = 1 "
+                "AND p.eventID = e.eventID "
+                "and t.eventID = p.eventID "
+                "AND t.team = p.team;") 
     data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
@@ -508,7 +461,7 @@ def get_types():
     return response
 
 
-# Get Analysis Type Data
+# Get level 2 Data
 @app.route("/level2", methods =['GET', 'POST'])
 def get_level2():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -516,6 +469,7 @@ def get_level2():
                    "from matchScoutingL2 a, events e "
                    "where a.eventID=e.eventID "
                    "and e.currentEvent = 1 "
+                   "and a.scoutingStatus = 1 "
                    "order by matchNum;")
     data = cursor.fetchall()	
     response = app.response_class(
@@ -524,6 +478,7 @@ def get_level2():
         mimetype='application/json'
     )
     return response
+
 
 # Get Final 24 Data
 @app.route("/final24Old", methods =['GET'])
@@ -657,12 +612,12 @@ def post_level2sccouting():
             ##print(query1)
             #cursor.execute(query1)
             cursor.execute('UPDATE matchScoutingL2 SET speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
-                'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, '
-                'goodOffBot = %s, goodDefBot = %s, scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s '
+                'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, goodOffBot = %s, goodDefBot = %s, '
+                'scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s preNoShow = %s '
                 'where matchScoutingL2ID = %s',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
                 lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
                 lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
-                lvl2_data['matchScoutingL2ID']))
+                lvl2_data['preNoShow'],lvl2_data['matchScoutingL2ID']))
             
         mysql.connection.commit()
 
@@ -694,14 +649,14 @@ def post_level1sccouting():
                 'autoScore1 = %s, autoScore2 = %s, scouterID = %s, scoutingStatus = %s, autoScore3 = %s, autoScore4 = %s, teleConeHigh = %s, '
                 'teleCubeHigh = %s, teleConeMid = %s, teleCubeMid = %s, teleConeLow = %s, teleCubeLow = %s, teleConeCMTY = %s, teleCubeCMTY = %s, teleLZPickup = %s,'
                 'teleObstructed = %s, teleWasObstructed = %s, ramp = %s, rampAssist = %s, rampPos = %s, rampStartTime = %s, postSubsystemBroke = %s, '
-                'postBrokeDown = %s, postReorientCone = %s, postShelfPickup = %s, postGroundPickup = %s, postGoodPartner = %s '
+                'postBrokeDown = %s, postReorientCone = %s, postShelfPickup = %s, postGroundPickup = %s, postGoodPartner = %s, postTippedOver = %s '
                 'where matchScoutingID = %s',(lvl1_data['preStartPos'],lvl1_data['preLoad'],lvl1_data['preNoShow'],lvl1_data['autoMB'],lvl1_data['autoRamp'],
                 lvl1_data['autoPen'],lvl1_data['autoGamePiece1'],lvl1_data['autoGamePiece2'],lvl1_data['autoGamePiece3'],lvl1_data['autoGamePiece4'],
                 lvl1_data['autoScore1'],lvl1_data['autoScore2'],lvl1_data['scouterID'],lvl1_data['scoutingStatus'],lvl1_data['autoScore3'],lvl1_data['autoScore4'],lvl1_data['teleConeHigh'],
                 lvl1_data['teleCubeHigh'],lvl1_data['teleConeMid'],lvl1_data['teleCubeMid'],lvl1_data['teleConeLow'],lvl1_data['teleCubeLow'],lvl1_data['teleConeCMTY'],lvl1_data['teleCubeCMTY'],lvl1_data['teleLZPickup'],
                 lvl1_data['teleObstructed'],lvl1_data['teleWasObstructed'],lvl1_data['ramp'],lvl1_data['rampAssist'],lvl1_data['rampPos'],lvl1_data['rampStartTime'], lvl1_data['postSubsystemBroke'],
                 lvl1_data['postBrokeDown'],lvl1_data['postReorientCone'],lvl1_data['postShelfPickup'],lvl1_data['postGroundPickup'],lvl1_data['postGoodPartner'],
-                lvl1_data['matchScoutingID']))
+                lvl1_data['postTippedOver'],lvl1_data['matchScoutingID']))
             
         mysql.connection.commit()
 

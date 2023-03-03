@@ -1,4 +1,4 @@
-<table border="1" width="100%">
+<table width="100%">
     <tr>
         <td>
             <table border="0">
@@ -17,10 +17,10 @@
                 
             </table>
         </td>
-        <th style="background-color: white;font-size: x-large;" title="i LOVE harish">General Info</th>
+        <th style="background-color: white;font-size: x-large;" title="i LOVE harish">Picture</th>
         <td style="width: 33%;">
-            <button (click)="setDisplay(1)" style="width: 25%;" [ngClass]="{'selected': display == 1}" title="Robot 'specs'">Pit Data</button>
-            <button (click)="setDisplay(2)" style="width: 25%;" [ngClass]="{'selected': display == 2}">Picture</button>
+            <button (click)="setDisplay(1)" style="width: 25%;" [ngClass]="{'selected': display == 1}" title="Robot Graphic">Graphic</button>
+            <button (click)="setDisplay(2)" style="width: 25%;" [ngClass]="{'selected': display == 2}">Pit Data</button>
             <button (click)="setDisplay(3)" style="width: 25%;" [ngClass]="{'selected': display == 3}">Graphs</button>
             <button (click)="setDisplay(4)" style="width: 25%;" [ngClass]="{'selected': display == 4}" title="Words that desccribe the robot">Level 2</button>
         </td>
@@ -41,23 +41,23 @@
             </div>
         </td>
         <td style="width: 25%;" align="center">
-            <app-robot-info [selectedTeam]="team"></app-robot-info>
+            <tr>
+                <td align="center"><img [src]="roboPic" alt="robotnotfound" style="width:95%; align-items: center;"></td>
+            </tr>
+            <tr>
+                <div *ngFor="let x of apiTeamsList">
+                    <td *ngIf="x.team + '' == team + ''" align="center" style="align-items: center;">
+                        <b>{{ x.robotLength }} in. x {{ x.robotWidth }} in. x {{ x.robotHeight }}</b>
+                    </td>
+                </div>
+            </tr>
         </td>
         <td>
             <div *ngIf="display==1" align="center">
-                <app-pit-data [team]="team"></app-pit-data>
+                <app-robot-graphic [selectedTeam]="team"></app-robot-graphic>
             </div>
-            <table border="0" *ngIf="display==2" align="center">
-                <tr>
-                    <td align="center"><img [src]="roboPic" alt="robotnotfound" style="width:95%; align-items: center;"></td>
-                </tr>
-                <tr>
-                    <div *ngFor="let x of apiTeamsList">
-                        <td *ngIf="x.team + '' == team + ''" align="center" style="align-items: center;">
-                            <b>{{ x.robotLength }} in. x {{ x.robotWidth }} in. x {{ x.robotHeight }}</b>
-                        </td>
-                    </div>
-                </tr>
+            <table border="0" *ngIf="display==2" align="center"> 
+                <app-pit-data [team]="team"></app-pit-data> 
             </table>
             <table border="1" *ngIf="display==3" align="center">
                 <tr>
@@ -76,16 +76,7 @@
                 </tr>
             </table>
             <ng-container *ngIf="display==4" align="center" width="100%"><!-- word cloud stuff can go here -->
-                <table width="100%">
-                    <tr style="width: 100%;">
-                        <td style="width: 100%;"><button (click)="setNestedDisplay(1)"  [ngClass]="{'selected': nestedDisplay == 1}" title="Responses">Responses</button>
-                        <button (click)="setNestedDisplay(2)"  [ngClass]="{'selected': nestedDisplay == 2}" title="Word Cloud">Word Cloud</button></td>
-                    </tr>
-                    <tr>
-                        <app-level-two *ngIf="nestedDisplay == 1" [team]="team"></app-level-two>
-                        <app-word-cloud *ngIf="nestedDisplay == 2"></app-word-cloud>
-                    </tr>
-                </table>
+                <app-level-two [team]="team"></app-level-two>
             </ng-container>
         </td>
 

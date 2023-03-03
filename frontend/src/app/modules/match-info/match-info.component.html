@@ -19,8 +19,8 @@
     <tr>
         <ng-container *ngFor="let x of apiMatchList">
             <ng-container *ngIf="x.matchNum == match">
-                <td colspan="2">{{ x.redScore }}</td>
-                <td colspan="2">{{ x.blueScore }}</td>
+                <td colspan="2">{{ x.redTotalPts }}</td>
+                <td colspan="2">{{ x.blueTotalPts }}</td>
             </ng-container>
         </ng-container>
     </tr>
@@ -40,6 +40,43 @@
         </ng-container>
     </tr>
     <tr>
+        <th colspan="4">Auto Details</th>
+    </tr>
+    <tr>
+        <th colspan="2" style="background-color: red;color: white;">Red Alliance</th>
+        <th colspan="2" style="background-color: blue;color: white;">Blue Alliance</th>
+    </tr>
+    <ng-container *ngFor="let x of apiMatchList">
+        <ng-container *ngIf="x.matchNum == match">
+            <tr>
+                <td>Auto Move Bonus</td>
+                <td class="bg{{ x.redAutoMoveBonusPts }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueAutoMoveBonusPts }}" style="width: 16px;"></td>
+                <td>Auto Move Bonus</td>
+            </tr>
+            <tr>
+                <td>Auto Game Pieces</td>
+                <td class="bg{{ x.redAutoGamePieces }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueAutoGamePieces }}" style="width: 16px;"></td>
+                <td>Auto Game Pieces</td>
+            </tr>
+            <tr>
+                <td> Auto Game Piece Points</td>
+                <td class="bg{{ x.redAutoGamePiecePts }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueAutoGamePiecePts }}" style="width: 16px;"></td>
+                <td>Auto Game Piece Points</td>
+            </tr>
+            <tr>
+                <td> Auto Charge Station Points</td>
+                <td class="bg{{ x.redAutoCSPts }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueAutoCSPts }}" style="width: 16px;"></td>
+                <td>Auto Charge Station Points</td>
+            </tr>
+        </ng-container>
+    </ng-container>
+    <tr>
+        
+       
         <th colspan="4">Tele Score</th>
     </tr>
     <tr>
@@ -49,13 +86,36 @@
     <tr>
         <ng-container *ngFor="let x of apiMatchList">
             <ng-container *ngIf="x.matchNum == match">
-                <td colspan="2">{{ x.redTelePts - x.redEndGmPts }}</td>
-                <td colspan="2">{{ x.blueTelePts - x.blueEndGmPts }}</td>
+                <td colspan="2">{{ x.redTelePts - x.redEndgameCSPts }}</td>
+                <td colspan="2">{{ x.blueTelePts - x.blueEndgameCSPts }}</td>
             </ng-container>
         </ng-container>
     </tr>
     <tr>
-        <th colspan="4">Hangar Score</th>
+        <th colspan="4">Tele Details</th>
+    </tr>
+    <tr>
+        <th colspan="2" style="background-color: red;color: white;">Red Alliance</th>
+        <th colspan="2" style="background-color: blue;color: white;">Blue Alliance</th>
+    </tr>
+    <ng-container *ngFor="let x of apiMatchList">
+        <ng-container *ngIf="x.matchNum == match">
+            <tr>
+                <td>Tele Game Pieces</td>
+                <td class="bg{{ x.redTeleGamePieces }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueTeleGamePieces }}" style="width: 16px;"></td>
+                <td>Tele Game Pieces</td>
+            </tr>
+            <tr>
+                <td>Tele Game Piece Points</td>
+                <td class="bg{{ x.redTeleGamePiecePts }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueTeleGamePiecePts }}" style="width: 16px;"></td>
+                <td>Tele Game Piece Points</td>
+            </tr>
+        </ng-container>
+    </ng-container>
+    <tr>
+        <th colspan="4">EndGame Score</th>
     </tr>
     <tr>
         <th colspan="2" style="background-color: red;color: white;">Red Alliance</th>
@@ -64,8 +124,8 @@
     <tr>
         <ng-container *ngFor="let x of apiMatchList">
             <ng-container *ngIf="x.matchNum == match">
-                <td colspan="2">{{ x.redEndGmPts }}</td>
-                <td colspan="2">{{ x.blueEndGmPts }}</td>
+                <td colspan="2">{{ x.redEndgameCSPts }}</td>
+                <td colspan="2">{{ x.blueEndgameCSPts }}</td>
             </ng-container>
         </ng-container>
     </tr>
@@ -80,15 +140,44 @@
         <ng-container *ngIf="x.matchNum == match">
             <tr>
                 <td>Links RP</td>
-                <td class="bg{{ x.redLinksRP }}" style="width: 16px;"></td>
-                <td class="bg{{ x.blueLinksRP }}" style="width: 16px;"></td>
-                <td>Cargo RP</td>
+                <td class="bg{{ x.redLinkPts }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueLinkPts }}" style="width: 16px;"></td>
+                <td>Links RP</td>
             </tr>
             <tr>
                 <td>Charging Zone RP</td>
-                <td class="bg{{ x.redChrgZoneRP }}" style="width: 16px;"></td>
-                <td class="bg{{ x.blueChrgZoneRP }}" style="width: 16px;"></td>
-                <td>Hangar RP</td>
+                <td class="bg{{ x.redTotalCSPts }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueTotalCSPts }}" style="width: 16px;"></td>
+                <td>Charging Zone RP</td>
+            </tr>
+        </ng-container>
+    </ng-container>
+    <tr>
+        <th colspan="4">Bonuses</th>
+    </tr>
+    <tr>
+        <th colspan="2" style="background-color: red;color: white;">Red Alliance</th>
+        <th colspan="2" style="background-color: blue;color: white;">Blue Alliance</th>
+    </tr>
+    <ng-container *ngFor="let x of apiMatchList">
+        <ng-container *ngIf="x.matchNum == match">
+            <tr>
+                <td>Coopertiton Bonus</td>
+                <td class="bg{{ x.redCoopertitionBonus }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueCoopertitionBonus }}" style="width: 16px;"></td>
+                <td>Coopertition Bonus</td>
+            </tr>
+            <tr>
+                <td>Activation Bonus</td>
+                <td class="bg{{ x.redActivationBonus }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueActivationBonus }}" style="width: 16px;"></td>
+                <td>Coopertition Bonus</td>
+            </tr>
+            <tr>
+                <td>Sustainability Bonus</td>
+                <td class="bg{{ x.redSustainabilityBonus }}" style="width: 16px;"></td>
+                <td class="bg{{ x.blueSustainabilityBonus }}" style="width: 16px;"></td>
+                <td>Sustainability Bonus</td>
             </tr>
         </ng-container>
     </ng-container>
@@ -122,5 +211,19 @@
             </ng-container>
         </ng-container>
     </tr>
+    <th colspan="4">Coopertition Game Piece Count</th>
+
+<tr>
+    <th colspan="2" style="background-color: red;color: white;">Red Alliance</th>
+    <th colspan="2" style="background-color: blue;color: white;">Blue Alliance</th>
+</tr>
+<tr></tr>
+    <ng-container *ngFor="let x of apiMatchList">
+        <ng-container *ngIf="x.matchNum == match">
+            <td colspan="2">{{ x.redCoopGamePieceCount }}</td>
+            <td colspan="2">{{ x.blueCoopGamePieceCount }}</td>
+        </ng-container>
+    </ng-container>
+
 </table>
 

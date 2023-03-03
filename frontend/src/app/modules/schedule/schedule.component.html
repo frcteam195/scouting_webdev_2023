@@ -31,10 +31,10 @@
                         <td class="titleB" (click)="teamSelect( x.blue1 )" (dblclick)="teamPage( x.blue1 )"><div [ngClass]="getClass(x.blue1,x.matchNum,'B')">{{ x.blue1 }}</div></td>
                         <td class="titleB" (click)="teamSelect( x.blue2 )" (dblclick)="teamPage( x.blue2 )"><div [ngClass]="getClass(x.blue2,x.matchNum,'B')">{{ x.blue2 }}</div></td>
                         <td class="titleB" (click)="teamSelect( x.blue3 )" (dblclick)="teamPage( x.blue3 )"><div [ngClass]="getClass(x.blue3,x.matchNum,'B')">{{ x.blue3 }}</div></td>
-                        <td class="titleR" *ngIf="score==1"><div [ngClass]="getScoreClass(x.redScore,x.blueScore,'R')">{{ x.redScore }}</div></td>
+                        <td class="titleR" *ngIf="score==1"><div [ngClass]="getScoreClass(x.redTotalPts,x.blueTotalPts,'R')">{{ x.redTotalPts }}</div></td>
 <!--                         <td class="bg{{ x.RedCargoRanking }}" *ngIf="score==1"></td>
                         <td class="bg{{ x.RedHangarRanking }}" *ngIf="score==1"></td> -->
-                        <td class="titleB" *ngIf="score==1"><div [ngClass]="getScoreClass(x.redScore,x.blueScore,'B')">
+                        <td class="titleB" *ngIf="score==1"><div [ngClass]="getScoreClass(x.redTotalPts,x.blueTotalPts,'B')">
             <!--                 <svg class="top-left-dot"  title="Cargo Bonus">
                                 <circle cx="2" cy="2" r="2"/>
                             </svg> -->
@@ -43,7 +43,7 @@
                                 <circle cx="2" cy="2" r="2"/>
                             </svg> -->
                             
-                            {{ x.blueScore }}</div>
+                            {{ x.blueTotalPts }}</div>
 
                         </td>
 

@@ -122,3 +122,7 @@ builds/20220307/styles.dc3e3434cda5affc.css
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+
+# Backup Build Directory
+build/*
