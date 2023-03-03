@@ -9,25 +9,31 @@
                 <tr>
                     <td><b>Type of Drive: </b></td>
                     <td>{{ x.driveBaseType }}</td>
+                </tr>
+                <tr>
                     <td><b>Type of Motors: </b></td>
                     <td>{{ x.driveMotorType }}</td>
                 </tr>
                 <tr>
                     <td><b>Build Type: </b></td>
-                    <td>{{ x.buildType }}</td>    
+                    <td>{{ x.buildType }}</td>
+                </tr>
+                <tr>
                     <td><b>build Quality: </b></td>
                     <td>{{ x.buildQuality }}</td>
                 </tr>
                 <tr>
                     <td><b>Center Gravity: </b></td>
-                    <td>{{ x.centerGravityType }}</td> 
+                    <td>{{ x.centerGravityType }}</td>
+                </tr>
+                <tr>
                     <td><b>Electrical Quality: </b></td>
                     <td>{{ x.electricalQuality }}</td>     
                 </tr>
                 
                 <tr>
                     <td><b>Length: </b></td>
-                    <td colspan="3">{{ x.robotLength }} in.</td>
+                    <td data-testid = "robotLength" colspan="3">{{ x.robotLength }} in.</td>
                 </tr>
                 <tr>
                     <td><b>Width: </b></td>
@@ -39,13 +45,17 @@
                 </tr>
                 <tr>
                     <td><b>Intake Type: </b></td>
-                    <td>{{ x.dedicatedGroundIntake }} in.</td>
+                    <td>{{ x.dedicatedGroundIntake }} </td>
+                </tr>
+                <tr>
                     <td><b>Manipulator: </b></td>
                     <td>{{ x.manipulatorType }}</td>
                 </tr>
                 <tr>
                     <td><b>Robot Durability: </b></td>
-                    <td>{{ x.robotdurability }} in.</td>
+                    <td>{{ x.robotdurability }} </td>
+                </tr>
+                <tr>
                     <td><b>Climb: </b></td>
                     <td>{{ x.superClimbType }}</td>
                 </tr>

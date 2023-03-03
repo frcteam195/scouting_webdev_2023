@@ -153,39 +153,38 @@ export class SummaryTableComponent implements OnInit {
       }
     }
 
-      // 2/22/2023 - Commented  out until we are ready to add sort logic
-      // // Sort Logic
-      // if (this.sort == 1)  {
-      //   //Total Score Sort
-      //   this.apiSummary_filter.sort((a, b) => b.TotalScoreMedian - a.TotalScoreMedian);
-      // } else if (this.sort == 2) {
-      //   //Sort by Team Number
-      //   this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
-      // } else if (this.sort == 3) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.AutonomousMedian - a.AutonomousMedian);
-      // } else if (this.sort == 4) {
-      //   //Sort by Auto Score
-      //   this.apiSummary_filter.sort((a, b) => b.AutonomousScoreMedian - a.AutonomousScoreMedian);
-      // } else if (this.sort == 5) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.TeleLowBallsMedian - a.TeleLowBallsMedian);
-      // } else if (this.sort == 6) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.TeleHighBallsMedian - a.TeleHighBallsMedian);
-      // } else if (this.sort == 7) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.TeleTotalBallsMedian - a.TeleTotalBallsMedian);
-      // } else if (this.sort == 8) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.TeleBallScoreMedian - a.TeleBallScoreMedian);
-      // } else if (this.sort == 9) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.TotalBallsMedian - a.TotalBallsMedian);
-      // } else if (this.sort == 10) {
-      //   //Sort by Auto
-      //   this.apiSummary_filter.sort((a, b) => b.ClimbMedian - a.ClimbMedian);
-      // } 
+      // Sort Logic
+      if (this.sort == 1)  {
+        //Total Score Sort
+        //this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
+      } else if (this.sort == 2) {
+        //Sort by Team Number
+        this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
+      } else if (this.sort == 3) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.autoGamePiecesMedian - a.autoGamePiecesMedian);
+      } else if (this.sort == 4) {
+        //Sort by Auto Score
+        this.apiSummary_filter.sort((a, b) => b.autoRampMean - a.autoRampMean);
+      } else if (this.sort == 5) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.autoScoreMean - a.autoScoreMean);
+      } else if (this.sort == 6) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.rampMean - a.rampMean);
+      } else if (this.sort == 7) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.teleCommunityMean - a.teleCommunityMean);
+      } else if (this.sort == 8) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.teleLZPickupMean - a.teleLZPickupMean);
+      } else if (this.sort == 9) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.teleLowMean - a.teleLowMean);
+      } else if (this.sort == 10) {
+        //Sort by Auto
+        this.apiSummary_filter.sort((a, b) => b.teleMidMean - a.teleMidMean);
+      } 
 
     } else {
       this.apiSummary_filter = [];

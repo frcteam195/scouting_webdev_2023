@@ -2,5 +2,9 @@
   "dependencies": {
     "angular-plotly.js": "^4.0.4",
     "plotly.js-dist-min": "^2.9.0"
-  }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.31.1"
+  },
+  "scripts": {}
 }
