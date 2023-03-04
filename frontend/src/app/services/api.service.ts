@@ -12,6 +12,7 @@ import { Level2 } from '../level2';
 import { Matches } from '../matches'
 import { Teams } from '../teams'
 import { Summary } from '../summary';
+import { environment } from '../../environments/environment';
  
 
 export class Final24 {
@@ -25,40 +26,6 @@ export class Final24 {
 export interface CurrTeams {
   team: Number;
 }
-
-// export interface Summary {
-//   AutonomousFormat: number;
-//   AutonomousMean: number;
-//   AutonomousMedian: number;
-//   AutonomousScoreFormat: number;
-//   AutonomousScoreMean: number;
-//   AutonomousScoreMedian: number;
-//   ClimbFormat: number;
-//   ClimbMean: number;
-//   ClimbMedian: number;
-//   EventID: number;
-//   Summary: number;
-//   SummaryFormat: number;
-//   Team: string;
-//   TeleBallScoreFormat: number;
-//   TeleBallScoreMean: number;
-//   TeleBallScoreMedian: number;
-//   TeleHighBallsFormat: number;
-//   TeleHighBallsMean: number;
-//   TeleHighBallsMedian: number;
-//   TeleLowBallsFormat: number;
-//   TeleLowBallsMean: number;
-//   TeleLowBallsMedian: number;
-//   TeleTotalBallsFormat: number;
-//   TeleTotalBallsMean: number;
-//   TeleTotalBallsMedian: number;
-//   TotalBallsFormat: number;
-//   TotalBallsMean: number;
-//   TotalBallsMedian: number;
-//   TotalScoreFormat: number;
-//   TotalScoreMean: number;
-//   TotalScoreMedian: number;
-// }
 
 
 @Injectable({
@@ -76,7 +43,8 @@ export class ApiService {
   public CloudReplay: ReplaySubject<WordCloud[]>;
   public Level2Replay: ReplaySubject<Level2[]>;
 
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = environment.apiUrl;
+  //private apiUrl = 'http://localhost:5000';
   //private apiUrl = 'http://scouting.team195.com:5000';
   //private apiUrl = 'http://10.0.20.196:5000'; // Jetson
   //private apiUrl = 'http://192.168.1.195:23450';  // Dave's House
