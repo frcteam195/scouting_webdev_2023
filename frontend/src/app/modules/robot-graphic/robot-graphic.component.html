@@ -1,9 +1,9 @@
 <ng-container *ngFor="let x of apiAnalysis">
-<ng-container *ngIf="x.analysisTypeID == 1 && x.team == selectedTeam">
+<ng-container *ngIf="x.team == selectedTeam">
 <table>
     <tr>
         <td>
-            <table id="field" style="border: 4px solid black; border-collapse: collapse;">
+            <table id="field" style="border: 4px solid black; border-collapse: collapse;" *ngIf="x.analysisTypeID == 90">
                 <tr>
                     <td colspan="4" class="red"></td>
                     <td class="carpet"></td>
@@ -38,26 +38,63 @@
             </table>
         </td>
         <td>
-            <table id="tele" style="border: 4px solid black; border-collapse: collapse;">
+            <table id="tele" style="border: 4px solid black; border-collapse: collapse;" *ngIf="x.analysisTypeID == 91">
                 <tr>
                     <td style="vertical-align: bottom;font-size: xx-large;font-weight: bold;">|</td>
-                    <td>🟪<br>45%</td>
-                    <td>🟡<br>55%</td>
+                    <td>🟪<br>{{ x.S4V }}%</td>
+                    <td>🟡<br>{{ x.S4D }}%</td>
                 </tr>
                 <tr>
-                    <td class="grid" style="border-top: 2px dotted black;border-right: 2px dotted black;">40%</td>
+                    <td class="bg{{ x.S1F }}" style="border-top: 2px dotted black;border-right: 2px dotted black;">{{ x.S1D }}%</td>
                     <td style="vertical-align: bottom;font-size: xx-large;font-weight: bold;">|</td>
                 </tr>
                 <tr>
                     <td class="grid"></td>
-                    <td class="grid" style="border-top: 2px dotted black;border-right: 2px dotted black;">40%</td>
+                    <td class="bg{{ x.S2F }}" style="border-top: 2px dotted black;border-right: 2px dotted black;">{{ x.S2D }}%</td>
                 </tr>
                 <tr>
                     <td colspan="2" class="grid"></td>
-                    <td class="grid" style="border-top: 2px dotted black;border-right: 2px dotted black;">20%</td>
+                    <td class="bg{{ x.S3F }}" style="border-top: 2px dotted black;border-right: 2px dotted black;">{{ x.S3D }}%</td>
                 </tr>
             </table>
         </td>
+    </tr>
+    <tr>
+        <table id="auto" align="center" style="border: 4px solid black; border-collapse: collapse;">
+            <tr *ngIf="x.analysisTypeID == 81">
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tr *ngIf="x.analysisTypeID == 82">
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tr *ngIf="x.analysisTypeID == 83">
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+        </table>
     </tr>
 </table>
 </ng-container>
