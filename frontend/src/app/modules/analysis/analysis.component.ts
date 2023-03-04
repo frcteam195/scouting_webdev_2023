@@ -59,7 +59,15 @@ export class AnalysisComponent implements OnInit {
 
   ngOnInit(): void  {
     // we will initialize our form here
-    this.apiService.TypesReplay.subscribe(types => { this.apiTypes = types; });
+    this.apiService.TypesReplay.subscribe(types => { 
+      this.apiTypes = types; 
+    
+      // Sort Analysis Types by teamPicker value
+      this.apiTypes.sort((a, b) => a.teamPicker - b.teamPicker);
+    
+    });
+
+
 
     this.apiService.getDnp().then(response => this.apiDnpList = response);
 
