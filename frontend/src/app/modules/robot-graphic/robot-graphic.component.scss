@@ -6,6 +6,11 @@
     width: 60px;
     height: 60px;
 }
+#auto td{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
 .carpet{
     background-color: gray;
 }
@@ -25,6 +30,10 @@
     vertical-align: center;
     font-size: medium;
 }
+#auto table, #auto tr, #auto td{
+    border: 4px solid black; 
+    border-collapse: collapse;
+}
 .r1, .r2, .r3, .r4{
     border: 2px solid black;
 }
@@ -40,3 +49,9 @@
 .r4{
     background-color: red;
 }
+.bg0 {  background-color: #FFFFFF; }
+.bg1 {  background-color: #000000; color: #FFFFFF; }
+.bg2 {  background-color: #FF0000; color: #FFFFFF; }
+.bg3 {  background-color: #FFFF00; }
+.bg4 {  background-color: #00FF00; }
+.bg5 {  background-color: #0000FF; color: #FFFFFF; }
