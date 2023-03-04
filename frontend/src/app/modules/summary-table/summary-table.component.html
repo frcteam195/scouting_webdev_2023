@@ -1,7 +1,7 @@
 <div>
     <table border="1" class="cea_table">
         <tr><th colspan="10">{{ title }}</th>
-        <th><button (click)="changeSort(sortType)">{{ sortType == 1 ? 'Mean' : 'Median' }}</button></th>
+        <th><button (click)="changeSort(sortType)">{{ sortType == 1 ? 'Median' : 'Mean' }}</button></th>
     </tr>
         
         <tr>
@@ -11,9 +11,10 @@
             <th><div [ngClass]="{'sorted': this.sort==5}"><a (click)="localSort(5)">AS</a></div></th>
             <th><div [ngClass]="{'sorted': this.sort==6}"><a (click)="localSort(6)">Ramp</a></div></th>
             <th><div [ngClass]="{'sorted': this.sort==7}"><a (click)="localSort(7)">TC</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==8}"><a (click)="localSort(8)">TLZ</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==9}"><a (click)="localSort(9)">TL</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">TM</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==8}"><a (click)="localSort(8)">TH</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==9}"><a (click)="localSort(9)">TLZ</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">TL</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==11}"><a (click)="localSort(11)">TM</a></div></th>
             <th><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">TT</a></div></th>
         </tr>
         <tr *ngFor="let a of apiSummary_filter">
