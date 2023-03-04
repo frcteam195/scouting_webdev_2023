@@ -54,10 +54,10 @@ export class SummaryTableComponent implements OnInit {
   changeSort(view: number) {
     if (view == 1) {
       this.sortType = 2;
-      this.title = "Summary Table Mean"
+      this.title = "Summary Table Median"
     } else {
       this.sortType = 1;
-      this.title = "Summary Table Median"
+      this.title = "Summary Table Mean"
     }
     this.regenerateFilter();
   }
@@ -154,44 +154,80 @@ export class SummaryTableComponent implements OnInit {
     }
 
       // Sort Logic
-      if (this.sort == 1)  {
-        //Total Score Sort
-        //this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
-      } else if (this.sort == 2) {
-        //Sort by Team Number
-        this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
-      } else if (this.sort == 3) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.autoGamePiecesMedian - a.autoGamePiecesMedian);
-      } else if (this.sort == 4) {
-        //Sort by Auto Score
-        this.apiSummary_filter.sort((a, b) => b.autoRampMean - a.autoRampMean);
-      } else if (this.sort == 5) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.autoScoreMean - a.autoScoreMean);
-      } else if (this.sort == 6) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.rampMean - a.rampMean);
-      } else if (this.sort == 7) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.teleCommunityMean - a.teleCommunityMean);
-      } else if (this.sort == 8) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.teleLZPickupMean - a.teleLZPickupMean);
-      } else if (this.sort == 9) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.teleLowMean - a.teleLowMean);
-      } else if (this.sort == 10) {
-        //Sort by Auto
-        this.apiSummary_filter.sort((a, b) => b.teleMidMean - a.teleMidMean);
-      } 
-
-    } else {
+      if (this.sortType == 1) {
+        if (this.sort == 2) {
+          //Sort by Team Number
+          this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
+        } else if (this.sort == 3) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.autoGamePiecesMean - a.autoGamePiecesMean);
+        } else if (this.sort == 4) {
+          //Sort by Auto Score
+          this.apiSummary_filter.sort((a, b) => b.autoRampMean - a.autoRampMean);
+        } else if (this.sort == 5) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.autoScoreMean - a.autoScoreMean);
+        } else if (this.sort == 6) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.rampMean - a.rampMean);
+        } else if (this.sort == 7) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleCommunityMean - a.teleCommunityMean);
+        } else if (this.sort == 8) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleHighMean - a.teleHighMean);
+        } else if (this.sort == 9) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleLZPickupMean - a.teleLZPickupMean);
+        } else if (this.sort == 10) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleLowMean - a.teleLowMean);
+        } else if (this.sort == 11) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleMidMean - a.teleMidMean);
+        } else if (this.sort == 1)  {
+          //Total Score Sort
+          //this.apiSummary_filter.sort((a, b) => b.totalScoreMean - a.totalScoreMean);
+        }
+      } else if(this.sortType == 2) {
+        if (this.sort == 2) {
+          //Sort by Team Number
+          this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
+        } else if (this.sort == 3) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.autoGamePiecesMedian - a.autoGamePiecesMedian);
+        } else if (this.sort == 4) {
+          //Sort by Auto Score
+          this.apiSummary_filter.sort((a, b) => b.autoRampMedian - a.autoRampMedian);
+        } else if (this.sort == 5) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.autoScoreMedian - a.autoScoreMedian);
+        } else if (this.sort == 6) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.rampMedian - a.rampMedian);
+        } else if (this.sort == 7) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleCommunityMedian - a.teleCommunityMedian);
+        } else if (this.sort == 8) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleHighMedian - a.teleHighMedian);
+        } else if (this.sort == 9) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleLZPickupMedian - a.teleLZPickupMedian);
+        } else if (this.sort == 10) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleLowMedian - a.teleLowMedian);
+        } else if (this.sort == 11) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.teleMidMedian - a.teleMidMedian);
+        } else if (this.sort == 1)  {
+          //Total Score Sort
+          //this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
+        }
+      }
       this.apiSummary_filter = [];
     }
-    
   } 
-
   
 ngOnInit(): void {
   }
