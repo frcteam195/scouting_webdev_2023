@@ -6,13 +6,22 @@ from flask_cors import CORS
 import MySQLdb.cursors
 from json import dumps
 import configparser
+import os
+from flask import redirect, url_for, flash
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/media'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+app=Flask(__name__)
+CORS(app)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-app=Flask(__name__)
-CORS(app)
+
 
 app.secret_key = 'secret key'
 
@@ -613,7 +622,7 @@ def post_level2sccouting():
             #cursor.execute(query1)
             cursor.execute('UPDATE matchScoutingL2 SET speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
                 'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, goodOffBot = %s, goodDefBot = %s, '
-                'scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s preNoShow = %s '
+                'scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s, preNoShow = %s '
                 'where matchScoutingL2ID = %s',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
                 lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
                 lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
@@ -644,14 +653,12 @@ def post_level1sccouting():
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
             #cursor.execute(query1)
-            cursor.execute('UPDATE matchScouting SET preStartPos = %s, preLoad = %s, preNoShow = %s, autoMB = %s, autoRamp = %s, '
-                'autoPen = %s, autoGamePiece1 = %s, autoGamePiece2 = %s, autoGamePiece3= %s, autoGamePiece4 = %s, '
+            cursor.execute('UPDATE matchScouting SET preStartPos = %s, preLoad = %s, preNoShow = %s, autoMB = %s, autoRamp = %s, autoPen = %s, '
                 'autoScore1 = %s, autoScore2 = %s, scouterID = %s, scoutingStatus = %s, autoScore3 = %s, autoScore4 = %s, teleConeHigh = %s, '
                 'teleCubeHigh = %s, teleConeMid = %s, teleCubeMid = %s, teleConeLow = %s, teleCubeLow = %s, teleConeCMTY = %s, teleCubeCMTY = %s, teleLZPickup = %s,'
                 'teleObstructed = %s, teleWasObstructed = %s, ramp = %s, rampAssist = %s, rampPos = %s, rampStartTime = %s, postSubsystemBroke = %s, '
                 'postBrokeDown = %s, postReorientCone = %s, postShelfPickup = %s, postGroundPickup = %s, postGoodPartner = %s, postTippedOver = %s '
-                'where matchScoutingID = %s',(lvl1_data['preStartPos'],lvl1_data['preLoad'],lvl1_data['preNoShow'],lvl1_data['autoMB'],lvl1_data['autoRamp'],
-                lvl1_data['autoPen'],lvl1_data['autoGamePiece1'],lvl1_data['autoGamePiece2'],lvl1_data['autoGamePiece3'],lvl1_data['autoGamePiece4'],
+                'where matchScoutingID = %s',(lvl1_data['preStartPos'],lvl1_data['preLoad'],lvl1_data['preNoShow'],lvl1_data['autoMB'],lvl1_data['autoRamp'],lvl1_data['autoPen'],
                 lvl1_data['autoScore1'],lvl1_data['autoScore2'],lvl1_data['scouterID'],lvl1_data['scoutingStatus'],lvl1_data['autoScore3'],lvl1_data['autoScore4'],lvl1_data['teleConeHigh'],
                 lvl1_data['teleCubeHigh'],lvl1_data['teleConeMid'],lvl1_data['teleCubeMid'],lvl1_data['teleConeLow'],lvl1_data['teleCubeLow'],lvl1_data['teleConeCMTY'],lvl1_data['teleCubeCMTY'],lvl1_data['teleLZPickup'],
                 lvl1_data['teleObstructed'],lvl1_data['teleWasObstructed'],lvl1_data['ramp'],lvl1_data['rampAssist'],lvl1_data['rampPos'],lvl1_data['rampStartTime'], lvl1_data['postSubsystemBroke'],
@@ -747,6 +754,80 @@ def get_final24():
         mimetype='application/json'
     )
     return response
+
+
+# Validate User Credentials
+@app.route("/access/<id>/<password>", methods =['GET', 'POST'])
+def get_user(id,password):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    # if allianceStationID is not None:
+    cursor.execute("select * from users "
+            "where userName = '" + id + "' "
+            "and userPass = '" + password + "';" )
+    data = cursor.fetchall()	
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+
+
+
+
+
+def get_currteam():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT t.team "
+                "FROM teams t, events e "
+                "WHERE t.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
+                "order by cast(t.team as int);")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            # return redirect(request.url)
+            return redirect(request.url)            
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # return redirect(url_for('download_file', name=filename))
+            return redirect(request.url)  
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+    '''
 
 
 
