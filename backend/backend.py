@@ -757,25 +757,26 @@ def get_final24():
 
 
 # Validate User Credentials
-@app.route("/access/<id>/<password>", methods =['GET', 'POST'])
-def get_user(id,password):
+@app.route("/access", methods =['GET'])
+def get_user():
+    print("Validating Login")
+
+    userName = request.args.get('userName', default = '*', type = str)
+    # userName = request.args.get('userName', default = '*', type = str)
+
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    # if allianceStationID is not None:
+
     cursor.execute("select * from users "
-            "where userName = '" + id + "' "
-            "and userPass = '" + password + "';" )
+            "where userName = '" + userName + "'; ")
+            # "and userPass = '" + userPass + "';" )
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
         status=200,
         mimetype='application/json'
     )
+    print(response)
     return response
-
-
-
-
-
 
 
 def get_currteam():
