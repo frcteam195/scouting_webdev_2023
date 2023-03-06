@@ -44,13 +44,14 @@ export class RobotComponent implements OnInit {
   }
   //code for getting picture when eventually implemented to teams table
   getRoboPic(ID: string) {
-    for (let x of this.apiTeamsList){
+    /* for (let x of this.apiTeamsList){
       console.log('x.Team')
       if (x.team + '' == ID && x.imageLink != null) {
         return x.imageLink;
       }
     }
-    return "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png";
+    return "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png"; */
+    return "http://scouting.team195.com/images/team"+this.team+".png";
   }
 
   setDisplay(display: number) {
