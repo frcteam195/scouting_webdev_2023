@@ -762,13 +762,17 @@ def get_user():
     print("Validating Login")
 
     userName = request.args.get('userName', default = '*', type = str)
+    userPass = request.args.get('userPass', default = '*', type = str)
     # userName = request.args.get('userName', default = '*', type = str)
+
+    print("userName: [" + userName + "]")
+    print("userPass: [" + userPass + "]")
 
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
-    cursor.execute("select * from users "
-            "where userName = '" + userName + "'; ")
-            # "and userPass = '" + userPass + "';" )
+    cursor.execute("select analysisAccess, scoutingAccess from users "
+            "where userName = '" + userName + "' "
+            "and userPass = '" + userPass + "';" )
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
