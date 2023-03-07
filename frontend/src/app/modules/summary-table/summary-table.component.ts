@@ -152,9 +152,10 @@ export class SummaryTableComponent implements OnInit {
           this.apiSummary_filter.push(summ);
       }
     }
-
+    console.log(this.sortType);
       // Sort Logic
       if (this.sortType == 1) {
+        console.log(this.sort);
         if (this.sort == 2) {
           //Sort by Team Number
           this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
@@ -186,8 +187,9 @@ export class SummaryTableComponent implements OnInit {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.teleMidMean - a.teleMidMean);
         } else if (this.sort == 1)  {
+          console.log("Harry Pretzel  Coffee");
           //Total Score Sort
-          //this.apiSummary_filter.sort((a, b) => b.totalScoreMean - a.totalScoreMean);
+          this.apiSummary_filter.sort((a, b) => b.teleTotalMean - a.teleTotalMean);
         }
       } else if(this.sortType == 2) {
         if (this.sort == 2) {
@@ -222,14 +224,12 @@ export class SummaryTableComponent implements OnInit {
           this.apiSummary_filter.sort((a, b) => b.teleMidMedian - a.teleMidMedian);
         } else if (this.sort == 1)  {
           //Total Score Sort
-          //this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
+          this.apiSummary_filter.sort((a, b) => b.teleTotalMedian - a.teleTotalMedian);
         }
       }
       this.apiSummary_filter = [];
     }
   } 
-  
 ngOnInit(): void {
   }
-
 }
