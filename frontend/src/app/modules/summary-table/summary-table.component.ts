@@ -225,11 +225,13 @@ export class SummaryTableComponent implements OnInit {
           //this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
         }
       }
-      this.apiSummary_filter = [];
-    }
-  } 
-  
-ngOnInit(): void {
+
+    } else {
+    this.apiSummary_filter = [];
   }
+}
+  
+  ngOnInit(): void {
+    }
 
 }
