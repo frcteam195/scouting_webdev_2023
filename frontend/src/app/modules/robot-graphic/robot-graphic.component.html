@@ -14,25 +14,26 @@
                 </tr>
                 <tr>
                     <td rowspan="4" class="blue"></td>
-                    <td class="r2">{{ x.M1D }}</td>
+                    <td class="bg{{ x.S1F }}">{{ x.S1D }}<br>%</td>
                     <td colspan="2" class="carpet"></td>
-                    <td style="background-color: purple;"></td>
+                    <td class="carpet">🟪</td>
                 </tr>
                 <tr>
-                    <td class="r4">10%</td>
-                    <td class="blue" rowspan="2" style="color: white;">55%</td>
+                    <td class="bg{{ x.S2F }}">{{ x.S2D }}<br>%</td>
+                    <td class="blue" rowspan="2" style="color: white;">E%:<br>{{ x.S1V }}<br><br>D%:<br>{{ x.S2V }}</td>
                     <td class="carpet"></td>
-                    <td style="background-color: yellow;"></td>
+                    <td class="carpet">🟡</td>
                 </tr>
                 <tr>
-                    <td class="r1">40%</td>
+                    <td class="bg{{ x.S3F }}">{{ x.S3D }}<br>%</td>
                     <td class="carpet"></td>
-                    <td style="background-color: yellow;"></td>
+                    <td class="carpet">🟡</td>
                 </tr>
                 <tr>
-                    <td class="r3">20%</td>
-                    <td colspan="2" class="carpet"></td>
-                    <td style="background-color: purple;"></td>
+                    <td class="bg{{ x.S4F }}">{{ x.S4D }}<br>%</td>
+                    <td class="carpet">P%:<br>{{ x.S3V }}</td>
+                    <td class="carpet"></td>
+                    <td class="carpet">🟪</td>
                 </tr>
                 
             </table>
