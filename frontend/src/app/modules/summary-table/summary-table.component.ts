@@ -227,9 +227,13 @@ export class SummaryTableComponent implements OnInit {
           this.apiSummary_filter.sort((a, b) => b.teleTotalMedian - a.teleTotalMedian);
         }
       }
-      this.apiSummary_filter = [];
-    }
-  } 
-ngOnInit(): void {
+
+    } else {
+    this.apiSummary_filter = [];
   }
+}
+  
+  ngOnInit(): void {
+    }
+
 }

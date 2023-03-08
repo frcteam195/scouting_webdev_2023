@@ -2,9 +2,13 @@
     <tr>
         <div *ngFor="let x of apiTeamsList">
             <div *ngIf="x.team + '' == team">   
-                <tr>    
+                <tr>
                     <td><b>Scouting Status</b></td>
-                    <td colspan="3">{{ x.scoutingStatus }}</td>
+                    <div *ngFor="let s of status">
+                        <div *ngIf="s.pitStatusID == x.scoutingStatus">      
+                    <td class="bg{{ x.scoutingStatus }}">{{s.pitStatus}}</td>
+                    </div>
+                </div>
                 </tr>
                 <tr>
                     <td><b>Type of Drive: </b></td>
