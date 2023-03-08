@@ -13,6 +13,7 @@ export class RobotGraphicComponent implements OnInit {
   apiAnalysis: CEA[] = [];
   title: String;
   titleShow = true;
+  color: String = "#FF0000";
 
   constructor(private apiService: ApiService) {
     this.apiAnalysis = [];
