@@ -1,7 +1,7 @@
 <div>
     <table border="1" class="cea_table">
-        <tr><th colspan="10">{{ title }}</th>
-        <th><button (click)="changeSort(sortType)">{{ sortType == 1 ? 'Median' : 'Mean' }}</button></th>
+        <tr><th colspan="11">{{ title }}</th>
+        <th><button (click)="changeSort(sortType)">{{ sortType == 1 ? 'Mean' : 'Median' }}</button></th>
     </tr>
         <tr>
             <th><div [ngClass]="{'sorted': this.sort==2}"><a (click)="localSort(2)">Team</a></div></th>
@@ -15,6 +15,7 @@
             <th><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">TL</a></div></th>
             <th><div [ngClass]="{'sorted': this.sort==11}"><a (click)="localSort(11)">TM</a></div></th>
             <th><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">TT</a></div></th>
+            <th><div [ngClass]="{'sorted': this.sort==12}"><a (click)="localSort(12)">TS</a></div></th>
         </tr>
         <tr *ngFor="let a of apiSummary_filter">
             <td align="center"><a (click)="teamSelect( a.team )" (dblclick)="teamPage( a.team )"><div [ngClass]="{'sorted': a.team==this.team}">{{ a.team }}</div></a></td>
@@ -28,6 +29,7 @@
             <td align="center" class="bg{{ a?.teleLowFormat }}">{{ sortType == 2 ? a.teleLowMean : a.teleLowMedian }}</td>
             <td align="center" class="bg{{ a?.teleMidFormat }}">{{ sortType == 2 ? a.teleMidMean : a.teleMidMedian }}</td>
             <td align="center" class="bg{{ a?.teleTotalFormat }}">{{ sortType == 2 ? a.teleTotalMean : a.teleTotalMedian }}</td>
+            <td align="center" class="bg{{ a?.totalScoreFormat }}">{{ sortType == 2 ? a.totalScoreMean : a.totalScoreMedian }}</td>
         </tr>
     </table>
     <table border="0">

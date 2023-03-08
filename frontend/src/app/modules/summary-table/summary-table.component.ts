@@ -54,10 +54,10 @@ export class SummaryTableComponent implements OnInit {
   changeSort(view: number) {
     if (view == 1) {
       this.sortType = 2;
-      this.title = "Summary Table Median"
+      this.title = "Summary Table Mean"
     } else {
       this.sortType = 1;
-      this.title = "Summary Table Mean"
+      this.title = "Summary Table Median"
     }
     this.regenerateFilter();
   }
@@ -154,7 +154,7 @@ export class SummaryTableComponent implements OnInit {
     }
     console.log(this.sortType);
       // Sort Logic
-      if (this.sortType == 1) {
+      if (this.sortType == 2) {
         console.log(this.sort);
         if (this.sort == 2) {
           //Sort by Team Number
@@ -186,12 +186,14 @@ export class SummaryTableComponent implements OnInit {
         } else if (this.sort == 11) {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.teleMidMean - a.teleMidMean);
+        } else if (this.sort == 12) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.totalScoreMean - a.totalScoreMean);
         } else if (this.sort == 1)  {
-          console.log("Harry Pretzel  Coffee");
           //Total Score Sort
           this.apiSummary_filter.sort((a, b) => b.teleTotalMean - a.teleTotalMean);
         }
-      } else if(this.sortType == 2) {
+      } else if(this.sortType == 1) {
         if (this.sort == 2) {
           //Sort by Team Number
           this.apiSummary_filter.sort((a, b) => Number(a.team) - Number(b.team));
@@ -222,6 +224,9 @@ export class SummaryTableComponent implements OnInit {
         } else if (this.sort == 11) {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.teleMidMedian - a.teleMidMedian);
+        } else if (this.sort == 12) {
+          //Sort by Auto
+          this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
         } else if (this.sort == 1)  {
           //Total Score Sort
           this.apiSummary_filter.sort((a, b) => b.teleTotalMedian - a.teleTotalMedian);
