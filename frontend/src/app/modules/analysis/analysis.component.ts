@@ -198,20 +198,23 @@ export class AnalysisComponent implements OnInit {
     this.typeGroup = type;
 
     if (type == 1) {
-      this.analysis1 = 10;
-      this.analysis2 = 11;
+      this.analysis1 = 2;
+      this.analysis2 = 4;
     } else if (type == 2) {
-      this.analysis1 = 20;
-      this.analysis2 = 22;
+      this.analysis1 = 9;
+      this.analysis2 = 10;
     } else if (type == 3) {
-      this.analysis1 = 21;
-      this.analysis2 = 22;
+      this.analysis1 = 11;
+      this.analysis2 = 8;
     } else if (type == 4) {
-      this.analysis1 = 60;
-      this.analysis2 = 61;
+      this.analysis1 = 8;
+      this.analysis2 = 15;
     } else if (type == 5) {
-      this.analysis1 = 61;
-      this.analysis2 = 30;
+      this.analysis1 = 11;
+      this.analysis2 = 12;
+    } else if (type == 6) {
+      this.analysis1 = 8;
+      this.analysis2 = 13;
     } else {
        this.analysis1 = 10;
        this.analysis2 = 11;
