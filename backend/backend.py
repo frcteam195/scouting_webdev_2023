@@ -315,11 +315,11 @@ def get_analysis(eventID):
                 "WHERE cea.eventID = " + eventID + " "
                 "AND cea.analysisTypeID = at.analysisTypeID order by cea.analysisTypeID;")
     else:
-        cursor.execute("SELECT cea.*, at.AnalysisType "
+        cursor.execute("SELECT cea.*, at.analysisType "
                 "FROM CEanalysis cea, analysisTypes at, events e "
                 "WHERE cea.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND cea.AnalysisTypeID = at.analysisTypeID order by analysisTypeID;")
+                "AND cea.analysisTypeID = at.analysisTypeID order by analysisTypeID;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
