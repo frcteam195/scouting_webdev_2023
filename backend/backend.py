@@ -282,7 +282,7 @@ def get_matchscouting(allianceStationID):
     if allianceStationID is not None:
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScouting ms, matches m, events e, teams t "
-                "where ms.matchID = m.matchID "
+                "where ms.matchID = 3 "
                 "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
@@ -290,7 +290,7 @@ def get_matchscouting(allianceStationID):
     else: 
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScouting ms, matches m, events e, teams t "
-                "where ms.matchID = m.matchID "
+                "where ms.matchID = 3 "
                 "AND e.currentEvent = 1 "
                 "AND m.eventID = e.eventID "
                 "AND t.eventID = ms.eventID "

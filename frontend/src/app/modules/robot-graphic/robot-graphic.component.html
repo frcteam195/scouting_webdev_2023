@@ -2,8 +2,8 @@
 <ng-container *ngIf="x.team == selectedTeam">
 <table>
     <tr>
-        <td>
-            <table id="field" style="border: 4px solid black; border-collapse: collapse;" *ngIf="x.analysisTypeID == 90">
+        <td *ngIf="x.analysisTypeID == 90">
+            <table id="field" style="border: 4px solid black; border-collapse: collapse;" >
                 <tr>
                     <td colspan="4" class="red"></td>
                     <td class="carpet"></td>
@@ -38,8 +38,8 @@
                 
             </table>
         </td>
-        <td>
-            <table id="tele" style="border: 4px solid black; border-collapse: collapse;" *ngIf="x.analysisTypeID == 91">
+        <td *ngIf="x.analysisTypeID == 91">
+            <table id="tele" style="border: 4px solid black; border-collapse: collapse;">
                 <tr>
                     <td style="vertical-align: bottom;font-size: xx-large;font-weight: bold;">|</td>
                     <td>🟪<br>{{ x.S4V }}%</td>
@@ -63,37 +63,40 @@
     <tr>
         <table id="auto" align="center" style="border: 4px solid black; border-collapse: collapse;">
             <tr *ngIf="x.analysisTypeID == 81">
-                <td>{{ x.M1D }}</td>
-                <td>{{ x.M2D }}</td>
-                <td>{{ x.M3D }}</td>
-                <td>{{ x.M4D }}</td>
-                <td>{{ x.M5D }}</td>
-                <td>{{ x.M6D }}</td>
-                <td>{{ x.M7D }}</td>
-                <td>{{ x.M8D }}</td>
-                <td>{{ x.M9D }}</td>
+                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}</td>
+                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}</td>
+                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}</td>
+                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}</td>
+                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}</td>
+                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}</td>
+                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}</td>
+                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}</td>
+                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}</td>
+
             </tr>
             <tr *ngIf="x.analysisTypeID == 82">
-                <td>{{ x.M1D }}</td>
-                <td>{{ x.M2D }}</td>
-                <td>{{ x.M3D }}</td>
-                <td>{{ x.M4D }}</td>
-                <td>{{ x.M5D }}</td>
-                <td>{{ x.M6D }}</td>
-                <td>{{ x.M7D }}</td>
-                <td>{{ x.M8D }}</td>
-                <td>{{ x.M9D }}</td>
+                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}</td>
+                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}</td>
+                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}</td>
+                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}</td>
+                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}</td>
+                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}</td>
+                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}</td>
+                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}</td>
+                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}</td>
+
             </tr>
             <tr *ngIf="x.analysisTypeID == 83">
-                <td>{{ x.M1D }}</td>
-                <td>{{ x.M2D }}</td>
-                <td>{{ x.M3D }}</td>
-                <td>{{ x.M4D }}</td>
-                <td>{{ x.M5D }}</td>
-                <td>{{ x.M6D }}</td>
-                <td>{{ x.M7D }}</td>
-                <td>{{ x.M8D }}</td>
-                <td>{{ x.M9D }}</td>
+                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}</td>
+                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}</td>
+                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}</td>
+                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}</td>
+                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}</td>
+                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}</td>
+                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}</td>
+                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}</td>
+                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}</td>
+
             </tr>
         </table>
     </tr>
