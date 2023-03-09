@@ -31,6 +31,9 @@ export class Summary {
     teleTotalMean: number;
     teleTotalMedian: number;
     teleTotalFormat: number;
+    totalScoreMean: number;
+    totalScoreMedian: number;
+    totalScoreFormat: number;
   
   constructor(
     autoGamePiecesMean: number,
@@ -65,6 +68,9 @@ export class Summary {
     teleTotalMean: number,
     teleTotalMedian: number,
     teleTotalFormat: number,
+    totalScoreMean: number,
+    totalScoreMedian: number,
+    totalScoreFormat: number,
     ){
         this.autoGamePiecesMean = autoGamePiecesMean;
         this.autoGamePiecesMedian = autoGamePiecesMedian;
@@ -98,4 +104,7 @@ export class Summary {
         this.teleTotalMean = teleTotalMean;
         this.teleTotalMedian = teleTotalMedian;
         this.teleTotalFormat = teleTotalFormat;
+        this.totalScoreMean = totalScoreMean;
+        this.totalScoreMedian = totalScoreMedian;
+        this.totalScoreFormat = totalScoreFormat;
     }}
