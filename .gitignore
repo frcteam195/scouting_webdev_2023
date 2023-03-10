@@ -126,3 +126,4 @@ builds/20220307/styles.dc3e3434cda5affc.css
 
 # Backup Build Directory
 build/*
+backend/media/*
