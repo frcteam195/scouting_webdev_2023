@@ -282,18 +282,20 @@ def get_matchscouting(allianceStationID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if allianceStationID is not None:
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
-                "from matchScouting ms, matches m, events e, teams t "
-                "where ms.matchID = 3 "
+                "FROM matchScouting ms, matches m, events e, teams t "
+                "WHERE ms.matchID = m.matchID "
+                "AND m.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;" )
+                "AND t.team = ms.team "
+                "AND ms.scoutingStatus is NULL "
+                "AND allianceStationID =" +allianceStationID+ ";")
     else: 
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
-                "from matchScouting ms, matches m, events e, teams t "
-                "where ms.matchID = 3 "
-                "AND e.currentEvent = 1 "
+                "FROM matchScouting ms, matches m, events e, teams t "
+                "WHERE ms.matchID = m.matchID "
                 "AND m.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team "
                 "AND ms.scoutingStatus = 2;")
@@ -431,19 +433,22 @@ def get_matchscoutingl2(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
+                "AND m.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;" )
+                "AND t.team = ms.team " 
+                "AND ms.scoutingStatus is NULL "
+                "and allianceStationID =" +allianceStationID+ ";")
     else: 
        
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
+                "AND m.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID = 1 "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;")
+                "AND t.team = ms.team "
+                "AND ms.scoutingStatus is NULL;")
     
     data = cursor.fetchall()
     response = app.response_class(
@@ -452,8 +457,6 @@ def get_matchscoutingl2(allianceStationID):
         mimetype='application/json'
     )
     return response
-
-
 
 
 # Get Analysis Type Data
@@ -472,16 +475,25 @@ def get_types():
 
 
 # Get level 2 Data
-@app.route("/level2", methods =['GET', 'POST'])
-def get_level2():
+@app.route("/level2/", methods =['GET', 'POST'], defaults = {'eventID': None})
+@app.route("/level2/<eventID>")
+def get_level2(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
-                   "from matchScoutingL2 a, events e "
-                   "where a.eventID=e.eventID "
-                   "and e.currentEvent = 1 "
-                   "and a.scoutingStatus = 1 "
-                   "order by matchNum;")
-    data = cursor.fetchall()	
+    if eventID is not None:   
+        cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+                "from matchScoutingL2 a, events e "
+                "where a.eventID=e.eventID "
+                "and e.eventID = " + eventID + " "
+                "and a.scoutingStatus = 1 "
+                "order by matchNum;")
+    else: 
+        cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+                "from matchScoutingL2 a, events e "
+                "where a.eventID=e.eventID "
+                "and e.currentEvent = 1 "
+                "and a.scoutingStatus = 1 "
+                "order by matchNum;")
+    data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
         status=200,
