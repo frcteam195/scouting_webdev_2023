@@ -10,7 +10,7 @@ import os
 from flask import redirect, url_for, flash
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/media'
+UPLOAD_FOLDER = 'media'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app=Flask(__name__)
@@ -36,7 +36,8 @@ mysql = MySQL(app)
 
 @app.route("/")
 def hello():
-    return "Hello Worlds!"
+    # return "Hello Worlds!"
+    return redirect("https://www.team195.com")
 
 @app.route("/harish/")
 def hello2():
@@ -281,18 +282,20 @@ def get_matchscouting(allianceStationID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if allianceStationID is not None:
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
-                "from matchScouting ms, matches m, events e, teams t "
-                "where ms.matchID = 3 "
+                "FROM matchScouting ms, matches m, events e, teams t "
+                "WHERE ms.matchID = m.matchID "
+                "AND m.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;" )
+                "AND t.team = ms.team "
+                "AND ms.scoutingStatus is NULL "
+                "AND allianceStationID =" +allianceStationID+ ";")
     else: 
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
-                "from matchScouting ms, matches m, events e, teams t "
-                "where ms.matchID = 3 "
-                "AND e.currentEvent = 1 "
+                "FROM matchScouting ms, matches m, events e, teams t "
+                "WHERE ms.matchID = m.matchID "
                 "AND m.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
                 "AND t.eventID = ms.eventID "
                 "AND t.team = ms.team "
                 "AND ms.scoutingStatus = 2;")
@@ -430,19 +433,22 @@ def get_matchscoutingl2(allianceStationID):
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
+                "AND m.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID =" +allianceStationID+ " "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;" )
+                "AND t.team = ms.team " 
+                "AND ms.scoutingStatus is NULL "
+                "and allianceStationID =" +allianceStationID+ ";")
     else: 
        
         cursor.execute("select ms.*, m.blue1, m.blue2, m.blue3, m.red1, m.red2, m.red3, t.teamName "
                 "from matchScoutingL2 ms, matches m, events e, teams t "
                 "where ms.matchID = m.matchID "
+                "AND m.eventID = e.eventID "
                 "AND e.currentEvent = 1 "
-                "AND m.eventID = e.eventID and allianceStationID = 1 "
                 "AND t.eventID = ms.eventID "
-                "AND t.team = ms.team;")
+                "AND t.team = ms.team "
+                "AND ms.scoutingStatus is NULL;")
     
     data = cursor.fetchall()
     response = app.response_class(
@@ -451,8 +457,6 @@ def get_matchscoutingl2(allianceStationID):
         mimetype='application/json'
     )
     return response
-
-
 
 
 # Get Analysis Type Data
@@ -471,16 +475,25 @@ def get_types():
 
 
 # Get level 2 Data
-@app.route("/level2", methods =['GET', 'POST'])
-def get_level2():
+@app.route("/level2/", methods =['GET', 'POST'], defaults = {'eventID': None})
+@app.route("/level2/<eventID>")
+def get_level2(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
-                   "from matchScoutingL2 a, events e "
-                   "where a.eventID=e.eventID "
-                   "and e.currentEvent = 1 "
-                   "and a.scoutingStatus = 1 "
-                   "order by matchNum;")
-    data = cursor.fetchall()	
+    if eventID is not None:   
+        cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+                "from matchScoutingL2 a, events e "
+                "where a.eventID=e.eventID "
+                "and e.eventID = " + eventID + " "
+                "and a.scoutingStatus = 1 "
+                "order by matchNum;")
+    else: 
+        cursor.execute("select a.matchNum, a.team, a.commentOff, a.commentDef, a.goodOffBot, a.goodDefBot "
+                "from matchScoutingL2 a, events e "
+                "where a.eventID=e.eventID "
+                "and e.currentEvent = 1 "
+                "and a.scoutingStatus = 1 "
+                "order by matchNum;")
+    data = cursor.fetchall()
     response = app.response_class(
         response=json.dumps(data),
         status=200,
@@ -801,38 +814,24 @@ def get_currteam():
 
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@app.route('/upload/<team>', methods=['GET','POST'])
+def upload_file(team):
 
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            # return redirect(request.url)
-            return redirect(request.url)            
-        file = request.files['file']
-        # If the user does not select a file, the browser submits an
-        # empty file without a filename.
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # return redirect(url_for('download_file', name=filename))
-            return redirect(request.url)  
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+    file = request.files['robotImage']
+
+    print("File Upload: [" + team + "] [" + str(file) +"]")
+
+    # print("Old File: " + file.filename)
+
+    filepart = os.path.splitext(file.filename)
+    extension = filepart[1]
+    filename = "frc" + team + extension
+
+    # print("New File: " + filename)
+
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        
+    return '0'
 
 
 

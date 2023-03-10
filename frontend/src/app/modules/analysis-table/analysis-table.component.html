@@ -22,7 +22,7 @@
         <th>R</th>
         <!-- <th>S</th> -->
     </tr>
-    <tr *ngFor="let a of apiAnalysis_filter | slice:0:2">
+    <tr *ngFor="let a of apiAnalysis_filter | slice:0:3">
         <ng-container *ngFor="let x of apiTypes">
             <td align="center" *ngIf=" x.analysisTypeID == a.analysisTypeID" title="{{ x.summary }}">{{ x.analysisType }}</td>
         </ng-container>
@@ -48,7 +48,7 @@
     <tr *ngIf="!titleShow">
         <th colspan="16">&nbsp;</th>
     </tr>
-    <tr *ngFor="let a of apiAnalysis_filter | slice:2:6">
+    <tr *ngFor="let a of apiAnalysis_filter | slice:3:9">
         <ng-container *ngFor="let x of apiTypes">
             <td align="center" *ngIf=" x.analysisTypeID == a.analysisTypeID" title="{{ x.summary }}">{{ x.analysisType }}</td>
         </ng-container>
@@ -73,7 +73,7 @@
     <tr *ngIf="!titleShow">
         <th colspan="16">&nbsp;</th>
     </tr>
-    <tr *ngFor="let a of apiAnalysis_filter | slice:6:14">
+    <tr *ngFor="let a of apiAnalysis_filter | slice:9:14">
         <ng-container *ngFor="let x of apiTypes">
             <td align="center" *ngIf=" x.analysisTypeID == a.analysisTypeID" title="{{ x.summary }}">{{ x.analysisType }}</td>
         </ng-container>
