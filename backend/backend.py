@@ -10,7 +10,7 @@ import os
 from flask import redirect, url_for, flash
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'media'
+UPLOAD_FOLDER = '/media'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app=Flask(__name__)
@@ -826,12 +826,36 @@ def upload_file(team):
     filepart = os.path.splitext(file.filename)
     extension = filepart[1]
     filename = "frc" + team + extension
-
     # print("New File: " + filename)
+
+    filename = secure_filename(filename)
 
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
     return '0'
+
+@app.route('/image/', methods=['GET','POST'])
+def get_list():
+
+    path = UPLOAD_FOLDER
+
+    # Return 404 if path doesn't exist
+    if not os.path.exists(path):
+        return '404'
+    
+    # Show directory contents
+    files = os.listdir(path)
+
+    response = app.response_class(
+        response=json.dumps(files),
+        status=200,
+        mimetype='application/json'
+    )
+
+    print(response)
+
+    return response
+
 
 
 
