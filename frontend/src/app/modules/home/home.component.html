@@ -18,6 +18,17 @@
         <td align="center"><img src="https://media.discordapp.net/attachments/971142045366358056/1066485725807251608/2022_195_CK_sword_logo_Cyberknights_Black.png?width=599&height=468" alt="logo" width="300"></td>
     </tr>
     <p></p>
+
+    <tr>
+        <td colspan="2" align="center">
+            <b>Event Name: </b><br>
+            <select class="form-control" type="text" name="Event" [(ngModel)]="event" (change)="select(event)">
+                <option *ngFor="let s of apiEvent;" [value]="s.eventID">{{s.eventName}}</option>
+            </select>
+        </td>
+    </tr>
+
+
     <tr>
         <td style="color: rgb(148, 1, 148);font-size: large; text-align: center;"><a routerLink="/mobile"><b>Mobile Version</b></a></td>
     </tr>

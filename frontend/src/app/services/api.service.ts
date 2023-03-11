@@ -13,7 +13,8 @@ import { Matches } from '../matches'
 import { Teams } from '../teams'
 import { Summary } from '../summary';
 import { environment } from '../../environments/environment';
- 
+import { Event } from '../event';
+
 
 export class Final24 {
   team: string;
@@ -42,6 +43,7 @@ export class ApiService {
   public TypesReplay: ReplaySubject<Types[]>;
   public CloudReplay: ReplaySubject<WordCloud[]>;
   public Level2Replay: ReplaySubject<Level2[]>;
+  public EventReplay: ReplaySubject<Event[]>;
 
   private apiUrl = environment.apiUrl;
   //private apiUrl = 'http://localhost:5000';
@@ -63,6 +65,7 @@ export class ApiService {
     this.TypesReplay = new ReplaySubject(1);
     this.CloudReplay = new ReplaySubject(1);
     this.Level2Replay = new ReplaySubject(1);
+    this.EventReplay = new ReplaySubject(1);
 
     // Automatically load the data once when the application starts
     this.loadData();
@@ -75,7 +78,7 @@ export class ApiService {
     console.log("Check Login");
 
     // First try to load a fresh copy of the data from the API
-    this.http.get<CEA[]>(this.apiUrl + '/analysis').subscribe(response => {
+    this.http.get<CEA[]>(this.apiUrl + '/analysis195').subscribe(response => {
       // Store the response in the ReplaySubject, which components can use to access the data
       this.CEAReplay.next(response as CEA[]);
       // Might as well store it while we have it
@@ -171,6 +174,23 @@ export class ApiService {
         console.error('Could not load analysis types from server or cache!');
       }
     });
+
+
+    this.http.get<Event[]>(this.apiUrl + '/event').subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.EventReplay.next(response as Event[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Event', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.EventReplay.next(JSON.parse(localStorage.getItem('Event')!) as Event[]);
+      } catch (err) {
+        console.error('Could not load Event data from server or cache!');
+      }
+    });
+
+    
 
     // First try to load a fresh copy of the data from the API
     this.http.get<Level2[]>(this.apiUrl + '/level2').subscribe(response => {
@@ -358,6 +378,93 @@ export class ApiService {
     this.http.post<Final24[]>(this.apiUrl + '/final24-update', JSON.stringify(watch2list), options).subscribe();
 
     console.log("Saving Watch2 Data");
+
+  }
+
+  getHistory(event:number){
+    
+    // First try to load a fresh copy of the data from the API
+    this.http.get<CEA[]>(this.apiUrl + '/analysis195/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.CEAReplay.next(response as CEA[]);
+      // Might as well store it while we have it
+      console.log("Getting Data from Database");
+
+      let now = new Date();
+      let date = formatDate(now, 'MM/dd hh:mm a', 'en-US');
+      localStorage.setItem('lastDB', date);
+      console.log("Time: " + date);
+
+      localStorage.setItem('CEA', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        console.log("Getting Data from Cache");
+        this.CEAReplay.next(JSON.parse(localStorage.getItem('CEA')!) as CEA[]);
+      } catch (err) {
+        console.error('Could not load Analysis data from server or cache!');
+      }
+    });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Matches[]>(this.apiUrl + '/matchinfo/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.MatchReplay.next(response as Matches[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Matches', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.MatchReplay.next(JSON.parse(localStorage.getItem('Matches')!) as Matches[]);
+      } catch (err) {
+        console.error('Could not load Matches data from server or cache!');
+      }
+    });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Summary[]>(this.apiUrl + '/summary/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.SummaryReplay.next(response as Summary[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Summary', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.SummaryReplay.next(JSON.parse(localStorage.getItem('Summary')!) as Summary[]);
+      } catch (err) {
+        console.error('Could not load Summary data from server or cache!');
+      }
+    });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Teams[]>(this.apiUrl + '/pitdata/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.TeamsReplay.next(response as Teams[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Teams', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.TeamsReplay.next(JSON.parse(localStorage.getItem('Teams')!) as Teams[]);
+      } catch (err) {
+        console.error('Could not load Teams data from server or cache!');
+      }
+    });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Level2[]>(this.apiUrl + '/level2/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.Level2Replay.next(response as Level2[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Level2', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.Level2Replay.next(JSON.parse(localStorage.getItem('Level2')!) as Level2[]);
+      } catch (err) {
+        console.error('Could not load analysis types from server or cache!');
+      }
+    });
 
   }
 
