@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService, CurrTeams } from 'src/app/services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Teams } from '../../teams';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-robot',
