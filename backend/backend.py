@@ -308,8 +308,8 @@ def get_matchscouting(allianceStationID):
     return response
 
 # Get Analysis Data from past events
-@app.route("/analysis/", methods =['GET', 'POST'], defaults = {'eventID': None})
-@app.route("/analysis/<eventID>")
+@app.route("/analysis195/", methods =['GET', 'POST'], defaults = {'eventID': None})
+@app.route("/analysis195/<eventID>")
 def get_analysis(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if eventID is not None:
