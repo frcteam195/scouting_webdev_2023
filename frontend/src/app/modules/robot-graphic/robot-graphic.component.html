@@ -14,24 +14,24 @@
                 </tr>
                 <tr>
                     <td rowspan="4" class="blue"></td>
-                    <td class="bg{{ x.S1F }}">{{ x.S1D }}<br>%</td>
+                    <td [ngStyle]="{'background-color': x.S1D}">{{ x.S1V }}<br>%</td>
                     <td colspan="2" class="carpet"></td>
                     <td class="carpet">🟪</td>
                 </tr>
                 <tr>
-                    <td class="bg{{ x.S2F }}">{{ x.S2D }}<br>%</td>
-                    <td class="blue" rowspan="2" style="color: white;">E%:<br>{{ x.S1V }}<br><br>D%:<br>{{ x.S2V }}</td>
+                    <td [ngStyle]="{'background-color': x.S2D}">{{ x.S2V }}<br>%</td>
+                    <td class="blue" rowspan="2" style="color: white;">E%:<br>{{ x.M1D }}<br><br>D%:<br>{{ x.M2D }}</td>
                     <td class="carpet"></td>
                     <td class="carpet">🟡</td>
                 </tr>
                 <tr>
-                    <td class="bg{{ x.S3F }}">{{ x.S3D }}<br>%</td>
+                    <td [ngStyle]="{'background-color': x.S3D}">{{ x.S3V }}<br>%</td>
                     <td class="carpet"></td>
                     <td class="carpet">🟡</td>
                 </tr>
                 <tr>
-                    <td class="bg{{ x.S4F }}">{{ x.S4D }}<br>%</td>
-                    <td class="carpet">P%:<br>{{ x.S3V }}</td>
+                    <td [ngStyle]="{'background-color': x.S4D}">{{ x.S4V }}<br>%</td>
+                    <td class="carpet">P%:<br>{{ x.M3D }}</td>
                     <td class="carpet"></td>
                     <td class="carpet">🟪</td>
                 </tr>
@@ -63,39 +63,39 @@
     <tr>
         <table id="auto" align="center" style="border: 4px solid black; border-collapse: collapse;">
             <tr *ngIf="x.analysisTypeID == 81">
-                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}</td>
-                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}</td>
-                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}</td>
-                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}</td>
-                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}</td>
-                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}</td>
-                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}</td>
-                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}</td>
-                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}</td>
+                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}%</td>
+                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}%</td>
+                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}%</td>
+                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}%</td>
+                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}%</td>
+                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}%</td>
+                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}%</td>
+                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}%</td>
+                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}%</td>
 
             </tr>
             <tr *ngIf="x.analysisTypeID == 82">
-                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}</td>
-                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}</td>
-                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}</td>
-                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}</td>
-                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}</td>
-                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}</td>
-                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}</td>
-                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}</td>
-                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}</td>
+                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}%</td>
+                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}%</td>
+                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}%</td>
+                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}%</td>
+                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}%</td>
+                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}%</td>
+                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}%</td>
+                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}%</td>
+                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}%</td>
 
             </tr>
             <tr *ngIf="x.analysisTypeID == 83">
-                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}</td>
-                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}</td>
-                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}</td>
-                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}</td>
-                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}</td>
-                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}</td>
-                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}</td>
-                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}</td>
-                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}</td>
+                <td [ngStyle]="{'background-color': x.M1D}">{{ x.M1V }}%</td>
+                <td [ngStyle]="{'background-color': x.M2D}">{{ x.M2V }}%</td>
+                <td [ngStyle]="{'background-color': x.M3D}">{{ x.M3V }}%</td>
+                <td [ngStyle]="{'background-color': x.M4D}">{{ x.M4V }}%</td>
+                <td [ngStyle]="{'background-color': x.M5D}">{{ x.M5V }}%</td>
+                <td [ngStyle]="{'background-color': x.M6D}">{{ x.M6V }}%</td>
+                <td [ngStyle]="{'background-color': x.M7D}">{{ x.M7V }}%</td>
+                <td [ngStyle]="{'background-color': x.M8D}">{{ x.M8V }}%</td>
+                <td [ngStyle]="{'background-color': x.M9D}">{{ x.M9V }}%</td>
 
             </tr>
         </table>

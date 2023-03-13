@@ -2,7 +2,6 @@ header {
     background-color: #5C068C;
     color: rgb(255, 255, 255);
     font-family: Verdana, sans-serif;
-    
 }
 a:link,
 a:visited {
@@ -27,10 +26,10 @@ button {
     font-family: Verdana, sans-serif;
   }
   button:hover {
-      background-color: rgb(67, 0, 100);
+      background-color: #380255;
   } 
   button:focus {
-      background-color: purple; 
+      background-color: #4B0472; 
   }
   p { 
     font-size: 12px;
@@ -38,5 +37,5 @@ button {
  }
 
 .selected {
-    background-color: purple;
+    background-color: #4B0472;
 }
