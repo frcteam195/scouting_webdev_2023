@@ -19,6 +19,7 @@ export class MatchComponent implements OnInit {
  blueTeam3: string = "195";
  matchNum: number = 1;
  matchString: string = "";
+ display: number;
 
   //apiAnalysis: CEA[] = [];
   apiMatchList: Matches[] = [];  
@@ -30,8 +31,14 @@ export class MatchComponent implements OnInit {
       this.regenerateFilter();
     });
 
+    this.display = 0;
+
   }
 
+  setDisplay(ID: number){
+    this.display=ID;
+  }
+  
   getMatch(match: number) {
     //console.log("Made it to getMatch with [" + match + "]");
     this.matchNum=match;

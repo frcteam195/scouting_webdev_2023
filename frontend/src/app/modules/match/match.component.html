@@ -1,11 +1,11 @@
 <table border="0" width="100%">
     <tr>
         <td colspan="1" align="left">
-            <!--
-            <button (click)="setDisplay()">Match Overview</button>
-            <button (click)="setDisplay()">Robot Pictures</button>
-            <button (click)="setDisplay()">Post Game Info</button>
-            -->
+            
+            <button (click)="setDisplay(0)" [ngClass]="{'selected': display == 0}">Match Overview</button>
+            <button (click)="setDisplay(1)" [ngClass]="{'selected': display == 1}">Robot Pictures</button>
+            <button (click)="setDisplay(2)" [ngClass]="{'selected': display == 2}">Post Game Info</button>
+            
         </td> 
         <td colspan="1" align="center"><h2>Match {{matchNum}}</h2>
         <b>Select Match: </b>
@@ -14,7 +14,8 @@
         </select>
         </td>
     </tr>
-    <tr>
+
+    <tr *ngIf="display==0"> <!--regular match report-->
         <td align="right" valign="top">
             <app-analysis-table  [analysisGroup]=1 [selectedTeam]=redTeam1 [color]=1></app-analysis-table>
             <br>
@@ -33,4 +34,42 @@
             <app-analysis-table  [analysisGroup]=1 [selectedTeam]=blueTeam3 [color]=2></app-analysis-table>
         </td>
     </tr>
+
+    <tr *ngIf="display==1"> <!--robot pictures-->
+        <td align="right" valign="top" style="background-color:red" width="50%">
+            <img src = "https://scouting.team195.com/images/frc{{this.redTeam1}}.jpg" alt="No picture of {{this.redTeam1}} yet :(" width="200">
+            <img src = "https://scouting.team195.com/images/frc{{this.redTeam2}}.jpg" alt="No picture of {{this.redTeam2}} yet :(" width="200">
+            <img src = "https://scouting.team195.com/images/frc{{this.redTeam3}}.jpg" alt="No picture of {{this.redTeam3}} yet :(" width="200">
+        </td>
+        <td>    
+            &nbsp;&nbsp;
+        </td>
+        <td align="left" valign="top" style="background-color:blue" width="50%">
+            <img src = "https://scouting.team195.com/images/frc{{this.blueTeam1}}.jpg" alt="No picture of {{this.blueTeam1}} yet :(" width="200">
+            <img src = "https://scouting.team195.com/images/frc{{this.blueTeam2}}.jpg" alt="No picture of {{this.blueTeam2}} yet :(" width="200">
+            <img src = "https://scouting.team195.com/images/frc{{this.blueTeam3}}.jpg" alt="No picture of {{this.blueTeam3}} yet :(" width="200">
+        </td>
+    </tr>
+
+    <tr *ngIf="display==2"> <!--post match data-->
+        <td align="right" valign="top">
+            <app-analysis-table  [analysisGroup]=4 [selectedTeam]=redTeam1 [color]=1></app-analysis-table>
+            <br>
+            <app-analysis-table  [analysisGroup]=4 [selectedTeam]=redTeam2 [color]=1></app-analysis-table>
+            <br>
+            <app-analysis-table  [analysisGroup]=4 [selectedTeam]=redTeam3 [color]=1></app-analysis-table>
+        </td>
+        <td>    
+            &nbsp;&nbsp;
+        </td>
+        <td align="left" valign="top">
+            <app-analysis-table  [analysisGroup]=4 [selectedTeam]=blueTeam1 [color]=2></app-analysis-table>
+            <br>
+            <app-analysis-table  [analysisGroup]=4 [selectedTeam]=blueTeam2 [color]=2></app-analysis-table>
+            <br>
+            <app-analysis-table  [analysisGroup]=4 [selectedTeam]=blueTeam3 [color]=2></app-analysis-table>
+        </td>
+    </tr>
+
+    
 </table>
