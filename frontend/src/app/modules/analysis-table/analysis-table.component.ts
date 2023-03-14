@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Types } from '../../types';
 import { CEA } from '../../CEA';
+import { Teams } from '../../teams';
 
 @Component({
   selector: 'app-analysis-table',
@@ -23,6 +24,12 @@ export class AnalysisTableComponent implements OnInit {
   title: String;
   titleShow = true;
   url: string = "";
+  apiTeamsList: Teams[] = [];
+  length: Number = 0;
+  width: Number = 0;
+  height: Number = 0;
+  driveType: String="";
+  
 
 
   constructor(private apiService: ApiService, private router: Router) {
@@ -39,9 +46,14 @@ export class AnalysisTableComponent implements OnInit {
       this.regenerateFilter();
     });
     this.apiService.TypesReplay.subscribe(types => {
-      this.apiTypes = types;
+      this.apiTypes = types
     });
-
+    this.apiService.TeamsReplay.subscribe(Teams => (
+      this.apiTeamsList = Teams
+    ));
+    console.log("pitData", this.apiTeamsList);
+    this.getPitData();
+    
   }
 
   ngOnInit(): void {
@@ -49,8 +61,9 @@ export class AnalysisTableComponent implements OnInit {
     //this.regenerateFilter();
   }
 
-  ngOnChanges() {
+  ngOnChanges() { 
     this.regenerateFilter();
+    this.getPitData();
   }
 
   teamPage(team: string) {
@@ -58,6 +71,20 @@ export class AnalysisTableComponent implements OnInit {
     //this.router.navigateByUrl('/robot/'+team);
     // Opens in New Tab
     this.router.navigate([]).then(result => { window.open('#/robot/'+team, '_blank'); }); 
+  }
+
+  getPitData() {
+    console.log("pitData", this.apiTeamsList);
+    for(const t of this.apiTeamsList){
+        if(t.team == this.selectedTeam) {
+          this.length = t.robotLength;
+          this.width = t.robotWidth;
+          this.height = t.robotHeight;
+          this.driveType = t.driveBaseType;
+          console.log("driveType "+ this.driveType);
+        }
+      }
+
   }
 
   regenerateFilter() {
