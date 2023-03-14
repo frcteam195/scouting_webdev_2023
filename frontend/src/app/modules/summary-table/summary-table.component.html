@@ -5,30 +5,30 @@
     </tr>
         <tr>
             <th><div [ngClass]="{'sorted': this.sort==2}"><a (click)="localSort(2)">Team</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==3}"><a (click)="localSort(3)">Auto</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==4}"><a (click)="localSort(4)">AR</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==5}"><a (click)="localSort(5)">AS</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==6}"><a (click)="localSort(6)">Ramp</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==7}"><a (click)="localSort(7)">TC</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==8}"><a (click)="localSort(8)">TH</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==9}"><a (click)="localSort(9)">TLZ</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">TL</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==11}"><a (click)="localSort(11)">TM</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">TT</a></div></th>
-            <th><div [ngClass]="{'sorted': this.sort==12}"><a (click)="localSort(12)">TS</a></div></th>
+            <th title="Auto Game Pieces"><div [ngClass]="{'sorted': this.sort==3}"><a (click)="localSort(3)">Auto</a></div></th>
+            <th title="*Total Score in Auto No Ramp*"><div [ngClass]="{'sorted': this.sort==5}"><a (click)="localSort(5)">AS</a></div></th>
+            <th title="*Ramp Level in Auto *"><div [ngClass]="{'sorted': this.sort==4}"><a (click)="localSort(4)">AR</a></div></th>
+            <th title="*Game Pieces Scored High in Tele*"><div [ngClass]="{'sorted': this.sort==8}"><a (click)="localSort(8)">TH</a></div></th>
+            <th title="*Game Pieces Scored Mid in Tele*"><div [ngClass]="{'sorted': this.sort==11}"><a (click)="localSort(11)">TM</a></div></th>
+            <th title="*Game Pieces Scored Low in Tele*"><div [ngClass]="{'sorted': this.sort==10}"><a (click)="localSort(10)">TL</a></div></th>
+            <th title="*Total Game Pieces Scored in Tele*"><div [ngClass]="{'sorted': this.sort==12}"><a (click)="localSort(12)">TT</a></div></th>
+            <th title="*Pieces Picked Up From The Loading Zone Tele*"><div [ngClass]="{'sorted': this.sort==9}"><a (click)="localSort(9)">TLZ</a></div></th>
+            <th title="*Cubes Scored In Tele*"><div [ngClass]="{'sorted': this.sort==7}"><a (click)="localSort(7)">TC</a></div></th>
+            <th title="*Ramp Level Endgame*"><div [ngClass]="{'sorted': this.sort==6}"><a (click)="localSort(6)">Ramp</a></div></th>
+            <th title="*Total Match Score*"><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">TS</a></div></th>
         </tr>
-        <tr *ngFor="let a of apiSummary_filter">
+        <tr *ngFor="let a of apiSummary_filter">            
             <td align="center"><a (click)="teamSelect( a.team )" (dblclick)="teamPage( a.team )"><div [ngClass]="{'sorted': a.team==this.team}">{{ a.team }}</div></a></td>
             <td align="center" class="bg{{ a?.autoGamePiecesFormat }}">{{ sortType == 2 ? a.autoGamePiecesMean : a.autoGamePiecesMedian }}</td>
-            <td align="center" class="bg{{ a?.autoRampFormat }}">{{ sortType == 2 ? a.autoRampMean : a.autoRampMedian }}</td>
             <td align="center" class="bg{{ a?.autoScoreFormat }}">{{ sortType == 2 ? a.autoScoreMean : a.autoScoreMedian }}</td>
-            <td align="center" class="bg{{ a?.rampFormat }}">{{ sortType == 2 ? a.rampMean : a.rampMedian }}</td>
-            <td align="center" class="bg{{ a?.teleCommunityFormat }}">{{ sortType == 2 ? a.teleCommunityMean : a.teleCommunityMedian }}</td>
+            <td align="center" class="bg{{ a?.autoRampFormat }}">{{ sortType == 2 ? a.autoRampMean : a.autoRampMedian }}</td>
             <td align="center" class="bg{{ a?.teleHighFormat }}">{{ sortType == 2 ? a.teleHighMean : a.teleHighMedian }}</td>
-            <td align="center" class="bg{{ a?.teleLZPickupFormat }}">{{ sortType == 2 ? a.teleLZPickupMean : a.teleLZPickupMedian }}</td>
-            <td align="center" class="bg{{ a?.teleLowFormat }}">{{ sortType == 2 ? a.teleLowMean : a.teleLowMedian }}</td>
             <td align="center" class="bg{{ a?.teleMidFormat }}">{{ sortType == 2 ? a.teleMidMean : a.teleMidMedian }}</td>
+            <td align="center" class="bg{{ a?.teleLowFormat }}">{{ sortType == 2 ? a.teleLowMean : a.teleLowMedian }}</td>
             <td align="center" class="bg{{ a?.teleTotalFormat }}">{{ sortType == 2 ? a.teleTotalMean : a.teleTotalMedian }}</td>
+            <td align="center" class="bg{{ a?.teleLZPickupFormat }}">{{ sortType == 2 ? a.teleLZPickupMean : a.teleLZPickupMedian }}</td>
+            <td align="center" class="bg{{ a?.teleCommunityFormat }}">{{ sortType == 2 ? a.teleCommunityMean : a.teleCommunityMedian }}</td>
+            <td align="center" class="bg{{ a?.rampFormat }}">{{ sortType == 2 ? a.rampMean : a.rampMedian }}</td>
             <td align="center" class="bg{{ a?.totalScoreFormat }}">{{ sortType == 2 ? a.totalScoreMean : a.totalScoreMedian }}</td>
         </tr>
     </table>
