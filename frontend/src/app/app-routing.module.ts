@@ -1,3 +1,4 @@
+import { LoginComponent } from './modules/login/login.component';
 import { AnalysisComponent } from './modules/analysis/analysis.component';
 import { HomeComponent } from './modules/home/home.component';
 import { MatchComponent } from './modules/match/match.component';
@@ -36,6 +37,9 @@ const routes: Routes = [{
   },{
     path: 'video',
     component: VideoComponent
+  },{
+    path: 'login',
+    component: LoginComponent
   }], 
 }, {
   path: 'mobile',

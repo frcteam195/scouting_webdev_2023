@@ -4,6 +4,7 @@ import { ApiService, Final24 } from '../../services/api.service';
 import CeaJson from '../../cea.json';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-analysis',
@@ -30,6 +31,7 @@ export class AnalysisComponent implements OnInit {
   typeGroup: number;
   mode: number;
   holdView: number;
+  access: number = 0;
 
   //apiAnalysis: CEA[] = [];
   apiFinal24List: Final24[] = [];
@@ -44,7 +46,7 @@ export class AnalysisComponent implements OnInit {
   filter: number = 0;
   pageFilter: number = 0;
 
-  constructor(public apiService: ApiService, private formBuilder: FormBuilder) {
+  constructor(public apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
     //this.apiService.CEAReplay.subscribe((analysis) => (this.apiAnalysis = analysis));
     //this.apiService.Final24Replay.subscribe((final24) => (this.apiFinal24List = final24));
     this.apiFinal24List = [new Final24()];
@@ -58,30 +60,42 @@ export class AnalysisComponent implements OnInit {
   }
 
   ngOnInit(): void  {
-    // we will initialize our form here
-    this.apiService.TypesReplay.subscribe(types => { 
-      this.apiTypes = types; 
-    
-      // Sort Analysis Types by teamPicker value
-      this.apiTypes.sort((a, b) => a.teamPicker - b.teamPicker);
-    
-    });
+
+    // Verify User has access for this page.
+    this.access = Number(localStorage.getItem('access')) || -1;
+
+    if(this.access < 4) {
+      this.router.navigate(["login/"]); 
+    } else {
+
+
+      // we will initialize our form here
+      this.apiService.TypesReplay.subscribe(types => { 
+        this.apiTypes = types; 
+      
+        // Sort Analysis Types by teamPicker value
+        this.apiTypes.sort((a, b) => a.teamPicker - b.teamPicker);
+      
+      });
 
 
 
-    this.apiService.getDnp().then(response => this.apiDnpList = response);
+      this.apiService.getDnp().then(response => this.apiDnpList = response);
 
-    this.apiService.getFinal24().then(response => this.apiFinal24List = response);
+      this.apiService.getFinal24().then(response => this.apiFinal24List = response);
 
-    this.apiService.getPick().then(response => this.apiPickList = response);
+      this.apiService.getPick().then(response => this.apiPickList = response);
 
-    this.apiService.getWatch1().then(response => this.apiWatch1List = response);
-    this.apiService.getWatch2().then(response => this.apiWatch2List = response);
+      this.apiService.getWatch1().then(response => this.apiWatch1List = response);
+      this.apiService.getWatch2().then(response => this.apiWatch2List = response);
 
-    this.filterList = this.apiFinal24List.concat(this.apiDnpList);
-    this.filter = 0;
+      this.filterList = this.apiFinal24List.concat(this.apiDnpList);
+      this.filter = 0;
 
-    this.teamSelectionChange(1);
+      this.teamSelectionChange(1);
+
+    }
+
   }
 
   teamSelectionChange(list: number) {
