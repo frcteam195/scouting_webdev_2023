@@ -80,12 +80,12 @@ export class SummaryGraphComponent implements OnInit {
       this.graphData = [];
 
       let robotList = [];
-      let autoList = []; //autonomous mean
+      let autoScoreList = []; //autonomous mean
      // let ballsList = []; //total balls mean
      // let scoreList = []; //total score mean
-      let climbList = []; //climb mean
-      let upperList = []; //tele upper balls
-      let lowerList = []; //tele lower balls
+      let rampList = []; //climb mean
+      let autoRampList = []; //tele upper balls
+      let teleScoreList = []; //tele lower balls
       //let totalList = []; //tele total balls
     
 
@@ -114,28 +114,28 @@ export class SummaryGraphComponent implements OnInit {
 
             if (this.sortType == 1) {
             
-              autoList.push(t.autoScoreMean);
+              autoScoreList.push(t.autoScoreMean);
             // ballsList.push(t.TotalBallsMean)
             // scoreList.push(t.TotalScoreMean)
-              climbList.push(t.rampMean)
-              lowerList.push(t.teleLowMean)
-              upperList.push(t.teleHighMean)
+              rampList.push(t.rampMean)
+              autoRampList.push(t.autoRampMean)
+              teleScoreList.push(t.teleTotalMean)
           //   totalList.push(t.TeleTotalBallsMean)
             }
             else {  
-              autoList.push(t.autoScoreMedian);
-              climbList.push(t.rampMedian)
-              lowerList.push(t.teleLowMedian)
-              upperList.push(t.teleHighMedian)
+              autoScoreList.push(t.autoScoreMedian);
+              rampList.push(t.rampMedian)
+              autoRampList.push(t.autoRampMedian)
+              teleScoreList.push(t.teleTotalMedian)
             }
         }
       }
 
         this.graphData.push({
           x: robotList,
-          y: autoList,
+          y: autoScoreList,
           type: 'bar',
-          name: 'Auto',
+          name: 'Auto Score',
           marker: {color: '#0000ff'}
         });
        /* this.graphData.push({
@@ -157,16 +157,16 @@ export class SummaryGraphComponent implements OnInit {
         
         this.graphData.push({
           x: robotList,
-          y: lowerList,
+          y: autoRampList,
           type: 'bar',
-          name: 'Tele Lower',
+          name: 'Auto Ramp',
           marker: {color: '#9569fd'}
         });
         this.graphData.push({
           x: robotList,
-          y: upperList,
+          y: teleScoreList,
           type: 'bar',
-          name: 'Tele High',
+          name: 'Tele Score',
           marker: {color: '#ab84fc'}
         });
         
@@ -180,9 +180,9 @@ export class SummaryGraphComponent implements OnInit {
         */
         this.graphData.push({
           x: robotList,
-          y: climbList,
+          y: rampList,
           type: 'bar',
-          name: 'Climb',
+          name: 'Ramp',
           marker: {color: '#bf9efa'}          
         });
         this.graph = {
