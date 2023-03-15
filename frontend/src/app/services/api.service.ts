@@ -16,6 +16,8 @@ import { environment } from '../../environments/environment';
 import { Event } from '../event';
 import { Access } from '../access';
 import { Router } from '@angular/router';
+import { Checklist } from '../checklist';
+import { Scouters } from '../scouters';
 
 
 export class Final24 {
@@ -46,14 +48,10 @@ export class ApiService {
   public CloudReplay: ReplaySubject<WordCloud[]>;
   public Level2Replay: ReplaySubject<Level2[]>;
   public EventReplay: ReplaySubject<Event[]>;
+  public CheckReplay: ReplaySubject<Checklist[]>;
+  public ScouterReplay: ReplaySubject<Scouters[]>;
 
   private apiUrl = environment.apiUrl;
-  //private apiUrl = 'http://localhost:5000';
-  //private apiUrl = 'http://scouting.team195.com:5000';
-  //private apiUrl = 'http://10.0.20.196:5000'; // Jetson
-  //private apiUrl = 'http://192.168.1.195:23450';  // Dave's House
-  //private apiUrl = 'http://10.0.20.195:23450';     // Mark's House
-
 
   status: string = "";
 
@@ -74,6 +72,8 @@ export class ApiService {
     this.CloudReplay = new ReplaySubject(1);
     this.Level2Replay = new ReplaySubject(1);
     this.EventReplay = new ReplaySubject(1);
+    this.CheckReplay = new ReplaySubject(1);
+    this.ScouterReplay = new ReplaySubject(1);
 
 
     // Verify User has access for this page.
@@ -220,6 +220,37 @@ export class ApiService {
         this.Level2Replay.next(JSON.parse(localStorage.getItem('Level2')!) as Level2[]);
       } catch (err) {
         console.error('Could not load analysis types from server or cache!');
+      }
+    });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Checklist[]>(this.apiUrl + '/checklist').subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.CheckReplay.next(response as Checklist[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Checklist', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.CheckReplay.next(JSON.parse(localStorage.getItem('Checklist')!) as Checklist[]);
+      } catch (err) {
+        console.error('Could not load Checklist from server or cache!');
+      }
+    });
+    
+    
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Scouters[]>(this.apiUrl + '/scouters').subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.ScouterReplay.next(response as Scouters[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Scouters', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.ScouterReplay.next(JSON.parse(localStorage.getItem('Scouters')!) as Scouters[]);
+      } catch (err) {
+        console.error('Could not load Scouter data from server or cache!');
       }
     });
 
@@ -481,6 +512,23 @@ export class ApiService {
         console.error('Could not load analysis types from server or cache!');
       }
     });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Checklist[]>(this.apiUrl + '/checklist/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.CheckReplay.next(response as Checklist[]);
+      // Might as well store it while we have it
+      localStorage.setItem('Checklist', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.CheckReplay.next(JSON.parse(localStorage.getItem('Checklist')!) as Checklist[]);
+      } catch (err) {
+        console.error('Could not load Checklist from server or cache!');
+      }
+    });
+
+
 
   }
 

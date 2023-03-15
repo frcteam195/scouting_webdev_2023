@@ -29,6 +29,7 @@ import { LevelTwoComponent } from 'src/app/modules/level-two/level-two.component
 import { MatchInfoComponent } from 'src/app/modules/match-info/match-info.component';
 import { RobotGraphicComponent } from 'src/app/modules/robot-graphic/robot-graphic.component';
 import { LoginComponent } from 'src/app/modules/login/login.component';
+import { ChecklistComponent } from 'src/app/modules/checklist/checklist.component';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -55,7 +56,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     LevelTwoComponent,
     MatchInfoComponent,
     RobotGraphicComponent,
-    LoginComponent
+    LoginComponent,
+    ChecklistComponent
   ],
   imports: [
     CommonModule,

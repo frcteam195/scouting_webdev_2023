@@ -17,8 +17,9 @@ export class RobotComponent implements OnInit {
   roboPic: String;
   apiCurrTeamList: CurrTeams[];
   apiTeamsList: Teams[] = [];  
+  access: number = 0;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {
 
     this.apiCurrTeamList = [];
     this.apiTeamsList = [];
@@ -56,10 +57,18 @@ export class RobotComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.team = this.route.snapshot.paramMap.get('team') || '';
-    //console.log("Check Robot: " + this.team)
-  }
 
-  
+
+    // Verify User has access for this page.
+    this.access = Number(localStorage.getItem('access')) || -1;
+
+    if(this.access <= 0) {
+      this.router.navigate(["login/"]); 
+    } else {
+      this.team = this.route.snapshot.paramMap.get('team') || '';
+      //console.log("Check Robot: " + this.team)
+    }
+
+  }
     
 }

@@ -1,0 +1,28 @@
+<table border="1" >
+    <tr>
+        <td align="left">
+            Match 
+            <select class="form-control" type="text" name="Scouter" [(ngModel)]="matchNum" (change)="select(matchNum)">
+                <option *ngFor="let m of matchList;" [value]="m">{{m}}</option>
+            </select>
+        </td>
+    </tr>
+    
+    <tr *ngFor="let c of apiCheck_filter" [ngClass]="getRowClass()">
+        <td >Match {{ c.matchNum }}</td>
+        <td title="{{ c.taskDesc }}">{{ c.task }}</td>
+
+        <ng-container *ngFor="let s of apiScouters">
+            <td align="center" *ngIf=" c.scouterID == s.scouterID  ">{{ s.firstName }}</td>
+        </ng-container>
+        <td>
+            <select type="text" name="Status">
+                <option value="">Open</option>
+                <option value="0">Fail</option>
+                <option value="1">Pass</option>
+            </select>
+        </td>
+
+    </tr>
+</table>
+
