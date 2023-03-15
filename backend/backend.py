@@ -459,6 +459,34 @@ def get_matchscoutingl2(allianceStationID):
     return response
 
 
+# Get Matches Info from past events 
+@app.route("/checklist/", methods =['GET', 'POST'], defaults = {'eventID' : None})
+@app.route("/checklist/<eventID>")
+def get_checklist(eventID):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if eventID is not None:
+        cursor.execute("SELECT c.*, t.task, t.taskDesc "
+                    "FROM checklist c, tasks t, events e "
+                    "WHERE c.taskID = t.taskID " 
+                    "and e.eventID = c.eventID "
+                    "and e.eventID = " + eventID + " ORDER BY c.matchNum;")
+    else:
+        cursor.execute("SELECT c.*, t.task, t.taskDesc "
+                    "FROM checklist c, tasks t, events e "
+                    "WHERE c.taskID = t.taskID " 
+                    "and e.eventID = c.eventID "
+                    "AND e.currentEvent = 1 ORDER BY c.matchNum;")
+    data = cursor.fetchall()	
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json' 
+    )
+    return response
+
+
+
+
 # Get Analysis Type Data
 @app.route("/types/", methods =['GET', 'POST'])
 def get_types():

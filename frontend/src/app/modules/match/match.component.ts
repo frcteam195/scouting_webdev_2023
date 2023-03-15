@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Matches } from '../../matches';
@@ -20,11 +20,12 @@ export class MatchComponent implements OnInit {
  matchNum: number = 1;
  matchString: string = "";
  display: number;
+ access: number = 0;
 
   //apiAnalysis: CEA[] = [];
   apiMatchList: Matches[] = [];  
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {
 
     this.apiService.MatchReplay.subscribe(match => {
       this.apiMatchList = match;
@@ -69,9 +70,17 @@ export class MatchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.matchNum = Number(this.route.snapshot.paramMap.get('match')|| '1');
-    //this.matchNo = Number(this.matchString);
-    console.log("Check Match: " + this.matchNum)
+    // Verify User has access for this page.
+    this.access = Number(localStorage.getItem('access')) || -1;
+
+    if(this.access <= 0) {
+      this.router.navigate(["login/"]); 
+    } else {
+      this.matchNum = Number(this.route.snapshot.paramMap.get('match')|| '1');
+      //this.matchNo = Number(this.matchString);
+      console.log("Check Match: " + this.matchNum)
+    }
+
   }
 
 }
