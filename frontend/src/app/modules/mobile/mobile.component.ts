@@ -43,16 +43,20 @@ export class MobileComponent implements OnInit {
     this.littleDisplay=1;
     this.meta.addTags([{name: 'viewport', content: 'width=device-width, initial-scale=1'}])
    }
+
    setTeam(team: string) {
     console.log(team);
     this.team = team;
   }
+
   setLittleDisplay(ID: number){
     this.littleDisplay=ID;
   }
+
   setDisplay(ID: number){
     this.display=ID;
   }
+  
   getMatch(match: number) {
     //console.log("Made it to getMatch with [" + match + "]");
     this.matchNo=match;
