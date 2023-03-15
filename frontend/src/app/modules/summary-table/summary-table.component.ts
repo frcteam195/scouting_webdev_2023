@@ -186,10 +186,10 @@ export class SummaryTableComponent implements OnInit {
         } else if (this.sort == 11) {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.teleMidMean - a.teleMidMean);
-        } else if (this.sort == 12) {
+        } else if (this.sort == 1) {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.totalScoreMean - a.totalScoreMean);
-        } else if (this.sort == 1)  {
+        } else if (this.sort == 12)  {
           //Total Score Sort
           this.apiSummary_filter.sort((a, b) => b.teleTotalMean - a.teleTotalMean);
         }
@@ -224,10 +224,10 @@ export class SummaryTableComponent implements OnInit {
         } else if (this.sort == 11) {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.teleMidMedian - a.teleMidMedian);
-        } else if (this.sort == 12) {
+        } else if (this.sort == 1) {
           //Sort by Auto
           this.apiSummary_filter.sort((a, b) => b.totalScoreMedian - a.totalScoreMedian);
-        } else if (this.sort == 1)  {
+        } else if (this.sort == 12)  {
           //Total Score Sort
           this.apiSummary_filter.sort((a, b) => b.teleTotalMedian - a.teleTotalMedian);
         }
