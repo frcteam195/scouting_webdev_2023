@@ -1,6 +1,6 @@
 import { Word } from './../word';
 import {Injectable} from '@angular/core';
-import {ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {F} from "@angular/cdk/keycodes";
 import { formatDate } from '@angular/common';
@@ -14,6 +14,8 @@ import { Teams } from '../teams'
 import { Summary } from '../summary';
 import { environment } from '../../environments/environment';
 import { Event } from '../event';
+import { Access } from '../access';
+import { Router } from '@angular/router';
 
 
 export class Final24 {
@@ -55,7 +57,13 @@ export class ApiService {
 
   status: string = "";
 
-  constructor(private http: HttpClient) {
+  loading: boolean = true;
+  errorMessage: string = "";
+  apiAccess: Access[]=[];
+
+  access: number = 0;
+
+  constructor(private http: HttpClient, private router: Router) {
     this.CEAReplay = new ReplaySubject(1);
     this.MatchReplay = new ReplaySubject(1);
     this.TeamsReplay = new ReplaySubject(1);
@@ -67,8 +75,16 @@ export class ApiService {
     this.Level2Replay = new ReplaySubject(1);
     this.EventReplay = new ReplaySubject(1);
 
-    // Automatically load the data once when the application starts
-    this.loadData();
+
+    // Verify User has access for this page.
+    this.access = Number(localStorage.getItem('access')) || -1;
+
+    if(this.access > 0) {
+      // Automatically load the data once when the application starts
+      this.loadData();
+    }
+
+
   }
 
   // This loads the data on service initialization, and then makes the data
@@ -466,6 +482,20 @@ export class ApiService {
       }
     });
 
+  }
+
+
+
+  public getUserAccess(user: string, pass: string): Promise<any>{
+
+    console.log("Getting Access Level for: " + user);
+
+    //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+    const options = {params: new HttpParams().append('userName', user).append('userPass', pass)};
+
+    // First try to load a fresh copy of the data from the API
+    return this.http.get<Access[]>(this.apiUrl + '/access', options).toPromise();
+    
   }
 
 }
