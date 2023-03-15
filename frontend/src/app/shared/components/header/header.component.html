@@ -1,5 +1,16 @@
 <header fxLayoutAlign="space-between center">
-    <div><b title="i LOVE harish">&emsp;CyberScouter 2023</b></div><img src="favicon.ico" height="30px"><p>Last Update: {{ lastDBtime }}</p>
+    <div>
+        <table>
+            <tr>
+                <td style="width: 40px;">
+                    <img src="favicon.ico" height="30px">
+                </td>
+                <td>
+                    <p>Last Update: {{ lastDBtime }}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div fxLayout="row">
         <a routerLink="/"><button type="button" (click)="setDisplay(1)" [ngClass]="{'selected': display == 1}" title="Homepage">Home</button></a>
         <a routerLink="/analysis"><button type="button" (click)="setDisplay(2)" [ngClass]="{'selected': display == 2}" title="Overveiw of all teams, good for selecting">Team Picker</button></a> 
