@@ -44,36 +44,7 @@ export class RobotComponent implements OnInit {
   }
   //code for getting picture when eventually implemented to teams table
   getRoboPic(ID: string) {
-    /* for (let x of this.apiTeamsList){
-      console.log('x.Team')
-      if (x.team + '' == ID && x.imageLink != null) {
-        return x.imageLink;
-      }
-    }
-    return "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png"; */
-
     return "https://scouting.team195.com/images/frc"+this.team+".jpg";
-
-
-    //console.log("Enviroment: " + environment.pictureUrl)
-    //return environment.pictureUrl+ID+".png";
-    //return "C:\Users\alexf\Documents\scouting_webdev_2023\frontend\images\frc176.png";
-
-
-
-    /* if (this.imageExists("https://scouting.team195.com/images/frc"+this.team+".jpg")){
-      return "https://scouting.team195.com/images/frc"+this.team+".jpg";
-    } else {
-      return "https://cdn.discordapp.com/attachments/830144707794305064/949107933260677130/error_robot_not_found.png";
-    } */
-      
-  }
-
-  imageExists(image_url:string) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', image_url, false);
-    http.send();
-    return http.status !== 404;
   }
   
   
