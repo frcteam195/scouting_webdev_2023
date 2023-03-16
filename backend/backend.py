@@ -37,7 +37,7 @@ mysql = MySQL(app)
 @app.route("/")
 def hello():
     # return "Hello Worlds!"
-    return redirect("https://www.team195.com")
+    return redirect("https://www.team195.com/scouting-data")
 
 @app.route("/harish/")
 def hello2():

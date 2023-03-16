@@ -51,7 +51,7 @@ export class AnalysisTableComponent implements OnInit {
     this.apiService.TeamsReplay.subscribe(Teams => (
       this.apiTeamsList = Teams
     ));
-    console.log("pitData", this.apiTeamsList);
+
     this.getPitData();
     
   }
@@ -74,14 +74,14 @@ export class AnalysisTableComponent implements OnInit {
   }
 
   getPitData() {
-    console.log("pitData", this.apiTeamsList);
+
     for(const t of this.apiTeamsList){
         if(t.team == this.selectedTeam) {
           this.length = t.robotLength;
           this.width = t.robotWidth;
           this.height = t.robotHeight;
           this.driveType = t.driveBaseType;
-          console.log("driveType "+ this.driveType);
+
         }
       }
 
@@ -128,12 +128,19 @@ export class AnalysisTableComponent implements OnInit {
             i++;
           }
         }
-      } else {                                  // Robot Snapshot 4th/bottom
+      } else if (this.analysisGroup == 5) {       // Robot Snapshot 4th
         for(const m of this.apiTypes){
           if(m.robotSnapshot==4){
             analysisTypes[i]=m.analysisTypeID;
             i++;
           }
+        }
+      } else {                                  // Robot Snapshot 5th/bottom
+        for(const m of this.apiTypes){
+          if(m.robotSnapshot==5){
+            analysisTypes[i]=m.analysisTypeID;
+            i++;
+          } 
         }
       }
 
