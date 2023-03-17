@@ -1,3 +1,4 @@
+import { ChecklistComponent } from 'src/app/modules/checklist/checklist.component';
 import { LoginComponent } from './modules/login/login.component';
 import { AnalysisComponent } from './modules/analysis/analysis.component';
 import { HomeComponent } from './modules/home/home.component';
@@ -40,6 +41,9 @@ const routes: Routes = [{
   },{
     path: 'login',
     component: LoginComponent
+  },{
+    path: 'checklist',
+    component: ChecklistComponent
   }], 
 }, {
   path: 'mobile',
