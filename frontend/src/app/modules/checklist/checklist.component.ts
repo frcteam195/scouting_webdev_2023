@@ -18,6 +18,8 @@ export class ChecklistComponent implements OnInit {
   scouter: number = 0;
   matchList: number[] = [];
   matchNum: number = 0;
+  buttonText: string = "Open";
+  buttonStatus: number = 0;
 
   constructor(public apiService: ApiService, private formBuilder: FormBuilder) {
 
@@ -44,13 +46,13 @@ export class ChecklistComponent implements OnInit {
     // Sets Scouter to be passed to next record
     this.matchNum = value;
 
-    console.log("Scouter: [" + this.matchNum + "]");
+    // console.log("Scouter: [" + this.matchNum + "]");
     this.regenerateFilter();  
   }
 
 
   getMatchList() {
-    console.log("Getting list of Completed Matches");
+    // console.log("Getting list of Teams Matches");
     if (this.apiCheck) {
 
       this.matchList = [];
@@ -65,13 +67,13 @@ export class ChecklistComponent implements OnInit {
       this.matchList = [];
     }
 
-    console.log("Matches: [" + this.matchList + "]");
+    // console.log("Matches: [" + this.matchList + "]");
   }
 
 
 
   regenerateFilter() {
-    console.log("regenerateFilter: Start: ");
+    console.log("regenerateFilter");
 
     if (this.apiCheck) {
 
@@ -94,8 +96,55 @@ export class ChecklistComponent implements OnInit {
     }
   }
 
-getRowClass() {
+getRowClass(value: number) {
+  if(value == 1){
+    return "rowPass";
+  }
+
   return "rowNormal";
+}
+
+getTextClass(value: number) {
+  console.log("Alliance Station: " + value); 
+  if(value > 3) {
+    return "textBlue";
+  } else {
+    return "textRed";
+  }
+}
+
+changeStatus(id: number) {
+
+  for(let a of this.apiCheck_filter){ 
+
+    // console.log("Record "+a.listID+" has status "+a.taskStatus);
+        
+    if(a.listID == id) {
+      if(a.taskStatus == 0) {
+        a.taskStatus = 1;
+      } else {
+        a.taskStatus = 0;
+      }
+    }
+  }
+}
+
+save() {
+  console.log("Saving Checklist")
+  this.apiService.saveListData(this.apiCheck);
+}
+
+changeMatch(match: number, value: number) {
+  // console.log("Match Number: " + match);
+  let location=this.matchList.indexOf(Number(match));
+
+  if(location == -1) {
+    this.matchNum=this.matchList[0];
+  } else {
+    this.matchNum=this.matchList[location+value];
+  }
+
+  this.regenerateFilter();
 }
 
 }

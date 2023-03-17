@@ -1,4 +1,4 @@
-<table border="1" >
+<table border="1" width="100%">
     <tr>
         <td align="left">
             Match 
@@ -6,23 +6,32 @@
                 <option *ngFor="let m of matchList;" [value]="m">{{m}}</option>
             </select>
         </td>
+        <td><b>Checklist</b></td>
+        <td>
+            <button (click)="save()">Save</button>
+        </td>
     </tr>
     
-    <tr *ngFor="let c of apiCheck_filter" [ngClass]="getRowClass()">
+    <tr *ngFor="let c of apiCheck_filter; let i = index" [ngClass]="getRowClass(c.taskStatus)">
         <td >Match {{ c.matchNum }}</td>
-        <td title="{{ c.taskDesc }}">{{ c.task }}</td>
+        <td title="{{ c.taskDesc }}" *ngIf="c.taskID==14" [ngClass]="getTextClass(c.allianceStationID)">{{ c.task }}</td>
+        <td title="{{ c.taskDesc }}" *ngIf="c.taskID!=14">{{ c.task }}</td>
 
         <ng-container *ngFor="let s of apiScouters">
-            <td align="center" *ngIf=" c.scouterID == s.scouterID  ">{{ s.firstName }}</td>
+            <td align="center" *ngIf=" c.scouterID == s.scouterID ">{{ s.firstName }}</td>
         </ng-container>
+
         <td>
-            <select type="text" name="Status">
-                <option value="">Open</option>
-                <option value="0">Fail</option>
-                <option value="1">Pass</option>
-            </select>
+            <button (click)="changeStatus(c.listID)" >{{ !!+c.taskStatus == true ? 'Closed' : 'Open' }}</button>
         </td>
 
+    </tr>
+    <tr>
+        <td colspan="4" align="center">
+            <button (click)="changeMatch(matchNum,-1)">Previous</button>&nbsp;
+            <button (click)="changeMatch(matchNum,1)">Next</button>
+
+        </td>
     </tr>
 </table>
 

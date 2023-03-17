@@ -885,6 +885,33 @@ def get_list():
     return response
 
 
+# Update Checklist Data
+@app.route("/checklist-update", methods =['POST'])
+def post_checklist_update():
+
+    if not request.is_json:
+        return Response('Invalid submission, please submit as JSON.', status=400)
+    data = request.json
+
+    for line in data:
+        print(line)
+
+    # SortOrder is gone from the frontend code - you'll need to iterate through
+    # the rows and get SortOrder from the position of the row. Something like
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        for pos, list_data in enumerate(data):
+            #cursor.execute('UPDATE Final24 SET Team =% s where SortOrder=%s', (team_selection['Team'],pos+1))
+            #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
+            ##print(query1)
+            #cursor.execute(query1)
+            cursor.execute('UPDATE checklist SET taskStatus = %s where listID = %s',(list_data['taskStatus'],list_data['listID']))
+            
+        mysql.connection.commit()
+
+    return '1'
+
+
 
 
 if __name__=="__main__":

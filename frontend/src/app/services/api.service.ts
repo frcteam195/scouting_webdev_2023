@@ -528,8 +528,6 @@ export class ApiService {
       }
     });
 
-
-
   }
 
 
@@ -544,6 +542,23 @@ export class ApiService {
     // First try to load a fresh copy of the data from the API
     return this.http.get<Access[]>(this.apiUrl + '/access', options).toPromise();
     
+  }
+
+  saveListData(checklist: Checklist[]){
+    //localStorage.setItem('StoredL2', JSON.stringify(level2));
+
+    //const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+    const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+    
+    this.http.post<Checklist[]>(this.apiUrl + '/checklist-update', JSON.stringify(checklist), options).subscribe();
+
+    console.log("Updating Checklist Records");
+
+    let result = localStorage.getItem(('Checklist'));
+
+    // console.log(result);
+
+
   }
 
 }

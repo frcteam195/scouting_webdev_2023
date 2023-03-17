@@ -7,7 +7,7 @@ export class Checklist {
     taskStatus: number;
     task: string;
     taskDesc: string;
-    notes: string;
+    allianceStationID: number;
 constructor
 (   listID: number,
     eventID: number,
@@ -17,7 +17,7 @@ constructor
     taskStatus: number,
     task: string,
     taskDesc: string,
-    notes: string
+    allianceStationID: number
      ){
     this.listID=listID;
     this.eventID=eventID;
@@ -27,5 +27,5 @@ constructor
     this.taskStatus=taskStatus;
     this.task=task;
     this.taskDesc=taskDesc;
-    this.notes=notes;
+    this.allianceStationID=allianceStationID;
 }}
