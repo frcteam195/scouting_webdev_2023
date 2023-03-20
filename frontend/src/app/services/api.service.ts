@@ -528,6 +528,22 @@ export class ApiService {
       }
     });
 
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<CurrTeams[]>(this.apiUrl + '/currteam/'+event).subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.CurrTeamReplay.next(response as CurrTeams[]);
+      // Might as well store it while we have it
+      localStorage.setItem('CurrTeams', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.CurrTeamReplay.next(JSON.parse(localStorage.getItem('CurrTeams')!) as CurrTeams[]);
+      } catch (err) {
+        console.error('Could not load Current Teams data from server or cache!');
+      }
+    });
+
   }
 
 

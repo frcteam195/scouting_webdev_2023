@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Teams } from '../../teams';
+import { Scouters } from './../../scouters';
 
 
 export interface PitStatus {
@@ -17,6 +18,7 @@ export class PitDataComponent implements OnInit {
 
   @Input() team: string;
   apiTeamsList: Teams[] = [];
+  apiScouters: Scouters[] = [];
   
   status: PitStatus[] = [{ pitStatusID: 0,pitStatus:"Open"},
                           { pitStatusID: 1,pitStatus:"In Progress"},
@@ -25,6 +27,12 @@ export class PitDataComponent implements OnInit {
 
   constructor(private apiService: ApiService) { 
     this.apiService.TeamsReplay.subscribe((Teams) => (this.apiTeamsList = Teams));
+
+  
+  this.apiService.ScouterReplay.subscribe(scouter => {
+    this.apiScouters = scouter;
+  });
+
 
     this.team="195";
   }

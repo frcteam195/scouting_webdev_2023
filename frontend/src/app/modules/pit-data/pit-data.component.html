@@ -11,6 +11,12 @@
                 </div>
                 </tr>
                 <tr>
+                    <td><b>Scouted by: </b></td>
+                    <ng-container *ngFor="let s of apiScouters">
+                        <td align="left" *ngIf=" x.scouterID == s.scouterID ">{{ s.firstName }}</td>
+                    </ng-container>
+                </tr>
+                <tr>
                     <td><b>Type of Drive: </b></td>
                     <td>{{ x.driveBaseType }}</td>
                 </tr>
@@ -60,7 +66,7 @@
                     <td>{{ x.robotdurability }} </td>
                 </tr>
                 <tr>
-                    <td><b>Climb: </b></td>
+                    <td><b>Super Climb: </b></td>
                     <td>{{ x.superClimbType }}</td>
                 </tr>
                 <tr>

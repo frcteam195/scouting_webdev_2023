@@ -195,7 +195,7 @@ export class ScheduleComponent implements OnInit {
       this.apiMatchList_filter = [];
       var teamList = [];
       for (const m of this.apiMatchList) {
-        teamList=[m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue2];
+        teamList=[m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3];
         if (this.team == "All") {
           if (this.mFilter == 0) {
             if ((m.redTotalPts <= 0)||(m.redTotalPts <= 0))

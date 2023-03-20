@@ -49,23 +49,7 @@ def hello2():
 #web dev - 
 
 
-# Get Event Team List
-@app.route("/currteam/", methods =['GET', 'POST'])
-def get_currteam():
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.team "
-                "FROM teams t, events e "
-                "WHERE t.eventID = e.eventID "
-                "AND e.currentEvent = 1 "
-                "order by cast(t.team as int);")
-    data = cursor.fetchall()
-    response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-    
+   
     # get event info 
 @app.route("/event/", methods =['GET', 'POST'])
 def get_event():
@@ -252,6 +236,29 @@ def get_195Data(team):
     )
     return response
 
+
+# Get Event Team List
+@app.route("/currteam/", methods =['GET', 'POST'], defaults={'eventID' : None})
+@app.route("/currteam/<eventID>")
+def get_currteam(eventID):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if eventID is not None:
+        cursor.execute("SELECT t.team FROM teams t, events e "
+                "WHERE t.eventID = e.eventID "
+                "AND e.eventID = " + eventID +
+                " order by cast(t.team as int);")
+    else: 
+        cursor.execute("SELECT t.team FROM teams t, events e "
+                "WHERE t.eventID = e.eventID "
+                "AND e.currentEvent = 1 "
+                "order by cast(t.team as int);")
+    data = cursor.fetchall()
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 # Get Summary Data from past events 
 @app.route("/summary/", methods =['GET', 'POST'], defaults={'eventID' : None})
@@ -824,20 +831,20 @@ def get_user():
     return response
 
 
-def get_currteam():
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT t.team "
-                "FROM teams t, events e "
-                "WHERE t.eventID = e.eventID "
-                "AND e.currentEvent = 1 "
-                "order by cast(t.team as int);")
-    data = cursor.fetchall()
-    response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
+# def get_currteam():
+#     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cursor.execute("SELECT t.team "
+#                 "FROM teams t, events e "
+#                 "WHERE t.eventID = e.eventID "
+#                 "AND e.currentEvent = 1 "
+#                 "order by cast(t.team as int);")
+#     data = cursor.fetchall()
+#     response = app.response_class(
+#         response=json.dumps(data),
+#         status=200,
+#         mimetype='application/json'
+#     )
+#     return response
 
 
 
