@@ -20,19 +20,17 @@
                     <td class="carpet">🟪</td>
                 </tr>
                 <tr>
-                    <td [ngStyle]="{'background-color': x.S2D}">{{ x.S2V }}<br>%</td>
+                    <td rowspan="2" [ngStyle]="{'background-color': x.S2D}">{{ x.S2V }}<br>%</td>
                     <td class="blue" rowspan="2" style="color: white;">E%:<br>{{ x.M1D }}<br><br>D%:<br>{{ x.M2D }}</td>
-                    <td class="carpet"></td>
+                    <td class="carpet" rowspan="2">P%:<br>{{ x.M3D }}</td>
+                    <td class="carpet">🟡</td>
+                </tr>
+                <tr>
                     <td class="carpet">🟡</td>
                 </tr>
                 <tr>
                     <td [ngStyle]="{'background-color': x.S3D}">{{ x.S3V }}<br>%</td>
-                    <td class="carpet"></td>
-                    <td class="carpet">🟡</td>
-                </tr>
-                <tr>
                     <td [ngStyle]="{'background-color': x.S4D}">{{ x.S4V }}<br>%</td>
-                    <td class="carpet">P%:<br>{{ x.M3D }}</td>
                     <td class="carpet"></td>
                     <td class="carpet">🟪</td>
                 </tr>
