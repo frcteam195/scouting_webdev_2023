@@ -24,6 +24,7 @@ export class Teams {
     teamName: String;
     teamLocation: String;
     robotWidth: Number;
+    robotWeight: Number;
     scouterID: Number;
     scoutingStatus: Number;
     superClimbType: String;
@@ -56,6 +57,7 @@ constructor(
     teamName: String,
     teamLocation: String,
     robotWidth: Number,
+    robotWeight: Number,
     scouterID: Number,
     scoutingStatus: Number,
     superClimbType: String,
@@ -87,6 +89,7 @@ this.centerGravityTypeID = centerGravityTypeID
     this.teamName = teamName
     this.teamLocation = teamLocation
     this.robotWidth = robotWidth;
+    this.robotWeight = robotWeight;
     this.scouterID =scouterID
     this.scoutingStatus = scoutingStatus
     this.superClimbType = superClimbType
