@@ -215,8 +215,8 @@ export class AnalysisComponent implements OnInit {
       this.analysis1 = 2;
       this.analysis2 = 4;
     } else if (type == 2) {
-      this.analysis1 = 9;
-      this.analysis2 = 10;
+      this.analysis1 = 2;
+      this.analysis2 = 15;
     } else if (type == 3) {
       this.analysis1 = 11;
       this.analysis2 = 8;
