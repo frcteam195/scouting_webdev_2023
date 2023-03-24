@@ -1,6 +1,6 @@
 import { Word } from './../word';
 import {Injectable} from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
+import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {F} from "@angular/cdk/keycodes";
 import { formatDate } from '@angular/common';
@@ -61,6 +61,9 @@ export class ApiService {
 
   access: number = 0;
 
+  public globalEvent$ = new BehaviorSubject<string>('Current');
+  public globalTime$ = new BehaviorSubject<string>('Unknown');
+
   constructor(private http: HttpClient, private router: Router) {
     this.CEAReplay = new ReplaySubject(1);
     this.MatchReplay = new ReplaySubject(1);
@@ -91,6 +94,8 @@ export class ApiService {
   //  available as a ReplaySubject.
   loadData(): void {
 
+    localStorage.setItem('event', '0');
+
     console.log("Check Login");
 
     // First try to load a fresh copy of the data from the API
@@ -100,10 +105,7 @@ export class ApiService {
       // Might as well store it while we have it
       console.log("Getting Data from Database");
 
-      let now = new Date();
-      let date = formatDate(now, 'MM/dd hh:mm a', 'en-US');
-      localStorage.setItem('lastDB', date);
-      console.log("Time: " + date);
+      this.setTime();
 
       localStorage.setItem('CEA', JSON.stringify(response));
     }, () => {
@@ -428,6 +430,34 @@ export class ApiService {
 
   }
 
+
+  // Get/Set Event for async pipe on Header Component
+
+  setEvent(val: string) {
+    this.globalEvent$.next(val);
+  }
+
+  getEvent() {
+    return this.globalEvent$.asObservable();
+  }
+
+  // Get/Set Event for async pipe on Header Component
+
+  setTime() {
+
+    let now = new Date();
+    let date = formatDate(now, 'MM/dd hh:mm a', 'en-US');
+    console.log("Time: " + date);
+    this.globalTime$.next(date);
+
+  }
+
+  getTime() {
+    return this.globalTime$.asObservable();
+  }
+
+
+
   getHistory(event:number){
     
     // First try to load a fresh copy of the data from the API
@@ -435,12 +465,7 @@ export class ApiService {
       // Store the response in the ReplaySubject, which components can use to access the data
       this.CEAReplay.next(response as CEA[]);
       // Might as well store it while we have it
-      console.log("Getting Data from Database");
-
-      let now = new Date();
-      let date = formatDate(now, 'MM/dd hh:mm a', 'en-US');
-      localStorage.setItem('lastDB', date);
-      console.log("Time: " + date);
+      console.log("Getting Historical Data from Database");
 
       localStorage.setItem('CEA', JSON.stringify(response));
     }, () => {
