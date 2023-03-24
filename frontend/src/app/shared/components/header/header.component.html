@@ -6,7 +6,7 @@
                     <img src="favicon.ico" height="30px">
                 </td>
                 <td>
-                    <p>Last Update: {{ lastDBtime }}</p>
+                    <p>Event: {{ eventName | async }} &nbsp; {{ lastDBtime | async }}</p>
                 </td>
             </tr>
         </table>
