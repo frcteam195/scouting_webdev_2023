@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.setEvent('Current');
+    // this.apiService.setEvent('Current');
   }
 
 }

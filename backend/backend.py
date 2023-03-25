@@ -671,7 +671,7 @@ def post_level2sccouting():
             cursor.execute('UPDATE matchScoutingL2 SET speed = %s, maneuverability = %s, sturdiness = %s, climb = %s, '
                 'effort = %s, scoringEff = %s, intakeEff = %s, commentOff= %s, commentDef = %s, goodOffBot = %s, goodDefBot = %s, '
                 'scouterID = %s, scoutingStatus = %s, defCommunity = %s, defCenter = %s, defLZ = %s, preNoShow = %s '
-                'where matchScoutingL2ID = %s',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
+                'where matchScoutingL2ID = %s and (scoutingStatus not in (1,3) or scoutingStatus is null)',(lvl2_data['speed'],lvl2_data['maneuverability'],lvl2_data['sturdiness'],lvl2_data['climb'],
                 lvl2_data['effort'],lvl2_data['scoringEff'],lvl2_data['intakeEff'],lvl2_data['commentOff'],lvl2_data['commentDef'],
                 lvl2_data['goodOffBot'],lvl2_data['goodDefBot'],lvl2_data['scouterID'],lvl2_data['scoutingStatus'],lvl2_data['defCommunity'],lvl2_data['defCenter'],lvl2_data['defLZ'],
                 lvl2_data['preNoShow'],lvl2_data['matchScoutingL2ID']))
@@ -706,7 +706,7 @@ def post_level1sccouting():
                 'teleCubeHigh = %s, teleConeMid = %s, teleCubeMid = %s, teleConeLow = %s, teleCubeLow = %s, teleConeCMTY = %s, teleCubeCMTY = %s, teleLZPickup = %s,'
                 'teleObstructed = %s, teleWasObstructed = %s, ramp = %s, rampAssist = %s, rampPos = %s, rampStartTime = %s, postSubsystemBroke = %s, '
                 'postBrokeDown = %s, postReorientCone = %s, postShelfPickup = %s, postGroundPickup = %s, postGoodPartner = %s, postTippedOver = %s '
-                'where matchScoutingID = %s',(lvl1_data['preStartPos'],lvl1_data['preLoad'],lvl1_data['preNoShow'],lvl1_data['autoMB'],lvl1_data['autoRamp'],lvl1_data['autoPen'],
+                'where matchScoutingID = %s and (scoutingStatus not in (1,3) or scoutingStatus is null)' ,(lvl1_data['preStartPos'],lvl1_data['preLoad'],lvl1_data['preNoShow'],lvl1_data['autoMB'],lvl1_data['autoRamp'],lvl1_data['autoPen'],
                 lvl1_data['autoScore1'],lvl1_data['autoScore2'],lvl1_data['scouterID'],lvl1_data['scoutingStatus'],lvl1_data['autoScore3'],lvl1_data['autoScore4'],lvl1_data['teleConeHigh'],
                 lvl1_data['teleCubeHigh'],lvl1_data['teleConeMid'],lvl1_data['teleCubeMid'],lvl1_data['teleConeLow'],lvl1_data['teleCubeLow'],lvl1_data['teleConeCMTY'],lvl1_data['teleCubeCMTY'],lvl1_data['teleLZPickup'],
                 lvl1_data['teleObstructed'],lvl1_data['teleWasObstructed'],lvl1_data['ramp'],lvl1_data['rampAssist'],lvl1_data['rampPos'],lvl1_data['rampStartTime'], lvl1_data['postSubsystemBroke'],
