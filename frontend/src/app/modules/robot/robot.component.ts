@@ -58,7 +58,6 @@ export class RobotComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     // Verify User has access for this page.
     this.access = Number(localStorage.getItem('access')) || -1;
 
@@ -66,7 +65,8 @@ export class RobotComponent implements OnInit {
       this.router.navigate(["login/"]); 
     } else {
       this.team = this.route.snapshot.paramMap.get('team') || '';
-      //console.log("Check Robot: " + this.team)
+      // Call setTeam to get Robot Picture
+      this.setTeam(this.team);
     }
 
   }

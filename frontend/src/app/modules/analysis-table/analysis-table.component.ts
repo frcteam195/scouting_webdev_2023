@@ -23,6 +23,7 @@ export class AnalysisTableComponent implements OnInit {
   apiTypes: Types[] = [];
   title: String;
   titleShow = true;
+  barShow = true;
   url: string = "";
   apiTeamsList: Teams[] = [];
   length: Number = 0;
@@ -143,9 +144,12 @@ export class AnalysisTableComponent implements OnInit {
           } 
         }
       }
-
+      // Only show split bars when 
       if (this.color > 0) {
         this.titleShow = false;
+        if (this.analysisGroup == 1){
+          this.barShow = false;
+        }
       }
 
       //console.log("analysisTypes: " + analysisTypes);

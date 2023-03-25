@@ -45,7 +45,7 @@
         <td align="center" class="bg{{ a?.S3F }}">{{ a.S3D }}</td>
         <!-- <td align="center" class="bg{{ a?.Summary4Format }}">{{ a.Summary4Display }}</td> -->
     </tr>
-    <tr *ngIf="!titleShow">
+    <tr *ngIf="!barShow">
         <th colspan="16">&nbsp;</th>
     </tr>
     <tr *ngFor="let a of apiAnalysis_filter | slice:3:9">
@@ -70,7 +70,7 @@
         <td align="center" class="bg{{ a?.S3F }}">{{ a.S3D }}</td>
         <!-- <td align="center" class="bg{{ a?.Summary4Format }}">{{ a.Summary4Display }}</td> -->
     </tr>
-    <tr *ngIf="!titleShow">
+    <tr *ngIf="!barShow">
         <th colspan="16">&nbsp;</th>
     </tr>
     <tr *ngFor="let a of apiAnalysis_filter | slice:9:14">
