@@ -9,8 +9,8 @@ import { Types } from '../types';
 import { WordCloud } from '../wordcloud';
 import { CEA } from '../CEA';
 import { Level2 } from '../level2';
-import { Matches } from '../matches'
-import { Teams } from '../teams'
+import { Matches } from '../matches';
+import { Teams } from '../teams';
 import { Summary } from '../summary';
 import { environment } from '../../environments/environment';
 import { Event } from '../event';
@@ -18,6 +18,7 @@ import { Access } from '../access';
 import { Router } from '@angular/router';
 import { Checklist } from '../checklist';
 import { Scouters } from '../scouters';
+import { MatchInfo } from '../matchinfo';
 
 
 export class Final24 {
@@ -50,6 +51,7 @@ export class ApiService {
   public EventReplay: ReplaySubject<Event[]>;
   public CheckReplay: ReplaySubject<Checklist[]>;
   public ScouterReplay: ReplaySubject<Scouters[]>;
+  public MatchInfoReplay: ReplaySubject<MatchInfo[]>;
 
   private apiUrl = environment.apiUrl;
 
@@ -77,6 +79,7 @@ export class ApiService {
     this.EventReplay = new ReplaySubject(1);
     this.CheckReplay = new ReplaySubject(1);
     this.ScouterReplay = new ReplaySubject(1);
+    this.MatchInfoReplay = new ReplaySubject(1);
 
 
     // Verify User has access for this page.
@@ -119,7 +122,22 @@ export class ApiService {
     });
 
     // First try to load a fresh copy of the data from the API
-    this.http.get<Matches[]>(this.apiUrl + '/matchinfo').subscribe(response => {
+    this.http.get<MatchInfo[]>(this.apiUrl + '/matchinfo').subscribe(response => {
+      // Store the response in the ReplaySubject, which components can use to access the data
+      this.MatchInfoReplay.next(response as MatchInfo[]);
+      // Might as well store it while we have it
+      localStorage.setItem('MatchInfo', JSON.stringify(response));
+    }, () => {
+      try {
+        // Send the cached data
+        this.MatchInfoReplay.next(JSON.parse(localStorage.getItem('MatchInfo')!) as MatchInfo[]);
+      } catch (err) {
+        console.error('Could not load Match Info data from server or cache!');
+      }
+    });
+
+    // First try to load a fresh copy of the data from the API
+    this.http.get<Matches[]>(this.apiUrl + '/matches').subscribe(response => {
       // Store the response in the ReplaySubject, which components can use to access the data
       this.MatchReplay.next(response as Matches[]);
       // Might as well store it while we have it
@@ -129,7 +147,7 @@ export class ApiService {
         // Send the cached data
         this.MatchReplay.next(JSON.parse(localStorage.getItem('Matches')!) as Matches[]);
       } catch (err) {
-        console.error('Could not load Matches data from server or cache!');
+        console.error('Could not load Match data from server or cache!');
       }
     });
 
@@ -457,7 +475,7 @@ export class ApiService {
   }
 
 
-
+  // Collect infor from specific event (excluding matches)
   getHistory(event:number){
     
     // First try to load a fresh copy of the data from the API
@@ -478,18 +496,19 @@ export class ApiService {
       }
     });
 
+
     // First try to load a fresh copy of the data from the API
-    this.http.get<Matches[]>(this.apiUrl + '/matchinfo/'+event).subscribe(response => {
+    this.http.get<MatchInfo[]>(this.apiUrl + '/matchinfo/'+event).subscribe(response => {
       // Store the response in the ReplaySubject, which components can use to access the data
-      this.MatchReplay.next(response as Matches[]);
+      this.MatchInfoReplay.next(response as MatchInfo[]);
       // Might as well store it while we have it
-      localStorage.setItem('Matches', JSON.stringify(response));
+      localStorage.setItem('MatchInfo', JSON.stringify(response));
     }, () => {
       try {
         // Send the cached data
-        this.MatchReplay.next(JSON.parse(localStorage.getItem('Matches')!) as Matches[]);
+        this.MatchInfoReplay.next(JSON.parse(localStorage.getItem('MatchInfo')!) as MatchInfo[]);
       } catch (err) {
-        console.error('Could not load Matches data from server or cache!');
+        console.error('Could not load Match Info data from server or cache!');
       }
     });
 

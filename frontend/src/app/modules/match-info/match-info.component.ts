@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Matches } from '../../matches'
+import { MatchInfo } from '../../matchinfo';
 
 @Component({
   selector: 'app-match-info',
@@ -13,11 +13,11 @@ export class MatchInfoComponent implements OnInit {
   showAuto: number=0;
   showTele: number=0;
   showCoop: number=0;
-  apiMatchList: Matches[];
+  apiMatchList: MatchInfo[];
   constructor(private apiService: ApiService) {
     this.match=0;
     this.apiMatchList = [];
-    this.apiService.MatchReplay.subscribe(match => {
+    this.apiService.MatchInfoReplay.subscribe(match => {
       this.apiMatchList = match;
     });
    }

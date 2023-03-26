@@ -2,7 +2,7 @@ import { C } from '@angular/cdk/keycodes';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService, CurrTeams, Final24 } from 'src/app/services/api.service';
-import { Matches } from '../../matches';
+import { MatchInfo } from '../../matchinfo';
 
 export interface TeamMatch {
   Team: string;
@@ -41,8 +41,8 @@ export class ScheduleComponent implements OnInit {
   apiWatch1List: Final24[]=[];
   apiWatch2List: Final24[]=[];
 
-  apiMatchList: Matches[];
-  apiMatchList_filter: Matches[]; 
+  apiMatchList: MatchInfo[];
+  apiMatchList_filter: MatchInfo[]; 
   apiCurrTeamList: CurrTeams[];
 
   teamMatch: TeamMatch[] = [];
@@ -68,7 +68,7 @@ export class ScheduleComponent implements OnInit {
     this.apiCurrTeamList = [];
     this.selectedMatch = 0;
 
-    this.apiService.MatchReplay.subscribe(match => {
+    this.apiService.MatchInfoReplay.subscribe(match => {
       this.apiMatchList = match;
       this.regenerateFilter();
     });
