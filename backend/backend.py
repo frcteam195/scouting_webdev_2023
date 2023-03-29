@@ -193,12 +193,12 @@ def get_cgtypes():
 def get_matches(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if eventID is not None:
-        cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+        cursor.execute("SELECT m.* "
                 "FROM matches m, events e "
                 "WHERE e.eventID = m.eventID "
                 "AND e.eventID = " + eventID + ";")
     else:
-        cursor.execute("SELECT m.matchNum, m.red1, m.red2, m.red3, m.blue1, m.blue2, m.blue3 "
+        cursor.execute("SELECT m.* "
                 "FROM matches m, events e "
                 "WHERE e.eventID = m.eventID "
                 "AND e.currentEvent = 1;")
