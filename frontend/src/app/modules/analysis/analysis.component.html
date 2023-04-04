@@ -229,6 +229,23 @@
                     </tr>
                 </table>
 
+                <!-- 4 Table View -->
+                <table *ngIf="display==8">
+                    <tr>
+                        <td>
+                            <app-team-table [analysisTypeID]=5``                                                         [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=6 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                        </td>
+                        <td width="20">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <app-team-table [analysisTypeID]=2 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=13 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                        </td>
+                    </tr>
+                </table>
+
                 <!-- Bar Graph (Top) Line Graph (Bottom) -->
                 <table *ngIf="display==6">
                     <tr>
