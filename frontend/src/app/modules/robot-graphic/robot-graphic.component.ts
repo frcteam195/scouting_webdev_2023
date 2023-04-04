@@ -9,6 +9,7 @@ import { CEA } from '../../CEA';
 export class RobotGraphicComponent implements OnInit {
 
   @Input() selectedTeam: string;
+  @Input() justAuto: number;
 
   apiAnalysis: CEA[] = [];
   title: String;
@@ -19,6 +20,7 @@ export class RobotGraphicComponent implements OnInit {
     this.apiAnalysis = [];
     this.title = "Title";
     this.selectedTeam = "";
+    this.justAuto = 0;
 
     // Update the filter whenever the inputting data changes
     this.apiService.CEAReplay.subscribe(analysis => {
