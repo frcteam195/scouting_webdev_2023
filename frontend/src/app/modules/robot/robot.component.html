@@ -57,7 +57,7 @@
         </td>
         <td>
             <div *ngIf="display==1" align="center">
-                <app-robot-graphic [selectedTeam]="team"></app-robot-graphic>
+                <app-robot-graphic [selectedTeam]="team" [justAuto]=0></app-robot-graphic>
             </div>
             <table border="0" *ngIf="display==2" align="center"> 
                 <app-pit-data [team]="team"></app-pit-data> 

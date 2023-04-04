@@ -7,6 +7,9 @@
             <button (click)="setDisplay(2)" [ngClass]="{'selected': display == 2}">Post Game Info</button>
             <button (click)="setDisplay(3)" [ngClass]="{'selected': display == 3}">Level 2 Data</button>
             <button (click)="setDisplay(4)" [ngClass]="{'selected': display == 4}">Predictions</button>
+            <button (click)="setDisplay(5)" [ngClass]="{'selected': display == 5}">Red L2</button>
+            <button (click)="setDisplay(6)" [ngClass]="{'selected': display == 6}">Blue L2</button>
+            <button (click)="setDisplay(7)" [ngClass]="{'selected': display == 7}">Auto</button>
             
         </td> 
         <td colspan="1" align="center" style="width: 20%;"><h2>Match {{matchNum}}</h2>
@@ -146,4 +149,66 @@
     </ng-container>
     </ng-container>
 </table>   
+<table style="width: 100%;height: 80%;" *ngIf="display==5"  class="redL2" >
+    <tr>
+        <th>{{ redTeam1 }}</th>
+        <th>{{ redTeam2 }}</th>
+        <th>{{ redTeam3 }}</th>
+    </tr>
+    <tr>
+        <td style="width: 33%;" valign="top">
+            <app-level-two [team]="redTeam1"></app-level-two>
+        </td>
+        <td style="width: 33%;" valign="top">
+            <app-level-two [team]="redTeam2"></app-level-two>
+        </td>
+        <td style="width: 33%;" valign="top">
+            <app-level-two [team]="redTeam3"></app-level-two>
+        </td>
+    </tr>
+</table>
+<table style="width: 100%;" *ngIf="display==6"  class="blueL2">
+    <tr>
+        <th>{{ blueTeam1 }}</th>
+        <th>{{ blueTeam2 }}</th>
+        <th>{{ blueTeam3 }}</th>
+    </tr>
+    <tr>
+        <td style="width: 33%;" valign="top">
+            <app-level-two [team]="blueTeam1"></app-level-two>
+        </td>
+        <td style="width: 33%;" valign="top">
+            <app-level-two [team]="blueTeam2"></app-level-two>
+        </td>
+        <td style="width: 33%;" valign="top">
+            <app-level-two [team]="blueTeam3"></app-level-two>
+        </td>
+    </tr>
+</table>
+<table style="width: 100%;" *ngIf="display==7"  class="auto">
+    <tr>
+        <th style="width: 50%;">{{ redTeam1 }}</th>
+        <th style="width: 50%;">{{ blueTeam1 }}</th>
+    </tr>
+    <tr>
+        <td align="center"><app-robot-graphic [selectedTeam]="redTeam1" [justAuto]=1></app-robot-graphic></td>
+        <td align="center"><app-robot-graphic [selectedTeam]="blueTeam1" [justAuto]=1></app-robot-graphic></td>
+    </tr>
+    <tr>
+        <th style="width: 50%;">{{ redTeam2 }}</th>
+        <th style="width: 50%;">{{ blueTeam2 }}</th>
+    </tr>
+    <tr>
+        <td align="center"><app-robot-graphic [selectedTeam]="redTeam2" [justAuto]=1></app-robot-graphic></td>
+        <td align="center"><app-robot-graphic [selectedTeam]="blueTeam2" [justAuto]=1></app-robot-graphic></td>
+    </tr>
+    <tr>
+        <th style="width: 50%;">{{ redTeam2 }}</th>
+        <th style="width: 50%;">{{ blueTeam2 }}</th>
+    </tr>
+    <tr>
+        <td align="center"><app-robot-graphic [selectedTeam]="redTeam2" [justAuto]=1></app-robot-graphic></td>
+        <td align="center"><app-robot-graphic [selectedTeam]="blueTeam2" [justAuto]=1></app-robot-graphic></td>
+    </tr>
+</table>
    
