@@ -188,7 +188,7 @@ export class AnalysisComponent implements OnInit {
       this.filterList = this.compareList;
       this.filter = 1;
       this.focusTeam = "";
-      this.gridView();    // Turn on 8 Table Grid Display
+      this.gridView(5);    // Turn on 8 Table Grid Display
       this.holdView = this.viewType;
       this.viewType = 2;  // Turn on Graph View for other Buttons
 
@@ -268,9 +268,10 @@ export class AnalysisComponent implements OnInit {
     }
   }
 
-  gridView() {
-    this.display = 5;
+  gridView(num:number) {
+    this.display = num;
   }
+
 
   allianceView() {
     this.display = 7;
