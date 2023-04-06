@@ -12,12 +12,12 @@
                 <div style="float:left;width:50%;">
                 <button (click)="changeDisplay(1)">Auto</button>
                 <button (click)="changeDisplay(2)">Auto|Ramp</button>
-                <button (click)="changeDisplay(3)">Com|Tele</button>
+                <button (click)="gridView(8)">Overview</button>
                 <button (click)="changeDisplay(4)">Tele|Ramp</button>
-                <button (click)="changeDisplay(5)">Com|LZ</button>
+                <button (click)="gridView(9)">3rdPick</button>
                 <button (click)="changeDisplay(6)">Tele|Obstr</button>
                 <button (click)="summaryView()">Summary</button>
-                <button (click)="gridView()">8 Grid</button>
+                <button (click)="gridView(5)">8 Grid</button> 
                 <!-- <button (click)="allianceView()">Alliance</button> -->
                 </div>
                 <div style="float:right;width:50%;">
@@ -229,19 +229,36 @@
                     </tr>
                 </table>
 
-                <!-- 4 Table View -->
+                <!-- 4 Table View - general overview -->
                 <table *ngIf="display==8">
                     <tr>
                         <td>
-                            <app-team-table [analysisTypeID]=5``                                                         [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
-                            <app-team-table [analysisTypeID]=6 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=2 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=15 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
                         </td>
                         <td width="20">
                             &nbsp;
                         </td>
                         <td>
+                            <app-team-table [analysisTypeID]=27 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=26 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- 4 Table View - 3rd pick-->
+                <table *ngIf="display==9">
+                    <tr>
+                        <td>
                             <app-team-table [analysisTypeID]=2 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
-                            <app-team-table [analysisTypeID]=13 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=15 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                        </td>
+                        <td width="20">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <app-team-table [analysisTypeID]=4 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                            <app-team-table [analysisTypeID]=40 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
                         </td>
                     </tr>
                 </table>
