@@ -608,11 +608,11 @@ def post_pitscouting():
             cursor.execute('UPDATE pit SET buildComments = %s, buildQuality = %s, buildTypeID = %s, centerGravityTypeID = %s, dedicatedGroundIntake = %s, '
                 'driveBaseTypeID = %s, driveMotorTypeID = %s, electricalComments= %s, electricalQuality = %s, '
                 'generalComments = %s, imageLink = %s, manipulatorTypeID = %s, robotDurability = %s, robotHeight = %s, '
-                'robotLength = %s, robotWidth = %s, scouterID = %s, scoutingStatus = %s, superClimbTypeID = %s '
+                'robotLength = %s, robotWidth = %s, scouterID = %s, scoutingStatus = %s, superClimbTypeID = %s, robotWeight = %s '
                 'where team = %s and eventID = %s',(pit_data['buildComments'],pit_data['buildQuality'],pit_data['buildTypeID'],pit_data['centerGravityTypeID'],pit_data['dedicatedGroundIntake'],
                 pit_data['driveBaseTypeID'],pit_data['driveMotorTypeID'],pit_data['electricalComments'],pit_data['electricalQuality'],
                 pit_data['generalComments'],pit_data['imageLink'],pit_data['manipulatorTypeID'],pit_data['robotDurability'],pit_data['robotHeight'],
-                pit_data['robotLength'],pit_data['robotWidth'],pit_data['scouterID'],pit_data['scoutingStatus'],pit_data['superClimbTypeID'],
+                pit_data['robotLength'],pit_data['robotWidth'],pit_data['scouterID'],pit_data['scoutingStatus'],pit_data['superClimbTypeID'],pit_data['robotWeight'],
                 pit_data['team'],pit_data['eventID']))
         mysql.connection.commit()
 

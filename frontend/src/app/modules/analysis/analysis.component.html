@@ -130,7 +130,7 @@
                             <ng-container *ngFor="let c of compareList">
                                 <input type="text" class="tbox" maxlength="4" [(ngModel)]="c.team" ><br>
                             </ng-container>
-                            <button (click)="compareTeams()">{{ filter == 1 ? 'Compare Off' : 'Compare' }}</button>
+                            <button (click)="compareTeams()">{{ filter == 1 ? 'Comp Off' : 'Compare' }}</button>
                             <br>
                             <div *ngIf="mode > 1">
                                 <button (click)="copyToWatch(1)">Watch1</button>
@@ -144,6 +144,8 @@
                             </ng-container>
                                 <button (click)="addEnd(2)">Add</button>
                             <div *ngIf="mode == 1">
+                                <br>
+                                <button (click)="compareDnp()">{{ filter == 1 ? 'Comp Off' : 'Comp DNP' }}</button>
                                 <br>
                                 <button (click)="copyToPick()">Copy2Pick</button>
                                 <br>
