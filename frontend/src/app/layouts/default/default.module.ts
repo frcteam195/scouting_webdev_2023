@@ -30,6 +30,7 @@ import { MatchInfoComponent } from 'src/app/modules/match-info/match-info.compon
 import { RobotGraphicComponent } from 'src/app/modules/robot-graphic/robot-graphic.component';
 import { LoginComponent } from 'src/app/modules/login/login.component';
 import { ChecklistComponent } from 'src/app/modules/checklist/checklist.component';
+import { BracketComponent } from 'src/app/modules/bracket/bracket.component';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -57,7 +58,9 @@ PlotlyModule.plotlyjs = PlotlyJS;
     MatchInfoComponent,
     RobotGraphicComponent,
     LoginComponent,
-    ChecklistComponent
+    ChecklistComponent,
+    BracketComponent,
+    AnalysisComponent
   ],
   imports: [
     CommonModule,
