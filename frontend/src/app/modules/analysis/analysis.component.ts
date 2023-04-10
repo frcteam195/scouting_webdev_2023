@@ -45,6 +45,8 @@ export class AnalysisComponent implements OnInit {
   filterList: Final24[]=[];
   filter: number = 0;
   pageFilter: number = 0;
+  dnpfilter: number = 0;
+  holdViewDNP: number = 1;
 
   constructor(public apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
     //this.apiService.CEAReplay.subscribe((analysis) => (this.apiAnalysis = analysis));
@@ -190,7 +192,7 @@ export class AnalysisComponent implements OnInit {
       this.focusTeam = "";
       this.gridView(5);    // Turn on 8 Table Grid Display
       this.holdView = this.viewType;
-      this.viewType = 2;  // Turn on Graph View for other Buttons
+      //this.viewType = 2;  // Turn on Graph View for other Buttons
 
     } else {
       // Logic to turn filter back off
@@ -205,6 +207,38 @@ export class AnalysisComponent implements OnInit {
     this.compareShow = !this.compareShow;
     this.fullShow = !this.fullShow;
  }
+
+ compareDnp(): void {
+    
+  if (this.filter == 0 ) {
+
+    this.filterList = this.apiDnpList;
+    console.log("DNP List: ", this.apiDnpList);
+    this.filter = 1;  // turn off compare if it's on
+    this.focusTeam = "";
+    this.gridView(5);    // Turn on 8 Table Grid Display
+    this.holdView = this.viewType;
+    //this.viewType = 2;  // Turn on Graph View for other Buttons
+
+  } else {
+    // Logic to turn filter back off
+    //this.filterList = this.apiFinal24List;
+    this.filterList = this.apiFinal24List.concat(this.apiDnpList);
+    this.filter = 0;
+    this.viewType = this.holdView;  // Set viewtype back to original setting
+    this.normalView();
+    this.pageFilter = 1;
+  }
+
+  this.compareShow = !this.compareShow;
+  this.fullShow = !this.fullShow;
+}
+
+
+
+
+
+
 
   // Deteremine the Analysis Types to send to the team-table component
   changeDisplay(type: number) {
@@ -268,8 +302,10 @@ export class AnalysisComponent implements OnInit {
     }
   }
 
+
   gridView(num:number) {
     this.display = num;
+
   }
 
 
