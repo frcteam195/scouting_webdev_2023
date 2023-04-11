@@ -58,6 +58,8 @@ export class AnalysisComponent implements OnInit {
     this.typeGroup = 1;
     this.mode = 1;
     this.holdView = 1;
+
+    console.log("final24",this.apiFinal24List);
     
   }
 
@@ -95,6 +97,7 @@ export class AnalysisComponent implements OnInit {
       this.filter = 0;
 
       this.teamSelectionChange(1);
+      console.log("final24",this.apiFinal24List);
 
     }
 

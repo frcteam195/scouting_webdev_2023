@@ -165,6 +165,7 @@
                 <table *ngIf="display==1">
                     <tr>
                         <td>
+                            <app-alliance [analysisTypeID]=1 [Final24List]=apiFinal24List></app-alliance>
                             <app-team-table [analysisTypeID]=analysis1 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table>
                         </td>
                         <td width="20">
