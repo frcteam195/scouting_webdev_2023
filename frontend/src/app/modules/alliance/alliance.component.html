@@ -1,1 +1,26 @@
-<p>alliance works!</p>
+<table class="cea_table" border="1">
+    <tr>
+    <ng-container *ngFor="let x of apiTypes">
+        <th align="center" colspan="6" *ngIf=" x.analysisTypeID == analysisTypeID">{{ x.analysisType }}</th>
+    </ng-container>
+    </tr>
+
+    <tr>
+        <th><div [ngClass]="{'sorted': this.sort==2}"><a (click)="localSort(2)">Alliance</a></div></th>
+        <th>Team1</th>
+        <th>Team2</th>
+        <th>Team3</th>
+        <th><div [ngClass]="{'sorted': this.sort==3}"><a (click)="localSort(3)">A</a></div></th>
+        <th><div [ngClass]="{'sorted': this.sort==1}"><a (click)="localSort(1)">M</a></div></th>
+    </tr>
+    <tr *ngFor="let t of allianceData">
+        <!-- <td *ngIf="t.team != ''">Team: {{ t.team }} </td> -->
+        <td align="center">{{ t.alliance }} </td>
+        <td align="center">{{ t.team1 }}</td>
+        <td align="center">{{ t.team2 }}</td>
+        <td align="center">{{ t.team3 }}</td>
+        <td align="right">{{ t.teamAverage | number : '1.1-1' }}</td>
+        <td align="right">{{ t.teamMedian | number : '1.1-1' }}</td>
+     
+    </tr>
+</table>
