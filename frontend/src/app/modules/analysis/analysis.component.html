@@ -18,6 +18,8 @@
                 <button (click)="changeDisplay(6)">Tele|Obstr</button>
                 <button (click)="summaryView()">Summary</button>
                 <button (click)="gridView(5)">8 Grid</button> 
+                <button *ngIf="mode==3" (click)="gridView(10)">Alliance</button> 
+                
                 <!-- <button (click)="allianceView()">Alliance</button> -->
                 </div>
                 <div style="float:right;width:50%;">
@@ -304,6 +306,25 @@
                         </td>
                     </tr>
                 </table>
+
+                <!-- 4 Table View - 3rd pick-->
+                <table *ngIf="display==10">
+                    <tr>
+                        <td>
+                            <app-alliance [analysisTypeID]=analysis1 [final24List]=apiFinal24List [sort]=sortType></app-alliance>
+                        </td>
+                        <td width="20">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <app-team-table [analysisTypeID]=analysis1 [teamList]=filterList [sort]=sortType  [focus]=focusTeam [filter]=filter (sendTeamEvent)="print_team($event)"></app-team-table><br>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
                 
             </td>
             <td style="padding: 4px;">

@@ -113,6 +113,9 @@ export class AnalysisComponent implements OnInit {
     }
 
     console.log("Change IDentified");
+
+    console.log("Final24: ", this.apiFinal24List.length);
+
     // Logic to turn filter back off
     if (this.filter == 0) {
       this.filterList = this.apiFinal24List.concat(this.apiDnpList);
@@ -400,6 +403,7 @@ export class AnalysisComponent implements OnInit {
   onChanges(): void {
 
     console.log("Change IDentified");
+
   }
 
   print_team(team: string) {
@@ -435,6 +439,7 @@ export class AnalysisComponent implements OnInit {
       }
 
     }
+    console.log("Final24: ", this.apiFinal24List.length);
 
     
   }

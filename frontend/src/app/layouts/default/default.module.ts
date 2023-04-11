@@ -31,6 +31,7 @@ import { RobotGraphicComponent } from 'src/app/modules/robot-graphic/robot-graph
 import { LoginComponent } from 'src/app/modules/login/login.component';
 import { ChecklistComponent } from 'src/app/modules/checklist/checklist.component';
 import { BracketComponent } from 'src/app/modules/bracket/bracket.component';
+import { AllianceComponent } from 'src/app/modules/alliance/alliance.component';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -60,7 +61,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     LoginComponent,
     ChecklistComponent,
     BracketComponent,
-    AnalysisComponent
+    AllianceComponent
   ],
   imports: [
     CommonModule,
