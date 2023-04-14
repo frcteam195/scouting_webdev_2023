@@ -19,6 +19,7 @@
                 <button (click)="summaryView()">Summary</button>
                 <button (click)="gridView(5)">8 Grid</button> 
                 <button *ngIf="mode==3" (click)="gridView(10)">Alliance</button> 
+                <button *ngIf="mode==3" (click)="gridView(11)">Bracket</button> 
                 
                 <!-- <button (click)="allianceView()">Alliance</button> -->
                 </div>
@@ -308,7 +309,7 @@
                     </tr>
                 </table>
 
-                <!-- 4 Table View - 3rd pick-->
+                <!-- Alliance View -->
                 <table *ngIf="display==10">
                     <tr>
                         <td>
@@ -323,6 +324,17 @@
                     </tr>
                 </table>
 
+                <!-- Bracket View-->
+                <table *ngIf="display==11">
+                    <tr>
+                        <td>
+                            <app-bracket [final24List]=apiFinal24List></app-bracket>
+                        </td>
+                        <td width="20">
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
 
 
 

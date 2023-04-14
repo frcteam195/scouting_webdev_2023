@@ -152,8 +152,4 @@ export class AllianceComponent implements OnInit {
     
   }
 
-
-
-
-
 }
