@@ -27,20 +27,35 @@ export class BracketComponent implements OnInit {
   alliance3: string = "";
   alliance6: string = "";
 
+  m1o: number = 0;
+  m2o: number = 0;
+  m3o: number = 0;
+  m4o: number = 0;
+  m5o: number = 0;
+  m6o: number = 0;
+  m7o: number = 0;
+  m8o: number = 0;
+  m9o: number = 0;
+  m10o: number = 0;
+  m11o: number = 0;
+  m12o: number = 0;
+  m13o: number = 0;
+  m14o: number = 0;
+
   match5r: string = "";
   match5b: string = "";
   m5r: string = "";
   m5b: string = "";
 
-  match7r: string = "";
-  match7b: string = "";
-  m7r: string = "";
-  m7b: string = "";
-
   match6r: string = "";
   match6b: string = "";
   m6r: string = "";
   m6b: string = "";
+  
+  match7r: string = "";
+  match7b: string = "";
+  m7r: string = "";
+  m7b: string = "";
 
   match8r: string = "";
   match8b: string = "";
@@ -96,6 +111,7 @@ export class BracketComponent implements OnInit {
   
   ngOnChanges() { 
     this.regenerateFilter();
+    this.setWin();
 
   }
 
@@ -150,14 +166,17 @@ export class BracketComponent implements OnInit {
 
   }
 
-  setWin(match: number, outcome: number) {
-    if (match == 1) {
-      if (outcome == 1) {
+
+
+  setWin() {
+    console.log("RUnning setWin");
+    // if (match == 1) {
+      if (this.m1o == 1) {
         this.match7r = this.alliance1;
         this.match5r = this.alliance8;
         this.m7r = "1";
         this.m5r = "8";
-      } else if (outcome == 2) {
+      } else if (this.m1o == 2) {
         this.match7r = this.alliance8;
         this.match5r = this.alliance1;
         this.m7r = "8";
@@ -169,13 +188,12 @@ export class BracketComponent implements OnInit {
         this.m5r = " ";
       }
 
-    } else if (match == 2) {
-      if (outcome == 1) {
+      if (this.m2o == 1) {
         this.match7b = this.alliance4;
         this.match5b = this.alliance5;
         this.m7b = "4";
         this.m5b = "5";
-      } else if (outcome == 2) {
+      } else if (this.m2o == 2) {
         this.match7b = this.alliance5;
         this.match5b = this.alliance4;
         this.m7b = "5";
@@ -187,13 +205,12 @@ export class BracketComponent implements OnInit {
         this.m5b = " ";
       }
 
-    } else if (match == 3) {
-      if (outcome == 1) {
+      if (this.m3o == 1) {
         this.match8r = this.alliance2;
         this.match6r = this.alliance7;
         this.m8r = "2";
         this.m6r = "7";
-      } else if (outcome == 2) {
+      } else if (this.m3o == 2) {
         this.match8r = this.alliance7;
         this.match6r = this.alliance2;
         this.m8r = "7";
@@ -205,14 +222,12 @@ export class BracketComponent implements OnInit {
         this.m6r = " ";
       }
 
-
-    } else if (match == 4) {
-      if (outcome == 1) {
+      if (this.m4o == 1) {
         this.match8b = this.alliance3;
         this.match6b = this.alliance6;
         this.m8b = "3";
         this.m6b = "6";
-      } else if (outcome == 2) {
+      } else if (this.m4o == 2) {
         this.match8b = this.alliance6;
         this.match6b = this.alliance3;
         this.m8b = "6";
@@ -224,37 +239,34 @@ export class BracketComponent implements OnInit {
         this.m6b = " ";
       }
 
-    } else if (match == 5) {
-      if (outcome == 1) {
+      if (this.m5o == 1) {
         this.match10b = this.match5r;
         this.m10b = this.m5r;
-      } else if (outcome == 2) {
+      } else if (this.m5o == 2) {
         this.match10b = this.match5b;
         this.m10b = this.m5b;
       } else {
         this.match10b = "Match 5 Winner";
-        this.match10b = " ";
+        this.m10b = " ";
       }
 
-    } else if (match == 6) {
-      if (outcome == 1) {
+      if (this.m6o == 1) {
         this.match9b = this.match6r;
         this.m9b = this.m6r;
-      } else if (outcome == 2) {
+      } else if (this.m6o == 2) {
         this.match9b = this.match6b;
         this.m9b = this.m6b;
       } else {
         this.match9b = "Match 6 Winner";
-        this.match9b = " ";
+        this.m9b = " ";
       }
 
-    } else if (match == 7) {
-      if (outcome == 1) {
+      if (this.m7o == 1) {
         this.match11r = this.match7r;
         this.match9r = this.match7b;
         this.m11r = this.m7r;
         this.m9r = this.m7b;
-      } else if (outcome == 2) {
+      } else if (this.m7o == 2) {
         this.match11r = this.match7b;
         this.match9r = this.match7r;
         this.m11r = this.m7b;
@@ -266,13 +278,12 @@ export class BracketComponent implements OnInit {
         this.m9r = " ";
       }
 
-    } else if (match == 8) {
-      if (outcome == 1) {
+      if (this.m8o == 1) {
         this.match11b = this.match8r;
         this.match10r = this.match8b;
         this.m11b = this.m8r;
         this.m10r = this.m8b;
-      } else if (outcome == 2) {
+      } else if (this.m8o == 2) {
         this.match11b = this.match8b;
         this.match10r = this.match8r;
         this.m11b = this.m8b;
@@ -284,23 +295,21 @@ export class BracketComponent implements OnInit {
         this.m10r = " ";
       }
 
-    
-    } else if (match == 9) {
-      if (outcome == 1) {
+      if (this.m9o == 1) {
         this.match12b = this.match9r;
         this.m12b = this.m9r;
-      } else if (outcome == 2) {
+      } else if (this.m9o == 2) {
         this.match12b = this.match9b;
         this.m12b = this.m9b;
       } else {
         this.match12b = "Match 9 Winner";
-        this.match12b = " ";
+        this.m12b = " ";
       }
-    } else if (match == 10) {
-      if (outcome == 1) {
+
+      if (this.m10o == 1) {
         this.match12r = this.match10r;
         this.m12r = this.m10r;
-      } else if (outcome == 2) {
+      } else if (this.m10o == 2) {
         this.match12r = this.match10b;
         this.m12r = this.m10b;
       } else {
@@ -308,13 +317,12 @@ export class BracketComponent implements OnInit {
         this.m12r = " ";
       }
 
-    } else if (match == 11) {
-      if (outcome == 1) {
+      if (this.m11o == 1) {
         this.match14r = this.match11r;
         this.m14r = this.m11r;
         this.match13r = this.match11b;
         this.m13r = this.m11b;
-      } else if (outcome == 2) {
+      } else if (this.m11o == 2) {
         this.match14r = this.match11b;
         this.m14r = this.m11b;
         this.match13r = this.match11r;
@@ -325,31 +333,167 @@ export class BracketComponent implements OnInit {
         this.match13r = "Match 11 Loser";
         this.m13r = " ";
       }
-    } else if (match == 12) {
-      if (outcome == 1) {
+
+      if (this.m12o == 1) {
         this.match13b = this.match12r;
         this.m13b = this.m12r;
-      } else if (outcome == 2) {
+      } else if (this.m12o == 2) {
         this.match13b = this.match12b;
         this.m13b = this.m12b;
       } else {
         this.match13b = "Match 12 Winner";
         this.m13b = " ";
       }
-    } else if (match == 13) {
-      if (outcome == 1) {
+
+      if (this.m13o == 1) {
         this.match14b = this.match13r;
         this.m14b = this.m13r;
-      } else if (outcome == 2) {
+      } else if (this.m13o == 2) {
         this.match14b = this.match13b;
         this.m14b = this.m13b;
       } else {
         this.match14b = "Match 13 Winner";
         this.m14b = " ";
       }
+
+  }
+
+  buttonClass(match: number, status: number) {
+
+    if (match==1) {
+      if (status==this.m1o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
     }
 
+    if (match==2) {
+      if (status==this.m2o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
 
+    if (match==3) {
+      if (status==this.m3o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==4) {
+      if (status==this.m4o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==5) {
+      if (status==this.m5o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==6) {
+      if (status==this.m6o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==7) {
+      if (status==this.m7o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==8) {
+      if (status==this.m8o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==9) {
+      if (status==this.m9o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    if (match==10) {
+      if (status==this.m10o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+    
+    if (match==11) {
+      if (status==this.m11o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+    
+    if (match==12) {
+      if (status==this.m12o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+    
+    if (match==13) {
+      if (status==this.m13o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+    
+    if (match==14) {
+      if (status==this.m14o) {
+        return "button_green";
+      } else {
+        return "button";
+      }
+    }
+
+    return "button";
+      
+  }
+
+  resetBracket() {
+
+    this.m1o = 0;
+    this.m2o = 0;
+    this.m3o = 0;
+    this.m4o = 0;
+    this.m5o = 0;
+    this.m6o = 0;
+    this.m7o = 0;
+    this.m8o = 0;
+    this.m9o = 0;
+    this.m10o = 0;
+    this.m11o = 0;
+    this.m12o = 0;
+    this.m13o = 0;
+    this.m14o = 0;
+
+    this.setWin();
   }
 
 }
