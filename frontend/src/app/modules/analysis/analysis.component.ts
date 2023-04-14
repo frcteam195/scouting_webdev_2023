@@ -416,7 +416,7 @@ export class AnalysisComponent implements OnInit {
     if (this.mode == 3) {
       for (const t of this.apiFinal24List) {
         if (team == t.team && t.team != "") {
-          console.log("Matched: " + team);
+          // console.log("Matched: " + team);
           return 'selected';  
         }
       }

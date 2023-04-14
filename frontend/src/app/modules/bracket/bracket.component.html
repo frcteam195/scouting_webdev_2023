@@ -1,28 +1,27 @@
-<p>bracket works!</p>
-
 <table border="0">
     <tr>
-        <td colspan="3">Match 1</td>
+        <td colspan="3" class="tital_box">Match 1</td>
+        <td colspan=10><button class="normal_button" (click)="resetBracket()">Reset</button></td>
     </tr>
 
     <tr>
-        <td width="20px" align="center" class="td_box">1</td><td class="team_box">{{ alliance1 }}</td><td class="td_box"><button (click)="setWin(1,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">1</td><td class="team_r_box">{{ alliance1 }}</td><td class="td_box"><button (click)="m1o=1;setWin();" [ngClass]="buttonClass(1,1)">&nbsp;</button></td>
         <td class="b_bot">&nbsp;</td>
         <td>&nbsp;</td>
 
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">8</td><td class="team_box">{{ alliance8 }}</td><td class="td_box"><button (click)="setWin(1,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">8</td><td class="team_b_box">{{ alliance8 }}</td><td class="td_box"><button (click)="m1o=2;setWin();" [ngClass]="buttonClass(1,2)">&nbsp;</button></td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td colspan="3">Match 7</td>
+        <td colspan="3" class="tital_box">Match 7</td>
 
     </tr>
     <tr>
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m7r }}</td><td class="team_box">{{ match7r }}</td><td class="td_box"><button (click)="setWin(7,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m7r }}</td><td class="team_r_box">{{ match7r }}</td><td class="td_box"><button (click)="m7o=1;setWin();" [ngClass]="buttonClass(7,1)">&nbsp;</button></td>
         <td class="b_bot">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
         <td colspan="3" class="b_bot">&nbsp;</td>
@@ -30,10 +29,10 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td colspan="3">Match 2</td>
+        <td colspan="3" class="tital_box">Match 2</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m7b }}</td><td class="team_box">{{ match7b }}</td><td class="td_box"><button (click)="setWin(7,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m7b }}</td><td class="team_b_box">{{ match7b }}</td><td class="td_box"><button (click)="m7o=2;setWin();" [ngClass]="buttonClass(7,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -41,7 +40,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">4</td><td class="team_box">{{ alliance4 }}</td><td class="td_box"><button (click)="setWin(2,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">4</td><td class="team_r_box">{{ alliance4 }}</td><td class="td_box"><button (click)="m2o=1;setWin();" [ngClass]="buttonClass(2,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -52,7 +51,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">5</td><td class="team_box">{{ alliance5 }}</td><td class="td_box"><button (click)="setWin(2,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">5</td><td class="team_b_box">{{ alliance5 }}</td><td class="td_box"><button (click)="m2o=2;setWin();" [ngClass]="buttonClass(2,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -61,7 +60,7 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td colspan="3">Match 11</td>
+        <td colspan="3" class="tital_box">Match 11</td>
     </tr>
     <tr>
         <td colspan="3">&nbsp;</td>
@@ -73,7 +72,7 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m11r }}</td><td class="team_box">{{ match11r }}</td><td class="td_box"><button (click)="setWin(11,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m11r }}</td><td class="team_r_box">{{ match11r }}</td><td class="td_box"><button (click)="m11o=1;setWin();" [ngClass]="buttonClass(11,1)">&nbsp;</button></td>
         <td class="b_bot">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
         <td colspan="3" class="b_bot">&nbsp;</td>
@@ -81,7 +80,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td colspan="3">Match 3</td>
+        <td colspan="3" class="tital_box">Match 3</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -90,7 +89,7 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m11b }}</td><td class="team_box">{{ match11b }}</td><td class="td_box"><button (click)="setWin(11,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m11b }}</td><td class="team_b_box">{{ match11b }}</td><td class="td_box"><button (click)="m11o=2;setWin();" [ngClass]="buttonClass(11,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -98,7 +97,7 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">2</td><td class="team_box">{{ alliance2 }}</td><td class="td_box"><button (click)="setWin(3,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">2</td><td class="team_r_box">{{ alliance2 }}</td><td class="td_box"><button (click)="m3o=1;setWin();" [ngClass]="buttonClass(3,1)">&nbsp;</button></td>
         <td class="b_bot">&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -115,10 +114,10 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">7</td><td class="team_box">{{ alliance7 }}</td><td class="td_box"><button (click)="setWin(3,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">7</td><td class="team_b_box">{{ alliance7 }}</td><td class="td_box"><button (click)="m3o=2;setWin();" [ngClass]="buttonClass(3,2)">&nbsp;</button></td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td colspan="3">Match 8</td>
+        <td colspan="3" class="tital_box">Match 8</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -135,7 +134,7 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m8r }}</td><td class="team_box">{{ match8r }}</td><td class="td_box"><button (click)="setWin(8,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m8r }}</td><td class="team_r_box">{{ match8r }}</td><td class="td_box"><button (click)="m8o=1;setWin();" [ngClass]="buttonClass(8,1)">&nbsp;</button></td>
         <td class="b_bot">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
         <td colspan="3" class="b_bot">&nbsp;</td>
@@ -147,13 +146,13 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td colspan="3">Finals</td>
+        <td colspan="3" class="tital_box">Finals</td>
     </tr>
     <tr>
-        <td colspan="3">Match 4</td>
+        <td colspan="3" class="tital_box">Match 4</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m8b }}</td><td class="team_box">{{ match8b }}</td><td class="td_box"><button (click)="setWin(8,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m8b }}</td><td class="team_b_box">{{ match8b }}</td><td class="td_box"><button (click)="m8o=2;setWin();" [ngClass]="buttonClass(8,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -165,11 +164,11 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m14r }}</td><td class="team_box">{{ match14r }}</td><td class="td_box"><button (click)="setWin(14,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m14r }}</td><td class="team_r_box">{{ match14r }}</td><td class="td_box"><button (click)="m14o=1;setWin();" [ngClass]="buttonClass(14,1)">&nbsp;</button></td>
 
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">3</td><td class="team_box">{{ alliance3 }}</td><td class="td_box"><button (click)="setWin(4,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">3</td><td class="team_r_box">{{ alliance3 }}</td><td class="td_box"><button (click)="m4o=1;setWin();" [ngClass]="buttonClass(4,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -184,11 +183,11 @@
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m14b }}</td><td class="team_box">{{ match14b }}</td><td class="td_box"><button (click)="setWin(14,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m14b }}</td><td class="team_b_box">{{ match14b }}</td><td class="td_box"><button (click)="m14o=2;setWin();" [ngClass]="buttonClass(14,2)">&nbsp;</button></td>
 
     </tr>
     <tr>
-        <td width="20px" align="center" class="td_box">6</td><td class="team_box">{{ alliance6 }}</td><td class="td_box"><button (click)="setWin(4,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">6</td><td class="team_b_box">{{ alliance6 }}</td><td class="td_box"><button (click)="m4o=2;setWin();" [ngClass]="buttonClass(4,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
@@ -206,19 +205,19 @@
     </tr>
     <tr>
         <td colspan="20">&nbsp;</td>
-        <td colspan="3">Match 13</td>
+        <td colspan="3" class="tital_box">Match 13</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td colspan="10">&nbsp;</td>
-        <td colspan="3">Match 10</td>
+        <td colspan="3" class="tital_box">Match 10</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
         <td>&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m13r }}</td><td class="team_box">{{ match13r }}</td><td class="td_box"><button (click)="setWin(13,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m13r }}</td><td class="team_r_box">{{ match13r }}</td><td class="td_box"><button (click)="m13o=1;setWin();" [ngClass]="buttonClass(13,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
@@ -229,49 +228,49 @@
         <td colspan="3">&nbsp;</td>
         <td>&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m10r }}</td><td class="team_box">{{ match10r }}</td><td class="td_box"><button (click)="setWin(10,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m10r }}</td><td class="team_r_box">{{ match10r }}</td><td class="td_box"><button (click)="m10o=1;setWin();" [ngClass]="buttonClass(10,1)">&nbsp;</button></td>
         <td class="b_bot">&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m13b }}</td><td class="team_box">{{ match13b }}</td><td class="td_box"><button (click)="setWin(13,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m13b }}</td><td class="team_b_box">{{ match13b }}</td><td class="td_box"><button (click)="m13o=2;setWin();" [ngClass]="buttonClass(13,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td colspan="5">&nbsp;</td>
-        <td colspan="3">Match 5</td>
+        <td colspan="3" class="tital_box">Match 5</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m10b }}</td><td class="team_box">{{ match10b }}</td><td class="td_box"><button (click)="setWin(10,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m10b }}</td><td class="team_b_box">{{ match10b }}</td><td class="td_box"><button (click)="m10o=2;setWin();" [ngClass]="buttonClass(10,2)">&nbsp;</button></td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td colspan="3">Match 12</td>
+        <td colspan="3" class="tital_box">Match 12</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td colspan="5">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m5r }}</td><td class="team_box">{{ match5r }}</td><td class="td_box"><button (click)="setWin(5,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m5r }}</td><td class="team_r_box">{{ match5r }}</td><td class="td_box"><button (click)="m5o=1;setWin();" [ngClass]="buttonClass(5,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="3">&nbsp;</td>
         <td class="b_right">&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m12r }}</td><td class="team_box">{{ match12r }}</td><td class="td_box"><button (click)="setWin(12,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m12r }}</td><td class="team_r_box">{{ match12r }}</td><td class="td_box"><button (click)="m12o=1;setWin();" [ngClass]="buttonClass(12,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td colspan="5">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m5b }}</td><td class="team_box">{{ match5b }}</td><td class="td_box"><button (click)="setWin(5,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m5b }}</td><td class="team_b_box">{{ match5b }}</td><td class="td_box"><button (click)="m5o=2;setWin();" [ngClass]="buttonClass(5,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td colspan="3">Match 9</td>
+        <td colspan="3" class="tital_box">Match 9</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m12b }}</td><td class="team_box">{{ match12b }}</td><td class="td_box"><button (click)="setWin(12,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m12b }}</td><td class="team_b_box">{{ match12b }}</td><td class="td_box"><button (click)="m12o=2;setWin();" [ngClass]="buttonClass(12,2)">&nbsp;</button></td>
 
     </tr>
     <tr>
@@ -281,27 +280,27 @@
         <td colspan="3">&nbsp;</td>
         <td>&nbsp;</td>
         <td class="b_bot">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m9r }}</td><td class="team_box">{{ match9r }}</td><td class="td_box"><button (click)="setWin(9,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m9r }}</td><td class="team_r_box">{{ match9r }}</td><td class="td_box"><button (click)="m9o=1;setWin();" [ngClass]="buttonClass(9,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
         
     </tr>
     <tr>
         <td colspan="5">&nbsp;</td>
-        <td colspan="3">Match 6</td>
+        <td colspan="3" class="tital_box">Match 6</td>
         <td class="b_right">&nbsp;</td>
         <td>&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m9b }}</td><td class="team_box">{{ match9b }}</td><td class="td_box"><button (click)="setWin(9,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m9b }}</td><td class="team_b_box">{{ match9b }}</td><td class="td_box"><button (click)="m9o=2;setWin();" [ngClass]="buttonClass(9,2)">&nbsp;</button></td>
     </tr>
     <tr>
         <td colspan="5">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m6r }}</td><td class="team_box">{{ match6r }}</td><td class="td_box"><button (click)="setWin(6,1)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m6r }}</td><td class="team_r_box">{{ match6r }}</td><td class="td_box"><button (click)="m6o=1;setWin();" [ngClass]="buttonClass(6,1)">&nbsp;</button></td>
         <td class="b_bot_right">&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td colspan="5">&nbsp;</td>
-        <td width="20px" align="center" class="td_box">{{ m6b }}</td><td class="team_box">{{ match6b }}</td><td class="td_box"><button (click)="setWin(6,2)">&nbsp;</button></td>
+        <td width="20px" align="center" class="td_box">{{ m6b }}</td><td class="team_b_box">{{ match6b }}</td><td class="td_box"><button (click)="m6o=2;setWin();" [ngClass]="buttonClass(6,2)">&nbsp;</button></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
