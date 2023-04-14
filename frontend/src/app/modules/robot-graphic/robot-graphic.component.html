@@ -167,13 +167,13 @@
                     <ng-container *ngIf="x.team == selectedTeam">
                     <ng-container *ngIf="x.analysisTypeID == 90">
                     <tr>
-                        <td colspan="2" [ngStyle]="{'background-color': x.S3D}" style="font-weight: bold;font-size: large;">%{{ x.S3V }}</td>
-                        <td colspan="5" [ngStyle]="{'background-color': x.S2D}" style="font-weight: bold;font-size: large;">%{{ x.S2V }}</td>
-                        <td colspan="2" [ngStyle]="{'background-color': x.S1D}" style="font-weight: bold;font-size: large;">%{{ x.S1V }}</td>
+                        <td colspan="2" [ngStyle]="{'background-color': x.S3D}" style="font-weight: bold;font-size: large;">{{ x.S3V }}%</td>
+                        <td colspan="5" [ngStyle]="{'background-color': x.S2D}" style="font-weight: bold;font-size: large;">{{ x.S2V }}%</td>
+                        <td colspan="2" [ngStyle]="{'background-color': x.S1D}" style="font-weight: bold;font-size: large;">{{ x.S1V }}%</td>
                     </tr>
                     <tr>
-                        <td colspan="2" [ngStyle]="{'background-color': x.S4D}" style="font-weight: bold;font-size: large;">%{{ x.S4V }}</td>
-                        <td colspan="5" style="font-size: larger; font-weight: bolder;background-color: lightgray;">Charge Station</td>
+                        <td colspan="2" [ngStyle]="{'background-color': x.S4D}" style="font-weight: bold;font-size: large;">{{ x.S4V }}%</td>
+                        <td colspan="5" style="font-weight: bolder;background-color: lightgray;">Auto Engage: {{ x.M4F }}%<br>Auto Dock: {{ x.M4D }}%</td>
                         <td class="carpet" colspan="2"></td>
                     </tr>
                     </ng-container>
