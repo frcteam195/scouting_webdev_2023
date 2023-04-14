@@ -1,0 +1,48 @@
+table { 
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+tr, th {
+    text-align: center;
+}
+
+.td_box {
+    border: 1px solid;
+}
+
+.team_box {
+    border: 1px solid;
+    width: 125px;
+}
+
+.button_green {
+    width:20px;
+    height:20px;
+    margin-left: 0px;
+    background-color: green;
+    color: white;
+}
+
+
+button {
+    width:20px;
+    height:20px;
+    margin-left: 0px;
+    background-color: lightgray;
+    color: black;
+}
+
+
+.b_right {
+    border-right: 2px solid;
+}
+
+.b_bot {
+    border-bottom: 2px solid;
+}
+
+.b_bot_right {
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
