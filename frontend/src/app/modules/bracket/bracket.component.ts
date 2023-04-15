@@ -510,9 +510,6 @@ export class BracketComponent implements OnInit {
 
   resetBracket() {
 
-
-
-
     this.m1o = 0;
     this.m2o = 0;
     this.m3o = 0;
@@ -533,6 +530,7 @@ export class BracketComponent implements OnInit {
 
   autoBracket() {
 
+    // Set values for analysis type
     let m1r_value = this.allianceData[0].teamAverage;
     let m1b_value = this.allianceData[7].teamAverage;
     let m2r_value = this.allianceData[3].teamAverage;
@@ -541,15 +539,6 @@ export class BracketComponent implements OnInit {
     let m3b_value = this.allianceData[6].teamAverage;
     let m4r_value = this.allianceData[2].teamAverage;
     let m4b_value = this.allianceData[5].teamAverage;
-
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 1 Average: " + this.allianceData[0].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 2 Average: " + this.allianceData[1].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 3 Average: " + this.allianceData[2].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 4 Average: " + this.allianceData[3].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 5 Average: " + this.allianceData[4].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 6 Average: " + this.allianceData[5].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 7 Average: " + this.allianceData[6].teamAverage);
-    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 8 Average: " + this.allianceData[7].teamAverage);
 
     let m5r_value = 0;
     let m5b_value = 0;
