@@ -186,6 +186,21 @@ def get_cgtypes():
         mimetype='application/json'
     )
     return response
+
+# Get brake mode types 
+@app.route("/brake/", methods =['GET', 'POST'])
+def get_brakemodetypes():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT c.* "
+    "FROM brakeModeTypes c; ")
+    data = cursor.fetchall()
+    response = app.response_class(
+
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
  
 # Get Matches Data from past events
 @app.route("/matches/", methods =['GET', 'POST'], defaults={'eventID':None})
@@ -369,7 +384,7 @@ def get_pitdata(eventID):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     if eventID is not None:
         cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
-            "s.superClimbType, b.buildType, c.centerGravityType "
+            "s.superClimbType, b.buildType, c.centerGravityType, bm.brakeModeType "
                 "FROM pit p "
                 "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
                 "INNER JOIN events e on p.eventID = e.eventID "
@@ -378,11 +393,12 @@ def get_pitdata(eventID):
                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
+                "LEFT JOIN brakeModeTypes bm on p.brakeModeTypeID=bm.brakeModeTypeID "
                 "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
                 "WHERE p.eventID = " + eventID + " ;")
     else: 
         cursor.execute("SELECT p.*, d.driveBaseType, t.teamName, teamLocation, m.driveMotorType, a.manipulatorType, "
-            "s.superClimbType, b.buildType, c.centerGravityType "
+            "s.superClimbType, b.buildType, c.centerGravityType, bm.brakeModeType "
                 "FROM pit p "
                 "INNER JOIN teams t on p.team = t.team AND p.eventID = t.eventID "
                 "INNER JOIN events e on p.eventID = e.eventID "
@@ -391,6 +407,7 @@ def get_pitdata(eventID):
                 "LEFT JOIN manipulatorTypes a on p.manipulatorTypeID=a.manipulatorTypeID "
                 "LEFT JOIN superClimbTypes s on p.superClimbTypeID=s.superClimbTypeID "
                 "LEFT JOIN buildTypes b on p.buildTypeID=b.buildTypeID "
+                "LEFT JOIN brakeModeTypes bm on p.brakeModeTypeID=bm.brakeModeTypeID "
                 "LEFT JOIN centerGravityTypes c on p.centerGravityTypeID=c.centerGravityTypeID "
                 "WHERE p.eventID = e.eventID "
                 "AND e.currentEvent = 1 ;") 
@@ -605,11 +622,11 @@ def post_pitscouting():
             #query1='INSERT INTO '+table+' VALUES (%s, %s) ON DUPLICATE KEY UPDATE Team=%s',(pos+1, team_selection['Team'],team_selection['Team'])
             ##print(query1)
             #cursor.execute(query1)
-            cursor.execute('UPDATE pit SET buildComments = %s, buildQuality = %s, buildTypeID = %s, centerGravityTypeID = %s, dedicatedGroundIntake = %s, '
+            cursor.execute('UPDATE pit SET buildComments = %s, buildQuality = %s, buildTypeID = %s, centerGravityTypeID = %s, brakeModeTypeID = %s, '
                 'driveBaseTypeID = %s, driveMotorTypeID = %s, electricalComments= %s, electricalQuality = %s, '
                 'generalComments = %s, imageLink = %s, manipulatorTypeID = %s, robotDurability = %s, robotHeight = %s, '
                 'robotLength = %s, robotWidth = %s, scouterID = %s, scoutingStatus = %s, superClimbTypeID = %s, robotWeight = %s '
-                'where team = %s and eventID = %s',(pit_data['buildComments'],pit_data['buildQuality'],pit_data['buildTypeID'],pit_data['centerGravityTypeID'],pit_data['dedicatedGroundIntake'],
+                'where team = %s and eventID = %s',(pit_data['buildComments'],pit_data['buildQuality'],pit_data['buildTypeID'],pit_data['centerGravityTypeID'],pit_data['brakeModeTypeID'],
                 pit_data['driveBaseTypeID'],pit_data['driveMotorTypeID'],pit_data['electricalComments'],pit_data['electricalQuality'],
                 pit_data['generalComments'],pit_data['imageLink'],pit_data['manipulatorTypeID'],pit_data['robotDurability'],pit_data['robotHeight'],
                 pit_data['robotLength'],pit_data['robotWidth'],pit_data['scouterID'],pit_data['scoutingStatus'],pit_data['superClimbTypeID'],pit_data['robotWeight'],

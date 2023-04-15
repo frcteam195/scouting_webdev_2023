@@ -13,7 +13,7 @@ export class Teams {
     generalComments: String;
     robotHeight: Number;
     imageLink: String;
-    dedicatedGroundIntake: String;
+    brakeModeType: String;
     manipulatorType: String;
     manipulatorTypeID: Number;
     driveMotorType: String;
@@ -46,7 +46,7 @@ constructor(
    generalComments: String,
    robotHeight: Number,
    imageLink: String,
-    dedicatedGroundIntake: String,
+    brakeModeType: String,
     manipulatorType: String,
     manipulatorTypeID: Number,
     driveMotorType: String,
@@ -75,7 +75,7 @@ this.centerGravityTypeID = centerGravityTypeID
     this.electricalQuality = electricalQuality;
     this.electricalComments = electricalComments;
     this.eventID = eventID;
-    this.dedicatedGroundIntake = dedicatedGroundIntake;
+    this.brakeModeType = brakeModeType;
     this.generalComments = generalComments;
     this.robotHeight = robotHeight;
     this.imageLink = imageLink;
