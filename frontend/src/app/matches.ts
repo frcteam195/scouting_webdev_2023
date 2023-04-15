@@ -16,6 +16,16 @@ export class Matches {
     SBbluePredScore: string;
     SBredWinProb: string;
     SBblueWinProb: string;
+    redPredAuto: string;
+    bluePredAuto: string;
+    redPredTele: string;
+    bluePredTele: string;
+    redPredEndgame: string;
+    bluePredEndgame: string;
+    redPredScore: string;
+    bluePredScore: string;
+    redWinProb: string;
+    blueWinProb: string;
 constructor(actualTime: string,
     blue1: string,
     blue2: string,
@@ -33,7 +43,17 @@ constructor(actualTime: string,
     SBredPredScore: string,
     SBbluePredScore: string,
     SBredWinProb: string,
-    SBblueWinProb: string
+    SBblueWinProb: string,
+    redPredAuto: string,
+    bluePredAuto: string,
+    redPredTele: string,
+    bluePredTele: string,
+    redPredEndgame: string,
+    bluePredEndgame: string,
+    redPredScore: string,
+    bluePredScore: string,
+    redWinProb: string,
+    blueWinProb: string
     ){
         this.blue1=blue1;
         this.blue2=blue2;
@@ -52,4 +72,14 @@ constructor(actualTime: string,
         this.SBbluePredScore=SBbluePredScore; 
         this.SBredWinProb=SBredWinProb;   
         this.SBblueWinProb=SBblueWinProb; 
+        this.redPredAuto=redPredAuto;   
+        this.bluePredAuto=bluePredAuto; 
+        this.redPredTele=redPredTele;   
+        this.bluePredTele=bluePredTele; 
+        this.redPredEndgame=redPredEndgame;   
+        this.bluePredEndgame=bluePredEndgame; 
+        this.redPredScore=redPredScore;   
+        this.bluePredScore=bluePredScore; 
+        this.redWinProb=redWinProb;   
+        this.blueWinProb=blueWinProb; 
 }}

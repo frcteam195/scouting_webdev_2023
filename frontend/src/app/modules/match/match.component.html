@@ -6,10 +6,11 @@
             <button (click)="setDisplay(1)" [ngClass]="{'selected': display == 1}">Robot Pictures</button>
             <button (click)="setDisplay(2)" [ngClass]="{'selected': display == 2}">Post Game Info</button>
             <button (click)="setDisplay(3)" [ngClass]="{'selected': display == 3}">Level 2 Data</button>
-            <button (click)="setDisplay(4)" [ngClass]="{'selected': display == 4}">Predictions</button>
             <button (click)="setDisplay(5)" [ngClass]="{'selected': display == 5}">Red L2</button>
             <button (click)="setDisplay(6)" [ngClass]="{'selected': display == 6}">Blue L2</button>
             <button (click)="setDisplay(7)" [ngClass]="{'selected': display == 7}">Auto</button>
+            <button (click)="setDisplay(4)" [ngClass]="{'selected': display == 4}">SB Predictions</button>
+            <button (click)="setDisplay(8)" [ngClass]="{'selected': display == 8}">Mark Predictions</button>
             
         </td> 
         <td colspan="1" align="center" style="width: 20%;"><h2>Match {{matchNum}}</h2>
@@ -148,7 +149,52 @@
         </tr>
     </ng-container>
     </ng-container>
-</table>   
+</table> 
+<table style="width: 100%;" *ngIf="display==8"  class="prediction">
+    <tr>
+        <th style="width: 40%; background-color: red; color: white;" colspan="3">Red Alliance</th>
+        <th style="width: 20%;">Type</th>
+        <th style="width: 40%; background-color: blue; color: white;" colspan="3">Blue Alliance</th>
+    </tr>
+    <tr>
+        <td style="text-align: center; width: 11%; background-color: white;">{{ redTeam1 }}</td>
+        <td style="text-align: center; width: 11%; background-color: white;">{{ redTeam2 }}</td>
+        <td style="text-align: center; width: 11%; background-color: white;">{{ redTeam3 }}</td>
+        <td style="width: 20%; background-color: white; text-align: center;">Team</td>
+        <td style="text-align: center; width: 11%; background-color: white;">{{ blueTeam1 }}</td>
+        <td style="text-align: center; width: 11%; background-color: white;">{{ blueTeam2 }}</td>
+        <td style="text-align: center; width: 11%; background-color: white;">{{ blueTeam3 }}</td>
+    </tr>
+    <ng-container *ngFor="let m of apiMatchList" >
+    <ng-container *ngIf="m.matchNum == matchNum">
+        <tr style="text-align: center;">
+            <td colspan="3" style="text-align: center;">{{ m.redPredAuto}}</td>
+            <td style="background-color: white;">Auto</td>
+            <td colspan="3" style="text-align: center;">{{ m.bluePredAuto}}</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="3" style="text-align: center;">{{ m.redPredTele}}</td>
+            <td style="background-color: white;">Tele</td>
+            <td colspan="3" style="text-align: center;">{{ m.bluePredTele}}</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="3" style="text-align: center;">{{ m.redPredEndgame}}</td>
+            <td style="background-color: white;">Endgame</td>
+            <td colspan="3" style="text-align: center;">{{ m.bluePredEndgame}}</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="3" style="text-align: center;">{{ m.redPredScore}}</td>
+            <td style="background-color: white;">Total</td>
+            <td colspan="3" style="text-align: center;">{{ m.bluePredScore}}</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="3" style="text-align: center;background-color: red; color: white;">{{ m.redWinProb}}%</td>
+            <td style="background-color: white;">Probability</td>
+            <td colspan="3" style="text-align: center;background-color: blue; color: white;">{{ m.blueWinProb}}%</td>
+        </tr>
+    </ng-container>
+    </ng-container>
+</table>  
 <table style="width: 100%;height: 80%;" *ngIf="display==5"  class="redL2" >
     <tr>
         <th>{{ redTeam1 }}</th>
