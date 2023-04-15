@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CEA } from 'src/app/CEA';
 import { Alliance } from 'src/app/alliance';
 import { ApiService, Final24 } from 'src/app/services/api.service';
 
@@ -10,6 +11,7 @@ import { ApiService, Final24 } from 'src/app/services/api.service';
 })
 export class BracketComponent implements OnInit {
 
+  @Input() analysisTypeID: number = 0;
   @Input() final24List: Final24[] = [];
 
   teamList: string[] = [];
@@ -17,6 +19,7 @@ export class BracketComponent implements OnInit {
   teamAverage: number = 0;
   teamMedian: number = 0;
   allianceData: Alliance[] = [];
+  apiAnalysis: CEA[] = [];
 
   alliance1: string = "";
   alliance4: string = "";
@@ -99,8 +102,11 @@ export class BracketComponent implements OnInit {
 
   constructor(private apiService: ApiService, private router: Router) {
 
-    console.log("Made it here");
-    // this.regenerateFilter();
+
+    this.apiService.CEAReplay.subscribe(analysis => {
+      this.apiAnalysis = analysis;
+      // this.regenerateFilter();
+    });
 
   }
 
@@ -142,8 +148,11 @@ export class BracketComponent implements OnInit {
           i=i+1;
         }
 
+        // Get Average and Median Totals for Alliance
+        this.getSummaryData();
+
         let workList={"alliance":this.alliance,"team1":this.teamList[0],"team2":this.teamList[1],
-                      "team3":this.teamList[2],"teamAverage":0,"teamMedian":0};
+                      "team3":this.teamList[2],"teamAverage":this.teamAverage,"teamMedian":this.teamMedian} ;
         this.allianceData.push(workList);
 
         this.alliance=this.alliance+1;
@@ -166,7 +175,30 @@ export class BracketComponent implements OnInit {
 
   }
 
+  getSummaryData() {
+    console.log("regenerateFilter");
+    this.teamAverage = 0;
+    this.teamMedian = 0;
 
+    if (this.apiAnalysis) {
+
+      for (const a of this.apiAnalysis) {
+        // console.log("Loop: " + i);
+        if (a.analysisTypeID == this.analysisTypeID) {
+          // console.log("Filter: ", this.final24List_filter);
+
+          if (this.teamList.includes(a.team)) { 
+
+            this.teamAverage = this.teamAverage + a.S1V;
+            this.teamMedian = this.teamMedian + a.S2V;
+
+          }
+        }
+      } 
+    } else {
+      console.log("No Analysis Type Data Found");
+    }
+  }
 
   setWin() {
     console.log("RUnning setWin");
@@ -478,6 +510,9 @@ export class BracketComponent implements OnInit {
 
   resetBracket() {
 
+
+
+
     this.m1o = 0;
     this.m2o = 0;
     this.m3o = 0;
@@ -498,14 +533,23 @@ export class BracketComponent implements OnInit {
 
   autoBracket() {
 
-    let m1r_value = 147;
-    let m1b_value = 148;
-    let m2r_value = 165;
-    let m2b_value = 154;
-    let m3r_value = 164;
-    let m3b_value = 134;
-    let m4r_value = 156;
-    let m4b_value = 146;
+    let m1r_value = this.allianceData[0].teamAverage;
+    let m1b_value = this.allianceData[7].teamAverage;
+    let m2r_value = this.allianceData[3].teamAverage;
+    let m2b_value = this.allianceData[4].teamAverage;
+    let m3r_value = this.allianceData[1].teamAverage;
+    let m3b_value = this.allianceData[6].teamAverage;
+    let m4r_value = this.allianceData[2].teamAverage;
+    let m4b_value = this.allianceData[5].teamAverage;
+
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 1 Average: " + this.allianceData[0].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 2 Average: " + this.allianceData[1].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 3 Average: " + this.allianceData[2].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 4 Average: " + this.allianceData[3].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 5 Average: " + this.allianceData[4].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 6 Average: " + this.allianceData[5].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 7 Average: " + this.allianceData[6].teamAverage);
+    console.log("Analysis Type: " + this.analysisTypeID + ", Alliance 8 Average: " + this.allianceData[7].teamAverage);
 
     let m5r_value = 0;
     let m5b_value = 0;

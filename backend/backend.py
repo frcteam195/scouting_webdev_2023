@@ -493,13 +493,13 @@ def get_checklist(eventID):
                     "FROM checklist c, tasks t, events e "
                     "WHERE c.taskID = t.taskID " 
                     "and e.eventID = c.eventID "
-                    "and e.eventID = " + eventID + " ORDER BY c.matchNum;")
+                    "and e.eventID = " + eventID + " ORDER BY c.matchNum, t.taskOrder;")
     else:
         cursor.execute("SELECT c.*, t.task, t.taskDesc "
                     "FROM checklist c, tasks t, events e "
                     "WHERE c.taskID = t.taskID " 
                     "and e.eventID = c.eventID "
-                    "AND e.currentEvent = 1 ORDER BY c.matchNum;")
+                    "AND e.currentEvent = 1 ORDER BY c.matchNum, t.taskOrder;")
     data = cursor.fetchall()	
     response = app.response_class(
         response=json.dumps(data),
