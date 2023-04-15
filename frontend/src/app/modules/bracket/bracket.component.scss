@@ -11,20 +11,15 @@ tr, th {
     border: 1px solid;
 }
 
-.team_box {
-    border: 1px solid;
-    width: 125px;
-}
-
 .team_r_box {
     border: 1px solid;
-    width: 125px;
+    width: 110px;
     background-color: lightpink;
 }
 
 .team_b_box {
     border: 1px solid;
-    width: 125px;
+    width: 110px;
     background-color: lightblue;
 }
 
@@ -53,11 +48,10 @@ button {
 .normal_button {
     width:80px;
     height:25px;
-    margin-left: 0px;
+    margin-left: 4px;
     background-color: lightgray;
     color: black;
 }
-
 
 .b_right {
     border-right: 2px solid;

@@ -496,4 +496,207 @@ export class BracketComponent implements OnInit {
     this.setWin();
   }
 
+  autoBracket() {
+
+    let m1r_value = 147;
+    let m1b_value = 148;
+    let m2r_value = 165;
+    let m2b_value = 154;
+    let m3r_value = 164;
+    let m3b_value = 134;
+    let m4r_value = 156;
+    let m4b_value = 146;
+
+    let m5r_value = 0;
+    let m5b_value = 0;
+    let m6r_value = 0;
+    let m6b_value = 0;
+    let m7r_value = 0;
+    let m7b_value = 0;
+    let m8r_value = 0;
+    let m8b_value = 0;
+    let m9r_value = 0;
+    let m9b_value = 0;
+    let m10r_value = 0;
+    let m10b_value = 0;
+    let m11r_value = 0;
+    let m11b_value = 0;
+    let m12r_value = 0;
+    let m12b_value = 0;
+    let m13r_value = 0;
+    let m13b_value = 0;
+    let m14r_value = 0;
+    let m14b_value = 0;
+
+
+    // If m1r_value > m1b_value 
+    // then m1o=1, m7r_value = m1r_value, m5r_value = m1b_value
+    // else m1o=2, m7r_value = m1b_value, m5r_value = m1r_value 
+    if (m1r_value > m1b_value) {
+      this.m1o = 1;
+      m7r_value = m1r_value;
+      m5r_value = m1b_value;
+    } else {
+      this.m1o=2;
+      m7r_value = m1b_value;
+      m5r_value = m1r_value;
+    }
+
+    // If m2r_value > m2b_value 
+    // then m2o=1, m7b_value = m2r_value, m5b_value = m2b_value
+    // else m2o=2, m7b_value = m2b_value, m5b_value = m2r_value
+    if (m2r_value > m2b_value ) {
+      this.m2o=1;
+      m7b_value = m2r_value;
+      m5b_value = m2b_value;
+    } else {
+      this.m2o=2;
+      m7b_value = m2b_value;
+      m5b_value = m2r_value;
+    }
+
+    // If m3r_value > m3b_value 
+    // then m3o=1, m8r_value = m3r_value, m6r_value = m3b_value
+    // else m3o=2, m8r_value = m3b_value, m6r_value = m3r_value 
+    if (m3r_value > m3b_value) {
+      this.m3o=1;
+      m8r_value = m3r_value;
+      m6r_value = m3b_value;
+    } else {
+      this.m3o=2;
+      m8r_value = m3b_value;
+      m6r_value = m3r_value;
+    }
+
+    // If m4r_value > m4b_value 
+    // then m4o=1, m8b_value = m4r_value, m6b_value = m4b_value
+    // else m4o=2, m8b_value = m4b_value, m6b_value = m4r_value
+    if (m4r_value > m4b_value) {
+      this.m4o=1;
+      m8b_value = m4r_value;
+      m6b_value = m4b_value;
+    } else {
+      this.m4o=2;
+      m8b_value = m4b_value;
+      m6b_value = m4r_value;
+    }
+
+    // If m5r_value > m5b_value 
+    // then m5o=1, m10b_value = m5r_value
+    // else m5o=2, m10b_value = m5b_value
+    if (m5r_value > m5b_value) {
+      this.m5o=1;
+      m10b_value = m5r_value;
+    } else {
+      this.m5o=2;
+      m10b_value = m5b_value;
+    }
+
+    // If m6r_value > m6b_value 
+    // then m6o=1, m9b_value = m6r_value
+    // else m6o=2, m9b_value = m6b_value
+    if (m6r_value > m6b_value) {
+      this.m6o=1;
+      m9b_value = m6r_value;
+    } else {
+      this.m6o=2;
+      m9b_value = m6b_value;
+    }
+
+    // If m7r_value > m7b_value 
+    // then m7o=1, m11r_value = m7r_value, m9r_value = m7b_value
+    // else m7o=2, m11r_value = m7b_value, m9r_value = m7r_value 
+    if (m7r_value > m7b_value) {
+      this.m7o=1;
+      m11r_value = m7r_value;
+      m9r_value = m7b_value;
+    } else {
+      this.m7o=2;
+      m11r_value = m7b_value;
+      m9r_value = m7r_value;
+    }
+
+    // If m8r_value > m8b_value 
+    // then m8o=1, m11b_value = m4r_value, m10r_value = m4b_value
+    // else m8o=2, m11b_value = m4b_value, m10r_value = m4r_value
+    if (m8r_value > m8b_value) {
+      this.m8o=1;
+      m11b_value = m4r_value;
+      m10r_value = m4b_value;
+    } else {
+      this.m8o=2;
+      m11b_value = m4b_value;
+      m10r_value = m4r_value;
+    }
+
+    // If m9r_value > m9b_value 
+    // then m9o=1, m12b_value = m9r_value
+    // else m9o=2, m12b_value = m9b_value
+    if (m9r_value > m9b_value) {
+      this.m9o=1;
+      m12b_value = m9r_value;
+    } else {
+      this.m9o=2;
+      m12b_value = m9b_value;
+    }
+
+    // If m10r_value > m10b_value 
+    // then m10o=1, m12r_value = m10r_value
+    // else m10o=2, m12r_value = m10b_value
+    if (m10r_value > m10b_value) {
+      this.m10o=1;
+      m12r_value = m10r_value;
+    } else {
+      this.m10o=2;
+      m12r_value = m10b_value;
+    }
+    
+    // If m11r_value > m11b_value 
+    // then m11o=1, m14r_value = m11r_value, m13r_value = m11b_value
+    // else m11o=2, m14r_value = m11b_value, m13r_value = m11r_value
+    if (m11r_value > m11b_value) {
+      this.m11o=1;
+      m14r_value = m11r_value;
+      m13r_value = m11b_value;
+    } else {
+      this.m11o=2;
+      m14r_value = m11b_value;
+      m13r_value = m11r_value;
+    }
+
+    // If m12r_value > m12b_value 
+    // then m12o=1, m13b_value = m12r_value
+    // else m12o=2, m13b_value = m12b_value
+    if (m12r_value > m12b_value) {
+      this.m12o=1;
+      m13b_value = m12r_value;
+    } else {
+      this.m12o=2;
+      m13b_value = m12b_value;
+    }
+
+    // If m13r_value > m13b_value 
+    // then m13o=1, m14b_value = m13r_value
+    // else m13o=2, m14b_value = m13b_value
+    if (m13r_value > m13b_value) {
+      this.m13o=1;
+      m14b_value = m13r_value;
+    } else {
+      this.m13o=2;
+      m14b_value = m13b_value;
+    }
+    
+    // If m14r_value > m14b_value 
+    // then m14o=1
+    // else m14o=2
+    if (m14r_value > m14b_value) {
+      this.m14o=1;
+    } else {
+      this.m14o=2;
+    }
+
+    this.setWin();
+
+  }
+
 }
