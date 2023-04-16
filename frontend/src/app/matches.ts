@@ -26,6 +26,8 @@ export class Matches {
     bluePredScore: string;
     redWinProb: string;
     blueWinProb: string;
+    redGPtotal: string;
+    blueGPtotal: string;
 constructor(actualTime: string,
     blue1: string,
     blue2: string,
@@ -53,7 +55,9 @@ constructor(actualTime: string,
     redPredScore: string,
     bluePredScore: string,
     redWinProb: string,
-    blueWinProb: string
+    blueWinProb: string,
+    redGPtotal: string,
+    blueGPtotal: string
     ){
         this.blue1=blue1;
         this.blue2=blue2;
@@ -82,4 +86,6 @@ constructor(actualTime: string,
         this.bluePredScore=bluePredScore; 
         this.redWinProb=redWinProb;   
         this.blueWinProb=blueWinProb; 
+        this.redGPtotal=redGPtotal;   
+        this.blueGPtotal=blueGPtotal; 
 }}
