@@ -96,6 +96,8 @@ export class AnalysisComponent implements OnInit {
 
       this.teamSelectionChange(1);
 
+      this.changeDisplay(4);
+
     }
 
   }
@@ -243,7 +245,7 @@ export class AnalysisComponent implements OnInit {
 
 
 
-  // Deteremine the Analysis Types to send to the team-table component
+  // Determine the Analysis Types to send to the team-table component
   changeDisplay(type: number) {
     //console.log("Display Type: " + type)
     this.typeGroup = type;
